@@ -1,0 +1,21 @@
+{
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/om-oss", "destination": "/rickson", "permanent": true },
+    { "source": "/om-oss.html", "destination": "/rickson.html", "permanent": true },
+    { "source": "/filosofi", "destination": "/differencismen", "permanent": true },
+    { "source": "/filosofi.html", "destination": "/differencismen.html", "permanent": true },
+    { "source": "/arbetet", "destination": "/tjanster", "permanent": true },
+    { "source": "/arbetet.html", "destination": "/tjanster.html", "permanent": true },
+    { "source": "/samarbeten", "destination": "/tjanster", "permanent": true },
+    { "source": "/samarbeten.html", "destination": "/tjanster.html", "permanent": true },
+    { "source": "/program", "destination": "/tjanster", "permanent": true },
+    { "source": "/program.html", "destination": "/tjanster.html", "permanent": true },
+    { "source": "/faq", "destination": "/tjanster#vanliga-fragor", "permanent": true },
+    { "source": "/faq.html", "destination": "/tjanster.html", "permanent": true },
+    { "source": "/boken", "destination": "/rickson#boken", "permanent": true },
+    { "source": "/boken.html", "destination": "/rickson.html#boken", "permanent": true },
+    { "source": "/ansok", "destination": "/kontakt", "permanent": true },
+    { "source": "/ansok.html", "destination": "/kontakt.html", "permanent": true }
+  ]
+}
