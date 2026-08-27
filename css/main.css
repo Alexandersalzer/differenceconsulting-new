@@ -315,7 +315,7 @@ main > .hero { position: relative; z-index: 1; }
 .logo__mark { width: 32px; height: 32px; display: block; overflow: visible; flex: none; }
 .logo__mark path { fill: var(--ink); stroke: none; }
 /* Animated logo lockup (D + wordmark) played as a muted video. Height-driven so
-   it scales cleanly; ~3.45:1 source. Shrinks a little on scroll. */
+   it scales cleanly; ~4.29:1 source. Shrinks a little on scroll. */
 .logo__video {
   display: block; height: 60px; width: auto; flex: none;
 }
