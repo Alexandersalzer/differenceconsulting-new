@@ -226,15 +226,64 @@ main > .hero { position: relative; z-index: 1; }
 .section--dark .btn { background: var(--on-ink); color: var(--ink); border-color: var(--on-ink); }
 .section--dark .btn:hover { background: transparent; color: var(--on-ink); }
 
+/* ---- Links --------------------------------------------------------------
+   One component for every text link on the site. The underline is always
+   currentColor, so it follows the text it belongs to — on cream, on dark
+   blocks, in muted captions — without needing a variant per context.
+
+   .link      inline links inside copy
+   .link-row  full-width row links (sitemap, service entries): word on the
+              left, arrow on the right, hairline handled by the parent list
+   Buttons (.btn) and the main nav (.nav__link) keep their own treatment. */
+.link {
+  display: inline;
+  color: inherit;
+  border-bottom: 1.5px solid currentColor;
+  padding-bottom: 0.08em;
+  transition: color 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+.link:hover { color: var(--accent); }
+
+/* Uppercase micro-link with a moving arrow (used as a standalone CTA). */
 .link-underline {
   display: inline-flex; align-items: center; gap: 0.5em;
   font-size: var(--step--1); font-weight: 500; letter-spacing: 0.06em;
-  text-transform: uppercase; color: var(--ink);
+  text-transform: uppercase; color: inherit;
   padding-bottom: 2px;
-  border-bottom: 1px solid var(--ink);
-  transition: gap 0.4s var(--ease), opacity 0.3s;
+  border-bottom: 1.5px solid currentColor;
+  transition: gap 0.4s var(--ease), color 0.3s var(--ease);
 }
-.link-underline:hover { gap: 0.9em; }
+.link-underline:hover { gap: 0.9em; color: var(--accent); }
+
+/* Big row link: the label carries the underline, the arrow sits far right. */
+.link-row {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: var(--space-md);
+  font-family: var(--serif);
+  font-size: var(--step-2);
+  line-height: 1.05;
+  color: var(--ink);
+  transition: color 0.3s var(--ease);
+}
+.link-row__label {
+  border-bottom: 1.5px solid currentColor;
+  padding-bottom: 0.14em;
+}
+.link-row .arrow {
+  font-family: var(--sans);
+  font-size: var(--step--1);
+  color: inherit;
+  flex: none;
+  transition: transform 0.3s var(--ease);
+}
+.link-row:hover,
+.link-row-parent:hover .link-row { color: var(--accent); }
+.link-row:hover .arrow,
+.link-row-parent:hover .link-row .arrow { transform: translateX(5px); }
+@media (prefers-reduced-motion: reduce) {
+  .link-row .arrow, .link-underline { transition: color 0.2s; }
+  .link-row:hover .arrow, .link-row-parent:hover .link-row .arrow { transform: none; }
+}
 
 /* ---- Sitemap link list (homepage) ---------------------------------------
    Vertical list: each row is a big serif page link with small section
@@ -244,15 +293,6 @@ main > .hero { position: relative; z-index: 1; }
   padding-block: var(--space-md);
   border-bottom: 1px solid var(--hairline);
 }
-.sitemap__link {
-  display: inline-block;
-  font-family: var(--serif);
-  font-size: var(--step-3);
-  line-height: 1.05;
-  color: var(--ink);
-  transition: color 0.3s;
-}
-.sitemap__link:hover { color: var(--accent); }
 .sitemap__subs {
   display: flex; flex-direction: column; gap: 0.35rem;
   margin-top: 1rem;
@@ -402,16 +442,12 @@ main > .hero { position: relative; z-index: 1; }
 }
 .mobile-menu__close:hover, .mobile-menu__close:focus-visible { color: var(--muted); outline: none; }
 .mobile-menu__links { display: flex; flex-direction: column; }
-/* Menu links: same look + hover as the homepage sitemap links (serif, sage
-   hover). Dividers kept between rows. The CTA is excluded so the shared .btn
-   fully governs it — identical to every other button. */
-.mobile-menu__links a:not(.mobile-menu__cta) {
-  font-family: var(--serif); font-size: var(--step-3); line-height: 1.05; color: var(--ink);
-  padding-block: 0.55em; border-bottom: 1px solid var(--hairline);
-  transition: color 0.3s;
+/* Menu rows use the shared .link-row component, so they look and behave
+   exactly like the sitemap and service links. Only the rhythm is set here. */
+.mobile-menu__links .link-row {
+  padding-block: 0.55em;
+  border-bottom: 1px solid var(--hairline);
 }
-/* Only the text colour changes on hover; the divider stays put. */
-.mobile-menu__links a:not(.mobile-menu__cta):hover { color: var(--accent); border-bottom-color: var(--hairline); }
 /* CTA uses the shared .btn component (class="mobile-menu__cta btn" in markup);
    here we only make it full-width and space it from the list. */
 /* The CTA is the shared .btn, full-width. Only layout is set here — every
@@ -421,6 +457,126 @@ main > .hero { position: relative; z-index: 1; }
 .mobile-menu__links a.mobile-menu__cta {
   margin-top: var(--space-lg); align-self: stretch; width: 100%;
   justify-content: center; line-height: 1;
+}
+
+/* ---- Homepage features ---------------------------------------------------
+   Each block is its own visual moment rather than a row in a list: a
+   full-bleed image, a typographic statement, a portrait, a quote, a close.
+   All but the last are links, so the whole block is the target. */
+/* Solid blocks sit above the global frame lines, same as .section--alt. */
+.home-feature { display: block; width: 100%; color: inherit; position: relative; z-index: 1; }
+
+/* Small "go here" cue on every block, so the whole panel reads as a link. */
+.home-feature__go {
+  display: inline-flex; align-items: center; gap: 0.6em;
+  margin-top: var(--space-md);
+  font-family: var(--sans); font-size: var(--step--1);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.3s var(--ease), gap 0.3s var(--ease);
+}
+.home-feature__go .arrow { transition: transform 0.3s var(--ease); }
+.home-feature:hover .home-feature__go { color: var(--ink); gap: 1em; }
+.home-feature:hover .home-feature__go .arrow { transform: translateX(3px); }
+/* On photos and the dark panel the cue sits on light-on-dark. */
+.home-feature--image .home-feature__go,
+.home-feature--quote .home-feature__go { color: rgba(244,241,234,0.7); }
+.home-feature--image:hover .home-feature__go,
+.home-feature--quote:hover .home-feature__go { color: var(--on-ink); }
+@media (prefers-reduced-motion: reduce) {
+  .home-feature__go, .home-feature__go .arrow { transition: color 0.2s; }
+  .home-feature:hover .home-feature__go { gap: 0.6em; }
+  .home-feature:hover .home-feature__go .arrow { transform: none; }
+}
+.home-feature__title {
+  font-family: var(--serif); font-size: var(--step-3);
+  line-height: 1.05; letter-spacing: -0.02em; margin: 0.6rem 0 0;
+}
+.home-feature__display {
+  font-family: var(--serif); font-size: var(--step-4);
+  line-height: 1.02; letter-spacing: -0.025em;
+  margin: 1rem 0 0; max-width: 18ch;
+}
+.home-feature__display--center { max-width: none; }
+
+/* Tjänster — full-bleed image with the copy laid over the bottom. */
+/* Tjänster runs full-bleed; Rickson is a contained card. */
+.home-feature--image { position: relative; }
+.home-feature--image .home-feature__copy {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  bottom: var(--space-lg); width: 100%; z-index: 2; color: var(--on-ink);
+}
+.home-feature__media { position: relative; height: 78svh; min-height: 420px; overflow: hidden; }
+
+/* Card variant: image stops at the container edge, copy laid inside it. */
+.home-feature__frame { position: relative; border-radius: var(--radius-lg); overflow: hidden; }
+.home-feature__media--card { height: 86svh; min-height: 560px; }
+.home-feature__frame .home-feature__copy {
+  position: absolute; left: 0; bottom: 0; z-index: 2;
+  padding: var(--space-lg) var(--space-md);
+  color: var(--on-ink);
+}
+/* Stronger scrim than the full-bleed block: this photo is light where the
+   copy sits, so the type needs more to hold against. */
+.home-feature__frame::after {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to top, rgba(28,27,25,0.88) 0%, rgba(28,27,25,0.55) 35%, rgba(28,27,25,0.1) 70%, transparent 100%);
+}
+/* Role and cue keep their contrast on the photo. */
+.home-feature__frame .home-feature__role { color: rgba(244,241,234,0.78); }
+.home-feature__frame .home-feature__go { color: rgba(244,241,234,0.78); }
+.home-feature--portrait:hover .home-feature__go { color: var(--on-ink); }
+.home-feature__media img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 1.2s var(--ease);
+}
+.home-feature--image:hover .home-feature__media img,
+.home-feature--portrait:hover .home-feature__media img { transform: scale(1.03); }
+/* Scrim so the type stays readable whatever the photo does underneath. */
+.home-feature__media::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(28,27,25,0.72) 0%, rgba(28,27,25,0.15) 45%, transparent 75%);
+}
+
+.eyebrow--on-image, .eyebrow--on-dark { color: rgba(244,241,234,0.72); }
+
+/* Differencismen — type only, no image. */
+.home-feature--type { padding-block: var(--space-2xl); }
+.home-feature--type .container, .home-feature--portrait .container,
+.home-feature--quote .container, .home-feature--close .container { width: 100%; }
+.home-feature--type .home-feature__display { max-width: 20ch; }
+
+/* Rickson — portrait beside the name. */
+.home-feature--portrait { padding-block: var(--space-2xl); }
+
+
+
+
+.home-feature__role {
+  display: block; margin-top: 0.35rem;
+  color: var(--muted); font-size: var(--step-1);
+  letter-spacing: 0; font-style: italic;
+}
+
+/* Kvitton — one quote on the dark block. */
+.home-feature--quote { padding-block: var(--space-2xl); }
+/* One quote carries the block — nothing else competes with it. */
+.home-feature__quote {
+  font-family: var(--serif); font-size: var(--step-3);
+  line-height: 1.15; letter-spacing: -0.015em;
+  margin: 1.2rem 0 0; max-width: 20ch; color: var(--on-ink);
+}
+.home-feature__attrib { margin-top: 1.4rem; font-size: var(--step--1); letter-spacing: 0.04em; color: rgba(244,241,234,0.6); }
+
+/* Kontakt — clean close. */
+.home-feature--close { padding-block: var(--space-2xl); }
+
+@media (min-width: 860px) {
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-feature__media img, .home-feature__portrait img { transition: none; }
+  .home-feature--image:hover .home-feature__media img,
+  
 }
 
 /* ---- Hero ---------------------------------------------------------------- */
@@ -469,29 +625,11 @@ main > .hero { position: relative; z-index: 1; }
   margin-top: var(--space-lg);
   border-top: 1px solid var(--hairline);
 }
-.entry-list__link {
-  display: flex; align-items: baseline; justify-content: space-between;
-  gap: var(--space-md);
+/* Rows carry their own rhythm and rule; the link itself stays unstyled. */
+.entry-list .link-row {
   padding-block: var(--space-md);
   border-bottom: 1px solid var(--hairline);
-  font-family: var(--serif);
-  font-size: var(--step-2);
-  line-height: 1.1;
-  color: var(--ink);
-  transition: color 0.3s var(--ease);
 }
-.entry-list__link:hover { color: var(--accent); }
-.entry-list__link .arrow {
-  font-size: var(--step-0); color: var(--muted);
-  transition: transform 0.3s var(--ease), color 0.3s var(--ease);
-}
-.entry-list__link:hover .arrow { transform: translateX(5px); color: var(--accent); }
-@media (prefers-reduced-motion: reduce) {
-  .entry-list__link, .entry-list__link .arrow { transition: color 0.2s; }
-  .entry-list__link:hover .arrow { transform: none; }
-}
-}
-
 /* Numbered / ruled feature list */
 .feature-list { border-top: 1px solid var(--hairline); }
 .feature {
@@ -599,6 +737,7 @@ main > .hero { position: relative; z-index: 1; }
 .footer__logo .logo__word span { color: var(--muted); }
 .footer__stamp { font-family: var(--sans); font-size: var(--step--1); letter-spacing: 0.04em; color: var(--muted); }
 
+
 /* ---- Reveal-on-scroll ---------------------------------------------------- */
 .reveal { opacity: 0; transition: opacity 0.4s var(--ease); }
 .reveal.is-visible { opacity: 1; }
@@ -702,6 +841,5 @@ main > .hero { position: relative; z-index: 1; }
 .meta-label { font-family: var(--sans); font-size: var(--step--1); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
 
 /* Breadcrumb back to the parent Tjänster page, inside the eyebrow. */
-.backlink { color: var(--accent); transition: color 0.3s var(--ease); }
-.backlink:hover { color: var(--ink); }.tag-note { display: inline-block; padding: 0.35em 0.9em; border: 1px solid var(--hairline); border-radius: 100px; font-size: var(--step--1); color: var(--muted); }
+.tag-note { display: inline-block; padding: 0.35em 0.9em; border: 1px solid var(--hairline); border-radius: 100px; font-size: var(--step--1); color: var(--muted); }
 [data-placeholder]::after { content: " · platshållare"; color: var(--accent); font-size: 0.7em; letter-spacing: 0.1em; text-transform: uppercase; vertical-align: super; }
