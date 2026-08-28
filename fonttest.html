@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fonttest · Difference Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Work+Sans:wght@400;500&family=Familjen+Grotesk:wght@400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600&family=Schibsted+Grotesk:wght@400;500;600&family=Instrument+Sans:wght@400;500;600&display=swap" />
+<style>
+  :root {
+    --bg:#F4F1EA; --bg-2:#EDE9DF; --surface:#FBFAF6;
+    --ink:#1C1B19; --ink-2:#46443F; --muted:#6B6A66;
+    --hairline:#E4DFD4; --accent:#7C8471;
+    --serif:"Lora", Georgia, serif;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--ink); font-family:var(--serif); padding:3rem 1.5rem 6rem; }
+  .wrap { max-width:1100px; margin:0 auto; }
+
+  .page-head { border-bottom:1px solid var(--hairline); padding-bottom:2rem; margin-bottom:3rem; }
+  .page-head h1 { font-size:2.6rem; font-weight:400; letter-spacing:-.02em; }
+  .page-head p { font-family:"Work Sans",sans-serif; color:var(--muted); margin-top:.75rem; font-size:.95rem; }
+
+  .spec { background:var(--surface); border:1px solid var(--hairline); border-radius:10px; padding:2.5rem; margin-bottom:2.5rem; }
+  .spec__tag { font-family:"Work Sans",sans-serif; font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); }
+  .spec__name { font-family:"Work Sans",sans-serif; font-size:1.05rem; font-weight:500; margin-top:.4rem; }
+  .spec__note { font-family:"Work Sans",sans-serif; font-size:.85rem; color:var(--muted); margin-top:.35rem; max-width:60ch; line-height:1.5; }
+  .spec__body { margin-top:2rem; border-top:1px solid var(--hairline); padding-top:2rem; }
+
+  /* Lora stays the display face in every sample; only the sans changes. */
+  .s-title { font-family:var(--serif); font-size:2.9rem; font-weight:400; letter-spacing:-.02em; line-height:1.05; }
+  .s-eyebrow { font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-bottom:.9rem; }
+  .s-lead { font-size:1.12rem; line-height:1.55; color:var(--ink-2); margin-top:1.1rem; max-width:52ch; }
+  .s-body { font-size:.95rem; line-height:1.65; color:var(--ink-2); margin-top:1.4rem; max-width:60ch; }
+  .s-meta { font-size:.74rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-top:1.8rem; }
+  .s-btn { display:inline-block; margin-top:1rem; background:var(--ink); color:var(--bg); padding:.85rem 1.6rem; border-radius:100px; font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; font-weight:500; }
+  .s-nav { display:flex; gap:1.75rem; margin-top:1.8rem; font-size:.92rem; color:var(--ink-2); flex-wrap:wrap; }
+  .s-num { font-size:.8rem; letter-spacing:.1em; color:var(--accent); }
+
+  .glyphs { margin-top:1.6rem; font-size:1.35rem; color:var(--ink); letter-spacing:.02em; line-height:1.6; }
+
+  /* the four candidates */
+  .f-familjen .s-eyebrow, .f-familjen .s-lead, .f-familjen .s-body, .f-familjen .s-meta,
+  .f-familjen .s-btn, .f-familjen .s-nav, .f-familjen .s-num, .f-familjen .glyphs { font-family:"Familjen Grotesk",sans-serif; }
+  .f-bricolage .s-eyebrow, .f-bricolage .s-lead, .f-bricolage .s-body, .f-bricolage .s-meta,
+  .f-bricolage .s-btn, .f-bricolage .s-nav, .f-bricolage .s-num, .f-bricolage .glyphs { font-family:"Bricolage Grotesque",sans-serif; }
+  .f-schibsted .s-eyebrow, .f-schibsted .s-lead, .f-schibsted .s-body, .f-schibsted .s-meta,
+  .f-schibsted .s-btn, .f-schibsted .s-nav, .f-schibsted .s-num, .f-schibsted .glyphs { font-family:"Schibsted Grotesk",sans-serif; }
+  .f-instrument .s-eyebrow, .f-instrument .s-lead, .f-instrument .s-body, .f-instrument .s-meta,
+  .f-instrument .s-btn, .f-instrument .s-nav, .f-instrument .s-num, .f-instrument .glyphs { font-family:"Instrument Sans",sans-serif; }
+  .f-current .s-eyebrow, .f-current .s-lead, .f-current .s-body, .f-current .s-meta,
+  .f-current .s-btn, .f-current .s-nav, .f-current .s-num, .f-current .glyphs { font-family:"Work Sans",sans-serif; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="page-head">
+    <h1>Fonttest — undertexter</h1>
+    <p>Lora är kvar som rubrikfont i alla exempel. Bara sans-fonten byts, så du ser hur var och en beter sig bredvid den. Riktig text från sajten.</p>
+  </div>
+
+  <!-- NUVARANDE -->
+  <section class="spec f-current">
+    <p class="spec__tag">Nuvarande</p>
+    <p class="spec__name">Work Sans</p>
+    <p class="spec__note">Referens — så ser sajten ut idag.</p>
+    <div class="spec__body">
+      <p class="s-eyebrow">Fundamentet</p>
+      <h2 class="s-title">Differencismen.</h2>
+      <p class="s-lead">Filosofin och fundamentet bakom arbetet. Ett eget sätt att se, tolka och leda sig själv, byggt på fem pelare.</p>
+      <p class="s-body">Här visas fundamentet, inte hela metodiken. Lagar, koder, kontrollpunkter och interna verktyg lever i arbetet, inte på en hemsida. Det du ser här är riktningen. Djupet möter du i processen.</p>
+      <div class="s-nav"><span>Tjänster</span><span>Differencismen</span><span>Rickson</span><span>Kvitton</span><span>Kontakt</span></div>
+      <p class="s-meta">Så går processen till</p>
+      <p class="s-num">01 — Lagkapten</p>
+      <a class="s-btn">Skriv till Rickson</a>
+      <p class="glyphs">Rickson Mansiamina · Riktningsvägledare · åäö ÅÄÖ 1234567890</p>
+    </div>
+  </section>
+
+  <!-- FAMILJEN GROTESK -->
+  <section class="spec f-familjen">
+    <p class="spec__tag">Kandidat 01</p>
+    <p class="spec__name">Familjen Grotesk</p>
+    <p class="spec__note">Svenskdesignad, distinkt personlighet med lite ovanliga bokstavsformer. Passar tematiskt.</p>
+    <div class="spec__body">
+      <p class="s-eyebrow">Fundamentet</p>
+      <h2 class="s-title">Differencismen.</h2>
+      <p class="s-lead">Filosofin och fundamentet bakom arbetet. Ett eget sätt att se, tolka och leda sig själv, byggt på fem pelare.</p>
+      <p class="s-body">Här visas fundamentet, inte hela metodiken. Lagar, koder, kontrollpunkter och interna verktyg lever i arbetet, inte på en hemsida. Det du ser här är riktningen. Djupet möter du i processen.</p>
+      <div class="s-nav"><span>Tjänster</span><span>Differencismen</span><span>Rickson</span><span>Kvitton</span><span>Kontakt</span></div>
+      <p class="s-meta">Så går processen till</p>
+      <p class="s-num">01 — Lagkapten</p>
+      <a class="s-btn">Skriv till Rickson</a>
+      <p class="glyphs">Rickson Mansiamina · Riktningsvägledare · åäö ÅÄÖ 1234567890</p>
+    </div>
+  </section>
+
+  <!-- BRICOLAGE -->
+  <section class="spec f-bricolage">
+    <p class="spec__tag">Kandidat 02</p>
+    <p class="spec__name">Bricolage Grotesque</p>
+    <p class="spec__note">Redaktionell/lyxig, lite oväntade proportioner. Konstigare men inte svårläst.</p>
+    <div class="spec__body">
+      <p class="s-eyebrow">Fundamentet</p>
+      <h2 class="s-title">Differencismen.</h2>
+      <p class="s-lead">Filosofin och fundamentet bakom arbetet. Ett eget sätt att se, tolka och leda sig själv, byggt på fem pelare.</p>
+      <p class="s-body">Här visas fundamentet, inte hela metodiken. Lagar, koder, kontrollpunkter och interna verktyg lever i arbetet, inte på en hemsida. Det du ser här är riktningen. Djupet möter du i processen.</p>
+      <div class="s-nav"><span>Tjänster</span><span>Differencismen</span><span>Rickson</span><span>Kvitton</span><span>Kontakt</span></div>
+      <p class="s-meta">Så går processen till</p>
+      <p class="s-num">01 — Lagkapten</p>
+      <a class="s-btn">Skriv till Rickson</a>
+      <p class="glyphs">Rickson Mansiamina · Riktningsvägledare · åäö ÅÄÖ 1234567890</p>
+    </div>
+  </section>
+
+  <!-- SCHIBSTED -->
+  <section class="spec f-schibsted">
+    <p class="spec__tag">Kandidat 03</p>
+    <p class="spec__name">Schibsted Grotesk</p>
+    <p class="spec__note">Tidningsmiljö, proffsig och saklig med lite mer skärpa. Säkrare val.</p>
+    <div class="spec__body">
+      <p class="s-eyebrow">Fundamentet</p>
+      <h2 class="s-title">Differencismen.</h2>
+      <p class="s-lead">Filosofin och fundamentet bakom arbetet. Ett eget sätt att se, tolka och leda sig själv, byggt på fem pelare.</p>
+      <p class="s-body">Här visas fundamentet, inte hela metodiken. Lagar, koder, kontrollpunkter och interna verktyg lever i arbetet, inte på en hemsida. Det du ser här är riktningen. Djupet möter du i processen.</p>
+      <div class="s-nav"><span>Tjänster</span><span>Differencismen</span><span>Rickson</span><span>Kvitton</span><span>Kontakt</span></div>
+      <p class="s-meta">Så går processen till</p>
+      <p class="s-num">01 — Lagkapten</p>
+      <a class="s-btn">Skriv till Rickson</a>
+      <p class="glyphs">Rickson Mansiamina · Riktningsvägledare · åäö ÅÄÖ 1234567890</p>
+    </div>
+  </section>
+
+  <!-- INSTRUMENT SANS -->
+  <section class="spec f-instrument">
+    <p class="spec__tag">Kandidat 04</p>
+    <p class="spec__name">Instrument Sans</p>
+    <p class="spec__note">Renare och modernare, egna proportioner utan att bli en Inter-klon.</p>
+    <div class="spec__body">
+      <p class="s-eyebrow">Fundamentet</p>
+      <h2 class="s-title">Differencismen.</h2>
+      <p class="s-lead">Filosofin och fundamentet bakom arbetet. Ett eget sätt att se, tolka och leda sig själv, byggt på fem pelare.</p>
+      <p class="s-body">Här visas fundamentet, inte hela metodiken. Lagar, koder, kontrollpunkter och interna verktyg lever i arbetet, inte på en hemsida. Det du ser här är riktningen. Djupet möter du i processen.</p>
+      <div class="s-nav"><span>Tjänster</span><span>Differencismen</span><span>Rickson</span><span>Kvitton</span><span>Kontakt</span></div>
+      <p class="s-meta">Så går processen till</p>
+      <p class="s-num">01 — Lagkapten</p>
+      <a class="s-btn">Skriv till Rickson</a>
+      <p class="glyphs">Rickson Mansiamina · Riktningsvägledare · åäö ÅÄÖ 1234567890</p>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

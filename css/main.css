@@ -251,17 +251,21 @@ main > .hero { position: relative; z-index: 1; }
 }
 .sitemap__link:hover { color: var(--accent); }
 .sitemap__subs {
-  display: flex; flex-wrap: wrap; gap: 0.6rem 1.75rem;
+  display: flex; flex-direction: column; gap: 0.35rem;
   margin-top: 1rem;
+  max-width: 52ch;
 }
-.sitemap__subs a {
+.sitemap__subs p {
   font-family: var(--sans);
   font-size: var(--step--1);
   letter-spacing: 0.04em;
+  line-height: 1.5;
   color: var(--muted);
-  transition: color 0.3s;
+  margin: 0;
 }
-.sitemap__subs a:hover { color: var(--ink); }
+/* First line of each entry reads as the lead; the rest sit back. */
+.sitemap__subs p:first-child { color: var(--ink-2); }
+
 
 /* ---- Header / nav -------------------------------------------------------- */
 /* Transparent header so the frame lines run crisp and unbroken behind it.
@@ -456,6 +460,35 @@ main > .hero { position: relative; z-index: 1; }
 .card__title { font-size: var(--step-1); margin-top: 0.4rem; }
 .card__body { margin-top: 0.8rem; color: var(--ink-2); font-size: var(--step-0); }
 
+/* The three ways in: big serif links on hairlines, matching the homepage
+   sitemap rhythm. */
+.entry-list {
+  margin-top: var(--space-lg);
+  border-top: 1px solid var(--hairline);
+}
+.entry-list__link {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: var(--space-md);
+  padding-block: var(--space-md);
+  border-bottom: 1px solid var(--hairline);
+  font-family: var(--serif);
+  font-size: var(--step-2);
+  line-height: 1.1;
+  color: var(--ink);
+  transition: color 0.3s var(--ease);
+}
+.entry-list__link:hover { color: var(--accent); }
+.entry-list__link .arrow {
+  font-size: var(--step-0); color: var(--muted);
+  transition: transform 0.3s var(--ease), color 0.3s var(--ease);
+}
+.entry-list__link:hover .arrow { transform: translateX(5px); color: var(--accent); }
+@media (prefers-reduced-motion: reduce) {
+  .entry-list__link, .entry-list__link .arrow { transition: color 0.2s; }
+  .entry-list__link:hover .arrow { transform: none; }
+}
+}
+
 /* Numbered / ruled feature list */
 .feature-list { border-top: 1px solid var(--hairline); }
 .feature {
@@ -638,5 +671,8 @@ main > .hero { position: relative; z-index: 1; }
 .pagehero__title { font-size: var(--step-4); max-width: 18ch; }
 .pagehero__lead { margin-top: var(--space-md); max-width: 52ch; }
 .meta-label { font-family: var(--sans); font-size: var(--step--1); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
-.tag-note { display: inline-block; padding: 0.35em 0.9em; border: 1px solid var(--hairline); border-radius: 100px; font-size: var(--step--1); color: var(--muted); }
+
+/* Breadcrumb back to the parent Tjänster page, inside the eyebrow. */
+.backlink { color: var(--accent); transition: color 0.3s var(--ease); }
+.backlink:hover { color: var(--ink); }.tag-note { display: inline-block; padding: 0.35em 0.9em; border: 1px solid var(--hairline); border-radius: 100px; font-size: var(--step--1); color: var(--muted); }
 [data-placeholder]::after { content: " · platshållare"; color: var(--accent); font-size: 0.7em; letter-spacing: 0.1em; text-transform: uppercase; vertical-align: super; }
