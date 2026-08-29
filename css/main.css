@@ -545,6 +545,24 @@ main > .hero { position: relative; z-index: 1; }
 .home-feature--type .container, .home-feature--portrait .container,
 .home-feature--quote .container, .home-feature--close .container { width: 100%; }
 .home-feature--type .home-feature__display { max-width: 20ch; }
+/* Mark, headline and cue centred in one stack. A single gap value sets the
+   rhythm so the spacing between each item is even. */
+.home-feature__stack {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  gap: var(--space-md);
+}
+.home-feature__mark {
+  width: 100%; max-width: 200px; height: auto; display: block;
+  opacity: 0.9;
+}
+/* Children set their own margins elsewhere; here the gap owns the rhythm. */
+.home-feature__stack > * { margin: 0; }
+.home-feature--type .home-feature__stack .home-feature__display {
+  max-width: 20ch; margin-inline: auto;
+}
+@media (min-width: 860px) {
+  .home-feature__mark { max-width: 240px; }
+}
 
 /* Rickson — portrait beside the name. */
 .home-feature--portrait { padding-block: var(--space-2xl); }
@@ -577,6 +595,60 @@ main > .hero { position: relative; z-index: 1; }
   .home-feature__media img, .home-feature__portrait img { transition: none; }
   .home-feature--image:hover .home-feature__media img,
   
+}
+
+/* ---- Tjänster: the three paths -------------------------------------------
+   Big typographic rows. On desktop an editorial image field sits beside them
+   and answers whichever row is hovered; on mobile the field is not rendered
+   and the rows stand alone. */
+.paths { display: grid; gap: var(--space-lg); align-items: start; }
+.paths__list { border-top: 1px solid var(--hairline); }
+/* Rows scale down on small screens so each label stays on one line and the
+   list does not run the full height of the phone. */
+.path {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: var(--space-sm);
+  padding-block: var(--space-md);
+  border-bottom: 1px solid var(--hairline);
+  font-family: var(--serif);
+  font-size: var(--step-1);
+  line-height: 1.15; letter-spacing: -0.015em;
+  color: var(--ink);
+  transition: color 0.4s var(--ease);
+}
+.path .arrow {
+  font-family: var(--sans); font-size: var(--step-0);
+  color: var(--muted); flex: none;
+  transition: transform 0.4s var(--ease), color 0.4s var(--ease);
+}
+/* Only the hovered row reacts; the others stay exactly as they were. */
+.path:hover { color: var(--accent); }
+.path:hover .arrow { transform: translateX(6px); color: var(--accent); }
+
+.paths__field { display: none; }
+
+@media (min-width: 640px) {
+  .path { font-size: var(--step-2); padding-block: var(--space-lg); gap: var(--space-md); }
+}
+/* Image field gets the larger share — the rows read fine narrower. */
+@media (min-width: 980px) {
+  .paths { grid-template-columns: 0.85fr 1fr; gap: var(--space-xl); align-items: start; }
+  .path { font-size: var(--step-2); }
+  .paths__field {
+    display: block; position: sticky; top: calc(var(--nav-h) + var(--space-md));
+    aspect-ratio: 3 / 4; border-radius: var(--radius-lg); overflow: hidden;
+    background: var(--bg-2);
+  }
+  .paths__img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover;
+    opacity: 0; transition: opacity 0.6s var(--ease);
+  }
+  .paths__img.is-active { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .path, .path .arrow, .paths__img { transition: opacity 0.2s, color 0.2s; }
+  .path:hover .arrow { transform: none; }
 }
 
 /* ---- Hero ---------------------------------------------------------------- */
@@ -672,6 +744,31 @@ main > .hero { position: relative; z-index: 1; }
   background: var(--bg-2);
 }
 .media img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ---- Image loading -------------------------------------------------------
+   Images fade in once decoded instead of snapping in half-drawn. The .is-
+   loaded class is added by main.js; without JS the rule below never applies
+   and images simply show, so this degrades cleanly. */
+.media, .home-feature__media, .home-feature__frame, .paths__field {
+  background: var(--bg-2);
+}
+/* Fade in on decode. Only the opacity is set here — the transform transition
+   for the hover zoom is declared on the images themselves and must survive,
+   so both are listed rather than overwriting the shorthand. */
+html.js .media img,
+html.js .home-feature__media img,
+html.js .home-feature__frame img {
+  opacity: 0;
+  transition: opacity 0.5s var(--ease), transform 1.2s var(--ease);
+}
+html.js .media img.is-loaded,
+html.js .home-feature__media img.is-loaded,
+html.js .home-feature__frame img.is-loaded { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  html.js .media img, html.js .home-feature__media img, html.js .home-feature__frame img {
+    transition: opacity 0.15s;
+  }
+}
 .media--portrait { aspect-ratio: 4 / 5; }
 .media--wide { aspect-ratio: 16 / 10; }
 .media--tall { aspect-ratio: 3 / 4; }
@@ -739,9 +836,14 @@ main > .hero { position: relative; z-index: 1; }
 
 
 /* ---- Reveal-on-scroll ---------------------------------------------------- */
-.reveal { opacity: 0; transition: opacity 0.4s var(--ease); }
+/* Sections fade in just before they enter view (see rootMargin in main.js),
+   so the transition has finished by the time you actually reach them —
+   quick and subtle, never something you scroll into mid-animation. */
+.reveal { opacity: 0; transition: opacity 0.35s var(--ease); }
 .reveal.is-visible { opacity: 1; }
-@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transition: none; }
+}
 
 /* ---- Logo animation ------------------------------------------------------ */
 /* Paths transform about the mark's own centre. */

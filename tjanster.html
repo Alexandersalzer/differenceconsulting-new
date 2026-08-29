@@ -10,6 +10,10 @@
   <meta name="description" content="Samma arbete, olika vägar in. Individuell process, klubb och organisation, eller representant och agentur: kärnan är densamma, det som skiljer är vem som initierar, upplägget, omfattningen och tillgången." />
   <link rel="canonical" href="https://differenceconsulting.se/tjanster.html" />
   <link rel="stylesheet" href="css/main.css" />
+  <!-- The three path images swap on hover; preloading them keeps that instant. -->
+  <link rel="preload" as="image" href="assets/joakimhallfoto_260822_213.jpg" />
+  <link rel="preload" as="image" href="assets/joakimhallfoto_260822_238.jpg" />
+  <link rel="preload" as="image" href="assets/joakimhallfoto_260822_260.jpg" />
   <link rel="icon" type="image/png" href="assets/Tree.png" />
   <meta property="og:title" content="Tjänster · Difference Consulting" />
   <meta property="og:description" content="Samma arbete, olika vägar in. En kärna, tre ingångar." />
@@ -59,17 +63,33 @@
   <main>
     <section class="pagehero">
       <div class="container">
-        <p class="eyebrow reveal">Tre ingångar</p>
-        <h1 class="pagehero__title reveal" style="margin-top:1rem;">Inte tre olika arbeten. Samma kärna, olika ingång.</h1>
+        <p class="eyebrow reveal">Tjänster</p>
+        <h1 class="pagehero__title reveal" style="margin-top:1rem;">Samma arbete. Olika sammanhang.</h1>
+      </div>
+    </section>
 
-        <nav class="entry-list reveal" aria-label="Ingångar">
-          <a class="link-row" href="tjanster-individ.html"><span class="link-row__label">Individuell process</span> <span class="arrow">&rarr;</span></a>
-          <a class="link-row" href="tjanster-klubb.html"><span class="link-row__label">Klubb / organisation</span> <span class="arrow">&rarr;</span></a>
-          <a class="link-row" href="tjanster-representant.html"><span class="link-row__label">Representant / agentur</span> <span class="arrow">&rarr;</span></a>
+    <section class="section">
+      <div class="container paths">
+        <nav class="paths__list reveal" aria-label="Ingångar">
+          <a class="path" href="tjanster-individ.html" data-path="individ">
+            <span class="path__label">Individuell process</span>
+            <span class="arrow">&rarr;</span>
+          </a>
+          <a class="path" href="tjanster-klubb.html" data-path="klubb">
+            <span class="path__label">Klubb / organisation</span>
+            <span class="arrow">&rarr;</span>
+          </a>
+          <a class="path" href="tjanster-representant.html" data-path="representant">
+            <span class="path__label">Representant / agentur</span>
+            <span class="arrow">&rarr;</span>
+          </a>
         </nav>
 
-        <div class="media media--wide reveal" style="margin-top:var(--space-xl);">
-          <img src="assets/joakimhallfoto_260822_168.jpg" alt="Rickson i arbete" loading="lazy" />
+        <!-- Desktop only: the image field answers whichever path is hovered. -->
+        <div class="paths__field reveal" aria-hidden="true">
+          <img fetchpriority="high" decoding="async" width="1933" height="2400" class="paths__img is-active" data-for="individ" src="assets/joakimhallfoto_260822_213.jpg" alt="" />
+          <img decoding="async" width="2400" height="1792" class="paths__img" data-for="klubb" src="assets/joakimhallfoto_260822_238.jpg" alt="" />
+          <img decoding="async" width="2400" height="1821" class="paths__img" data-for="representant" src="assets/joakimhallfoto_260822_260.jpg" alt="" />
         </div>
       </div>
     </section>

@@ -1,6 +1,21 @@
 /* Difference Consulting — shared interactions
    Quiet, slow, deliberate. Respects reduced-motion. */
 (function () {
+  // Mark that JS is running, so the CSS fade-in only applies when we can
+  // actually add .is-loaded. Set first thing to avoid a flash.
+  document.documentElement.classList.add('js');
+
+  // Fade each image in once it has decoded — no half-drawn pop-in.
+  var markLoaded = function (img) { img.classList.add('is-loaded'); };
+  var initImages = function () {
+    document.querySelectorAll('.media img, .home-feature__media img, .home-feature__frame img').forEach(function (img) {
+      if (img.complete && img.naturalWidth > 0) { markLoaded(img); return; }
+      img.addEventListener('load', function () { markLoaded(img); });
+      img.addEventListener('error', function () { markLoaded(img); });
+    });
+  };
+  initImages();
+
   'use strict';
 
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -54,7 +69,27 @@
           io.unobserve(entry.target);
         }
       });
-    }, { threshold: 0, rootMargin: '0px 0px 15% 0px' });
+      // Fire well before the section reaches the viewport (roughly one screen
+      // ahead) so the fade is done by the time it is actually on screen.
+    }, { threshold: 0, rootMargin: '0px 0px 90% 0px' });
     reveals.forEach(function (el) { io.observe(el); });
+  }
+
+  // Tjänster: the image field follows whichever path is hovered. Desktop only —
+  // the field is display:none below 980px, so this is a no-op on mobile.
+  var pathList = document.querySelector('.paths__list');
+  var pathImgs = document.querySelectorAll('.paths__img');
+  if (pathList && pathImgs.length) {
+    var showPath = function (name) {
+      pathImgs.forEach(function (img) {
+        img.classList.toggle('is-active', img.getAttribute('data-for') === name);
+      });
+    };
+    document.querySelectorAll('.path').forEach(function (a) {
+      var name = a.getAttribute('data-path');
+      a.addEventListener('mouseenter', function () { showPath(name); });
+      // Keyboard users get the same cue.
+      a.addEventListener('focus', function () { showPath(name); });
+    });
   }
 })();
