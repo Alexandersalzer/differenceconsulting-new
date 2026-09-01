@@ -8,7 +8,7 @@
   // Fade each image in once it has decoded — no half-drawn pop-in.
   var markLoaded = function (img) { img.classList.add('is-loaded'); };
   var initImages = function () {
-    document.querySelectorAll('.media img, .home-feature__media img, .home-feature__frame img').forEach(function (img) {
+    document.querySelectorAll('.media img, .home-feature__media img, .home-feature__frame img, .vb__figure-media img, .vc__bleed-media img, .vc__offset-media img').forEach(function (img) {
       if (img.complete && img.naturalWidth > 0) { markLoaded(img); return; }
       img.addEventListener('load', function () { markLoaded(img); });
       img.addEventListener('error', function () { markLoaded(img); });

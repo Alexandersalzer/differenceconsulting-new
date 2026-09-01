@@ -757,13 +757,19 @@ main > .hero { position: relative; z-index: 1; }
    so both are listed rather than overwriting the shorthand. */
 html.js .media img,
 html.js .home-feature__media img,
-html.js .home-feature__frame img {
+html.js .home-feature__frame img,
+html.js .vb__figure-media img,
+html.js .vc__bleed-media img,
+html.js .vc__offset-media img {
   opacity: 0;
   transition: opacity 0.5s var(--ease), transform 1.2s var(--ease);
 }
 html.js .media img.is-loaded,
 html.js .home-feature__media img.is-loaded,
-html.js .home-feature__frame img.is-loaded { opacity: 1; }
+html.js .home-feature__frame img.is-loaded,
+html.js .vb__figure-media img.is-loaded,
+html.js .vc__bleed-media img.is-loaded,
+html.js .vc__offset-media img.is-loaded { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
   html.js .media img, html.js .home-feature__media img, html.js .home-feature__frame img {
     transition: opacity 0.15s;
@@ -940,8 +946,161 @@ html.js .home-feature__frame img.is-loaded { opacity: 1; }
 .pagehero { padding-block: var(--space-2xl) var(--space-lg); }
 .pagehero__title { font-size: var(--step-4); max-width: 18ch; }
 .pagehero__lead { margin-top: var(--space-md); max-width: 52ch; }
+/* Mark and intro copy centred as one column; the gap owns the rhythm so the
+   spacing between mark, statement and body is even. */
+.intro-centered {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  gap: var(--space-md);
+  max-width: var(--container-narrow); margin-inline: auto;
+}
+.intro-centered > * { margin: 0; }
+.intro-centered .intro__mark { margin-bottom: var(--space-lg); }
+.intro-centered .statement { max-width: 28ch; }
+.intro-centered .body { max-width: 60ch; }
+/* No page hero here — the mark and the statement open the page together. */
+.section--intro { padding-top: var(--space-2xl); }
+.intro__mark { display: block; width: 100%; max-width: 220px; height: auto; }
+@media (min-width: 860px) { .intro__mark { max-width: 300px; } }
 .meta-label { font-family: var(--sans); font-size: var(--step--1); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
 
 /* Breadcrumb back to the parent Tjänster page, inside the eyebrow. */
 .tag-note { display: inline-block; padding: 0.35em 0.9em; border: 1px solid var(--hairline); border-radius: 100px; font-size: var(--step--1); color: var(--muted); }
 [data-placeholder]::after { content: " · platshållare"; color: var(--accent); font-size: 0.7em; letter-spacing: 0.1em; text-transform: uppercase; vertical-align: super; }
+
+/* ---- Homepage variant B (test) -------------------------------------------
+   An alternative take on the same copy: each section uses a different format
+   again, but different formats than the live page — split, watermark, figure,
+   centred saying, clean close. Only startsida-variant-b.html uses these. */
+.vb { display: block; width: 100%; color: inherit; position: relative; z-index: 1; }
+.vb__title {
+  font-family: var(--serif); font-size: var(--step-3);
+  line-height: 1.05; letter-spacing: -0.02em; margin: 0.6rem 0 0;
+}
+.vb__huge {
+  font-family: var(--serif); font-size: var(--step-4);
+  line-height: 1.0; letter-spacing: -0.03em; margin: 1rem 0 0; max-width: 16ch;
+}
+.vb__huge--center { max-width: none; }
+
+/* Tjänster — copy left, a tall portrait-format image right. */
+.vb--split { padding-block: var(--space-2xl); }
+.vb__split { display: grid; gap: var(--space-lg); align-items: center; }
+.vb__tall { aspect-ratio: 3 / 4; border-radius: var(--radius-lg); overflow: hidden; }
+.vb__tall img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s var(--ease); }
+.vb--split:hover .vb__tall img { transform: scale(1.03); }
+
+/* Differencismen — the mark sits behind the type as a large, quiet watermark. */
+.vb--mark { padding-block: var(--space-2xl); overflow: hidden; }
+.vb__watermark {
+  position: absolute; right: 4%; top: 50%; transform: translateY(-50%);
+  width: 38%; max-width: 520px; height: auto;
+  opacity: 0.07; pointer-events: none;
+}
+@media (max-width: 860px) { .vb__watermark { display: none; } }
+.vb__mark-copy { position: relative; z-index: 1; }
+
+/* Rickson — full-bleed image, name set beneath it rather than laid over. */
+.vb--figure { padding-bottom: var(--space-2xl); }
+.vb__figure-media { height: 82svh; min-height: 460px; overflow: hidden; }
+.vb__figure-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s var(--ease); }
+.vb--figure:hover .vb__figure-media img { transform: scale(1.02); }
+.vb__figure-copy { padding-top: var(--space-lg); }
+.vb__role { margin-top: 0.4rem; color: var(--muted); font-size: var(--step-1); font-style: italic; }
+
+/* Kvitton — the quote centred, given the whole block. */
+.vb--saying { padding-block: var(--space-2xl); }
+.vb__saying {
+  font-family: var(--serif); font-size: var(--step-3);
+  line-height: 1.15; letter-spacing: -0.015em;
+  margin: 1.2rem auto 0; max-width: 22ch; color: var(--on-ink);
+}
+.vb--close { padding-block: var(--space-2xl); }
+
+@media (min-width: 860px) {
+  .vb__split { grid-template-columns: 1fr 0.9fr; gap: var(--space-2xl); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vb__tall img, .vb__figure-media img { transition: none; }
+  .vb--split:hover .vb__tall img, .vb--figure:hover .vb__figure-media img { transform: none; }
+}
+
+/* ---- Homepage variant C (test) -------------------------------------------
+   Deliberately off-grid: images bleed past the container, type overlaps
+   photos and runs past the edge. Only startsida-variant-c.html uses these. */
+.vc { display: block; width: 100%; color: inherit; position: relative; z-index: 1; }
+.vc__title {
+  font-family: var(--serif); font-size: var(--step-3);
+  line-height: 1.0; letter-spacing: -0.025em; margin: 0.6rem 0 0;
+}
+.vc__role { margin-top: 0.5rem; color: var(--muted); font-size: var(--step-1); font-style: italic; }
+
+/* Tjänster — the photo runs off the right edge; the type sits over its left
+   half. The overlap is the point: it should feel slightly too far. */
+.vc--bleed { padding-block: var(--space-2xl); overflow: hidden; }
+.vc__bleed-media {
+  position: absolute; top: 0; bottom: 0;
+  left: 0; right: -12%;
+  overflow: hidden; border-radius: 0;
+}
+.vc__bleed-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.4s var(--ease); }
+.vc--bleed:hover .vc__bleed-media img { transform: scale(1.04); }
+.vc__bleed-copy { position: relative; z-index: 2; min-height: 62svh; display: flex; flex-direction: column; justify-content: flex-end; }
+/* Scrim behind the type where it crosses the photo, so it stays readable. */
+.vc__bleed-media::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(28,27,25,0.82) 0%, rgba(28,27,25,0.35) 38%, transparent 68%);
+}
+.vc--bleed .eyebrow, .vc__bleed-copy .vc__title, .vc__bleed-copy .home-feature__go { color: var(--on-ink); }
+
+/* Differencismen — headline larger than the column, mark cropped off-left. */
+.vc--oversize { padding-block: var(--space-2xl); overflow: hidden; }
+.vc__crop-mark {
+  position: absolute; left: -14%; bottom: -22%;
+  width: 46%; max-width: 560px; height: auto;
+  opacity: 0.08; pointer-events: none;
+}
+.vc__oversize {
+  font-family: var(--serif); font-size: var(--step-5);
+  line-height: 0.92; letter-spacing: -0.04em; margin: 1rem 0 0;
+}
+/* One line pushed out of alignment on purpose. */
+.vc__push { display: inline-block; margin-left: 0.28em; }
+.vc__oversize--center { margin-inline: auto; }
+
+/* Rickson — portrait sits low and off-centre, the name overlaps its edge. */
+.vc--offset { padding-block: var(--space-2xl); }
+.vc__offset-grid { display: grid; gap: var(--space-lg); align-items: start; }
+.vc__offset-media { aspect-ratio: 4 / 5; border-radius: var(--radius-lg); overflow: hidden; }
+.vc__offset-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.4s var(--ease); }
+.vc--offset:hover .vc__offset-media img { transform: scale(1.03); }
+
+/* Kvitton — the quote opens with a hanging mark and breaks the left margin. */
+.vc--quote { padding-block: var(--space-2xl); }
+.vc__quote {
+  font-family: var(--serif); font-size: var(--step-4);
+  line-height: 1.05; letter-spacing: -0.03em;
+  margin: 1.2rem 0 0; max-width: 18ch; color: var(--on-ink);
+  text-indent: -0.42em;
+}
+.vc__quote::before { content: "\201D"; }
+.vc__quote::after { content: "\201D"; }
+.vc--close { padding-block: var(--space-2xl); }
+
+@media (min-width: 980px) {
+  .vc__bleed-copy { min-height: 78svh; max-width: 46%; }
+  /* Portrait offset down and right; copy hangs over its left edge. */
+  .vc__offset-grid { grid-template-columns: 1fr 1fr; align-items: end; }
+  .vc__offset-media { grid-column: 2; grid-row: 1; margin-top: var(--space-2xl); transform: translateX(8%); }
+  .vc__offset-copy { grid-column: 1; grid-row: 1; align-self: center; position: relative; z-index: 2; transform: translateX(12%); }
+  .vc__quote { margin-left: -0.06em; }
+}
+@media (max-width: 979px) {
+  .vc__bleed-media { position: relative; left: 0; right: 0; height: 52svh; margin-bottom: var(--space-md); border-radius: var(--radius-lg); }
+  .vc__bleed-copy { min-height: 0; }
+  .vc__bleed-copy .vc__title { text-shadow: none; }
+  .vc__crop-mark { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vc__bleed-media img, .vc__offset-media img { transition: none; }
+  .vc--bleed:hover .vc__bleed-media img, .vc--offset:hover .vc__offset-media img { transform: none; }
+}
