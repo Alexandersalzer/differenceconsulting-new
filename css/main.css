@@ -15,6 +15,12 @@
   --muted:     #6B6A66;   /* tertiary / captions */
   --hairline:  #E4DFD4;   /* borders / rules — soft, subtle */
   --hairline-2:#EDE9DF;
+  /* On --bg-2 the base hairline all but disappears (--hairline-2 is the same
+     value as --bg-2). Once cards are gone the line IS the structure, so it has
+     to stay visible in every context. */
+  --hairline-alt:  #DFDACE;                  /* on --bg-2 */
+  --hairline-dark: rgba(244,241,234,0.14);   /* on --ink-block */
+  --hairline-w:    1px;                      /* never 2 — that reads as a frame */
   --accent:    #7C8471;   /* single muted sage — used sparingly */
   --on-ink:    #F4F1EA;   /* text on dark blocks */
   --ink-block: #201F1C;   /* near-black block bg */
@@ -43,6 +49,18 @@
   --space-lg: 4rem;
   --space-xl: 7rem;
   --space-2xl: 11rem;
+
+  /* Semantic rhythm. These name what the space is FOR, so pages stop setting
+     one-off inline margins.
+     NOTE: a custom property is substituted where it is DECLARED, not where it
+     is used — so the var(--space-*) references below resolve against the
+     fixed steps above. Any scope that overrides the scale (see .tj) must
+     re-declare the derived ones, or they keep the :root values. */
+  --band:       var(--space-2xl);  /* between two sections / bands */
+  --band-tight: var(--space-xl);   /* when two bands belong together */
+  --stack-1:    0.6rem;            /* label → heading */
+  --stack-2:    var(--space-md);   /* heading → lead / body */
+  --stack-3:    var(--space-lg);   /* copy block → CTA / next block */
 
   /* Layout — single source of truth for the site's content column.
      Navbar, hero, main content, footer and mobile menu all use --container
@@ -106,6 +124,14 @@ p { margin: 0; }
   color: var(--muted);
 }
 .eyebrow--accent { color: var(--accent); }
+
+/* Heading roles. The scale (--step-*) was already editorial; what was missing
+   was naming the roles so the same thing never gets two classes. The measures
+   are the part that carries the premium feel — a headline breaking at 18ch
+   reads as a statement, one that fills the column reads as an article. */
+.t-display { font-family: var(--serif); font-size: var(--step-4); line-height: 1.02; letter-spacing: -0.025em; max-width: 18ch; }
+.t-title   { font-family: var(--serif); font-size: var(--step-3); line-height: 1.05; letter-spacing: -0.02em;  max-width: 22ch; }
+.t-sub     { font-family: var(--serif); font-size: var(--step-2); line-height: 1.15; letter-spacing: -0.015em; }
 
 .serif-italic { font-style: italic; }
 
@@ -254,6 +280,39 @@ main > .hero { position: relative; z-index: 1; }
   transition: gap 0.4s var(--ease), color 0.3s var(--ease);
 }
 .link-underline:hover { gap: 0.9em; color: var(--accent); }
+
+/* Standalone CTA — a text link with an arrow, never a button.
+   The hover is exactly the homepage Tjänster block's gesture: colour, air
+   (gap), and a 3px arrow nudge. The rule underneath is the one addition, so
+   the link still reads as a link at rest. No fill, no shadow, no pill.
+   0.3s, not the site's 0.8s --dur: that feels sluggish on a text link. */
+.cta {
+  display: inline-flex; align-items: baseline; gap: 0.7em;
+  font-family: var(--sans); font-size: var(--step--1); font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-2);
+  padding-bottom: 0.4em;
+  border-bottom: var(--hairline-w) solid var(--hairline);
+  transition: color 0.3s var(--ease), gap 0.3s var(--ease),
+              border-color 0.3s var(--ease);
+}
+.cta .arrow { transition: transform 0.3s var(--ease); }
+.cta:hover { color: var(--ink); gap: 1em; border-color: var(--ink); }
+.cta:hover .arrow { transform: translateX(3px); }
+
+/* On a photo or the dark block. */
+.cta--on-dark,
+.section--dark .cta { color: rgba(244,241,234,0.72); border-color: rgba(244,241,234,0.28); }
+.cta--on-dark:hover,
+.section--dark .cta:hover { color: var(--on-ink); border-color: var(--on-ink); }
+
+/* Keep the colour shift, drop the movement — same as the other link
+   components do above. */
+@media (prefers-reduced-motion: reduce) {
+  .cta, .cta .arrow { transition: color 0.2s, border-color 0.2s; }
+  .cta:hover { gap: 0.7em; }
+  .cta:hover .arrow { transform: none; }
+}
 
 /* Big row link: the label carries the underline, the arrow sits far right. */
 .link-row {
@@ -596,6 +655,52 @@ main > .hero { position: relative; z-index: 1; }
   .home-feature--image:hover .home-feature__media img,
   
 }
+
+/* ---- Tjänster section: scoped direction ----------------------------------
+   European premium / editorial. The reference is the homepage Tjänster block
+   with the sofa photo (.home-feature--image): full-bleed photo with NO corner
+   radius, copy laid over the bottom in the same column as everything else,
+   label → serif headline → text link with an arrow. No buttons, no shadows,
+   no cards.
+
+   Everything here is scoped to .tj (set on <body> in the four Tjänster pages)
+   so the rest of the site stays pixel-identical. When the direction is
+   settled these values can move to :root and cover the whole site without a
+   single rule being rewritten. */
+.tj {
+  /* Fluid spacing. ~1.6x between steps, so no jump reads as a gap. The mobile
+     floor is what matters: 5.5rem instead of today's flat 11rem, so a band
+     reads as a deliberate break rather than emptiness you scroll through. */
+  --space-sm:  clamp(0.875rem, 0.8rem + 0.4vw,  1rem);
+  --space-md:  clamp(1.5rem,   1.25rem + 1.2vw, 2rem);
+  --space-lg:  clamp(2.5rem,   1.9rem + 3vw,    4rem);
+  --space-xl:  clamp(4rem,     2.6rem + 6vw,    7rem);
+  --space-2xl: clamp(5.5rem,   3.2rem + 10vw,  10rem);
+  /* --space-xs stays 0.5rem — nothing to gain from making it fluid. */
+
+  /* Re-declared so they re-substitute against the fluid scale above. Without
+     this they keep the :root values, because a custom property resolves where
+     it is declared, not where it is used. --stack-1 is a literal, so it needs
+     no restating. */
+  --band:       var(--space-2xl);
+  --band-tight: var(--space-xl);
+  --stack-2:    var(--space-md);
+  --stack-3:    var(--space-lg);
+
+  /* Corner radius signals "component in an interface"; a sharp edge signals
+     "printed image". The reference block never sets a radius, and that is not
+     a coincidence — it is the one being pointed at. */
+  --radius-media: 0;
+  --img-scrim: linear-gradient(to top,
+                 rgba(28,27,25,0.78) 0%, rgba(28,27,25,0.18) 45%, transparent 75%);
+  --media-portrait: 4 / 5;
+  --media-wide:     16 / 10;
+  --media-tall:     3 / 4;
+}
+/* All media in the section: radius 0, no border, no shadow. */
+.tj .media,
+.tj .paths__field,
+.tj .tj-figure { border-radius: var(--radius-media); }
 
 /* ---- Tjänster: the three paths -------------------------------------------
    Big typographic rows. On desktop an editorial image field sits beside them
