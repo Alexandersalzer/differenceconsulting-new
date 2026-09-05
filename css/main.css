@@ -394,6 +394,12 @@ main > .hero { position: relative; z-index: 1; }
   padding-block: var(--edge);
   height: var(--nav-h);
 }
+/* One menu at every breakpoint. The navbar holds the logo, a single Kontakt
+   button and the hamburger — nothing else. There is no desktop link row and
+   no separate desktop state: the same dropdown opens on a phone and on a
+   1440px screen, so navigation behaves identically everywhere.
+   .nav__links / .nav__link are kept as dead styles only for the draft and
+   variant pages that still render a link row. */
 .nav__links { display: none; gap: clamp(1.4rem, 2.6vw, 2.6rem); align-items: center; }
 .nav__link {
   font-family: var(--sans); font-size: var(--step--1); font-weight: 500;
@@ -409,10 +415,12 @@ main > .hero { position: relative; z-index: 1; }
 .nav__link:hover::after, .nav__link[aria-current="page"]::after { width: 100%; }
 
 .nav__right { display: flex; align-items: center; gap: 1rem; }
+/* The one contact button. Hidden on mobile, where the logo plus a button plus
+   the hamburger is too much for the bar — there the navbar is just logo +
+   hamburger, and the menu's own Kontakt button carries the route, so nothing
+   becomes unreachable. */
 .nav__cta { display: none; padding: 0.7em 1.5em; }
-
-@media (min-width: 1120px) {
-  .nav__links { display: flex; }
+@media (min-width: 760px) {
   .nav__cta { display: inline-flex; }
 }
 
@@ -473,9 +481,9 @@ main > .hero { position: relative; z-index: 1; }
 .nav__toggle span { display: block; width: 22px; height: 1.5px; background: var(--ink);
   transition: background 0.25s var(--ease); }
 */
-/* Hide the hamburger once the full nav fits (placed AFTER the base rule so it
-   wins on source order). Full links + CTA show from 1120px up. */
-@media (min-width: 1120px) { .nav__toggle { display: none; } }
+/* The hamburger is the only navigation control, so it stays visible at every
+   width — no breakpoint hides it. (It used to disappear from 1120px up, when
+   a desktop link row took over.) */
 .mobile-menu[hidden] { display: none; }
 .mobile-menu {
   position: fixed; inset: 0; z-index: 60; background: var(--bg);
@@ -500,22 +508,31 @@ main > .hero { position: relative; z-index: 1; }
   transition: color 0.25s var(--ease);
 }
 .mobile-menu__close:hover, .mobile-menu__close:focus-visible { color: var(--muted); outline: none; }
-.mobile-menu__links { display: flex; flex-direction: column; }
+/* This is now the ONLY menu, at every width, so the column is capped rather
+   than filling the viewport — an editorial list on the left, not rows
+   stretched across 1440px. */
+.mobile-menu__links { display: flex; flex-direction: column; max-width: 34rem; }
 /* Menu rows use the shared .link-row component, so they look and behave
    exactly like the sitemap and service links. Only the rhythm is set here. */
 .mobile-menu__links .link-row {
   padding-block: 0.55em;
   border-bottom: 1px solid var(--hairline);
 }
-/* CTA uses the shared .btn component (class="mobile-menu__cta btn" in markup);
-   here we only make it full-width and space it from the list. */
-/* The CTA is the shared .btn, full-width. Only layout is set here — every
-   visual style and the hover come from .btn, so it is identical to all other
-   buttons on the site. The line-reset stops it inheriting the big serif link
-   type; .btn re-applies its own font. */
+/* The CTA is the shared .btn — every visual style and the hover come from
+   .btn, so it is identical to all other buttons on the site. Only layout is
+   set here. The line-reset stops it inheriting the big serif link type;
+   .btn re-applies its own font. It sits inline rather than stretched, so it
+   reads as a button and not a full-width bar on a wide screen. */
 .mobile-menu__links a.mobile-menu__cta {
-  margin-top: var(--space-lg); align-self: stretch; width: 100%;
+  margin-top: var(--space-lg); align-self: flex-start;
   justify-content: center; line-height: 1;
+}
+/* Once there is real room the rows can grow a little — the menu is the whole
+   navigation now, so it should feel deliberate on a desktop, not like a
+   phone menu stretched open. */
+@media (min-width: 860px) {
+  .mobile-menu__links { max-width: 40rem; }
+  .mobile-menu__links .link-row { padding-block: 0.7em; }
 }
 
 /* ---- Homepage features ---------------------------------------------------
@@ -697,10 +714,15 @@ main > .hero { position: relative; z-index: 1; }
   --media-wide:     16 / 10;
   --media-tall:     3 / 4;
 }
-/* All media in the section: radius 0, no border, no shadow. */
+/* Media, cards and fields go to 0. Buttons deliberately do NOT — .btn keeps
+   its pill (border-radius: 100px) so a button still looks like a button. */
 .tj .media,
 .tj .paths__field,
-.tj .tj-figure { border-radius: var(--radius-media); }
+.tj .tj-figure,
+.tj .card,
+.tj .field input,
+.tj .field textarea,
+.tj .field select { border-radius: var(--radius-media); }
 
 /* ---- Tjänster: the three paths -------------------------------------------
    Big typographic rows. On desktop an editorial image field sits beside them

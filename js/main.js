@@ -43,17 +43,34 @@
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
-  // Mobile menu
+  // Menu — one dropdown at every breakpoint. The hamburger is the only
+  // navigation control on the page, so aria-expanded has to track its real
+  // state and focus has to return to it on close.
   var toggle = document.querySelector('.nav__toggle');
   var menu = document.querySelector('.mobile-menu');
   if (toggle && menu) {
     var closeBtn = menu.querySelector('.mobile-menu__close');
-    var open = function () { menu.hidden = false; document.body.style.overflow = 'hidden'; };
-    var close = function () { menu.hidden = true; document.body.style.overflow = ''; };
+    var open = function () {
+      menu.hidden = false;
+      document.body.style.overflow = 'hidden';
+      toggle.setAttribute('aria-expanded', 'true');
+      if (closeBtn) closeBtn.focus();
+    };
+    var close = function (returnFocus) {
+      menu.hidden = true;
+      document.body.style.overflow = '';
+      toggle.setAttribute('aria-expanded', 'false');
+      // Only pull focus back on a deliberate close, not when following a link.
+      if (returnFocus) toggle.focus();
+    };
     toggle.addEventListener('click', open);
-    if (closeBtn) closeBtn.addEventListener('click', close);
-    menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !menu.hidden) close(); });
+    if (closeBtn) closeBtn.addEventListener('click', function () { close(true); });
+    menu.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { close(false); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !menu.hidden) close(true);
+    });
   }
 
   // Reveal on scroll
