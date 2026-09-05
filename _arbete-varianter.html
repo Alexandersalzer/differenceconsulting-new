@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Zilla+Slab:wght@400;500;600&display=swap" />
+  <title>ARBETET — fyra varianter</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="icon" type="image/png" href="assets/Tree.png" />
+  <style>
+    /* Only for this comparison page — labels between the variants. */
+    .vlabel { font-family: var(--sans); font-size: var(--step--1); letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-md); }
+    .vnote { font-size: var(--step--1); color: var(--muted); max-width: 60ch; margin-top: var(--space-sm); }
+    .vsep { margin-block: var(--space-2xl) 0; }
+  </style>
+</head>
+<body class="site-frame">
+  <main>
+    <section class="pagehero">
+      <div class="container">
+        <p class="eyebrow">Jämförelse</p>
+        <h1 class="pagehero__title" style="margin-top:var(--stack-1);">ARBETET — fyra varianter.</h1>
+        <p class="lead pagehero__lead">Samma fyra punkter, fyra upplägg. 2×2 eller fyra rader, med eller utan 01–04. Skala ner fönstret för att se mobilläget: alla fyra blir en vertikal kolumn.</p>
+      </div>
+    </section>
+
+    <!-- ============ A: 2x2, utan numrering ============ -->
+    <section class="section vsep">
+      <div class="container">
+        <p class="vlabel">Variant A · 2×2, utan numrering</p>
+        <p class="eyebrow">Arbetet</p>
+        <div class="arbete arbete--grid" style="margin-top:var(--stack-3);">
+          <div class="arbete__item">
+            <h3 class="arbete__title">Sessioner</h3>
+            <p class="arbete__body">Samtal med tydlig riktning och nästa steg.</p>
+          </div>
+          <div class="arbete__item">
+            <h3 class="arbete__title">Tillgänglighet</h3>
+            <p class="arbete__body">Kontakt mellan sessionerna när processen kräver det.</p>
+          </div>
+          <div class="arbete__item">
+            <h3 class="arbete__title">Individanpassat material</h3>
+            <p class="arbete__body">Verktyg och underlag byggda utifrån det som är relevant i processen.</p>
+          </div>
+          <div class="arbete__item">
+            <h3 class="arbete__title">Uppföljning</h3>
+            <p class="arbete__body">Det som byggs blir synligt genom konkreta kvitton.</p>
+          </div>
+        </div>
+        <p class="vnote">Tätast av de fyra. Fyra punkter läser som en helhet snarare än en sekvens — ingen ordning antyds.</p>
+      </div>
+    </section>
+
+    <!-- ============ B: 2x2, med numrering ============ -->
+    <section class="section vsep">
+      <div class="container">
+        <p class="vlabel">Variant B · 2×2, med 01–04</p>
+        <p class="eyebrow">Arbetet</p>
+        <div class="arbete arbete--grid arbete--numbered" style="margin-top:var(--stack-3);">
+          <div class="arbete__item">
+            <span class="arbete__no">01</span>
+            <h3 class="arbete__title">Sessioner</h3>
+            <p class="arbete__body">Samtal med tydlig riktning och nästa steg.</p>
+          </div>
+          <div class="arbete__item">
+            <span class="arbete__no">02</span>
+            <h3 class="arbete__title">Tillgänglighet</h3>
+            <p class="arbete__body">Kontakt mellan sessionerna när processen kräver det.</p>
+          </div>
+          <div class="arbete__item">
+            <span class="arbete__no">03</span>
+            <h3 class="arbete__title">Individanpassat material</h3>
+            <p class="arbete__body">Verktyg och underlag byggda utifrån det som är relevant i processen.</p>
+          </div>
+          <div class="arbete__item">
+            <span class="arbete__no">04</span>
+            <h3 class="arbete__title">Uppföljning</h3>
+            <p class="arbete__body">Det som byggs blir synligt genom konkreta kvitton.</p>
+          </div>
+        </div>
+        <p class="vnote">Siffrorna ger ankare men antyder en ordning som inte finns — punkterna är parallella, inte steg.</p>
+      </div>
+    </section>
+
+    <!-- ============ C: fyra rader, utan numrering ============ -->
+    <section class="section vsep">
+      <div class="container">
+        <p class="vlabel">Variant C · Fyra rader, utan numrering</p>
+        <p class="eyebrow">Arbetet</p>
+        <div class="arbete arbete--rows" style="margin-top:var(--stack-3);">
+          <div class="arbete__item">
+            <h3 class="arbete__title">Sessioner</h3>
+            <p class="arbete__body">Samtal med tydlig riktning och nästa steg.</p>
+          </div>
+          <div class="arbete__item">
+            <h3 class="arbete__title">Tillgänglighet</h3>
+            <p class="arbete__body">Kontakt mellan sessionerna när processen kräver det.</p>
+          </div>
+          <div class="arbete__item">
+            <h3 class="arbete__title">Individanpassat material</h3>
+            <p class="arbete__body">Verktyg och underlag byggda utifrån det som är relevant i processen.</p>
+          </div>
+          <div class="arbete__item">
+            <h3 class="arbete__title">Uppföljning</h3>
+            <p class="arbete__body">Det som byggs blir synligt genom konkreta kvitton.</p>
+          </div>
+        </div>
+        <p class="vnote">Mest editorial. Linjerna löper hela kolumnen, rubriken till vänster och texten till höger — läser som ett uppslag, inte som ett rutnät.</p>
+      </div>
+    </section>
+
+    <!-- ============ D: fyra rader, med numrering ============ -->
+    <section class="section vsep">
+      <div class="container">
+        <p class="vlabel">Variant D · Fyra rader, med 01–04</p>
+        <p class="eyebrow">Arbetet</p>
+        <div class="arbete arbete--rows arbete--numbered" style="margin-top:var(--stack-3);">
+          <div class="arbete__item">
+            <span class="arbete__no">01</span>
+            <h3 class="arbete__title">Sessioner</h3>
+            <p class="arbete__body">Samtal med tydlig riktning och nästa steg.</p>
+          </div>
+          <div class="arbete__item">
+            <span class="arbete__no">02</span>
+            <h3 class="arbete__title">Tillgänglighet</h3>
+            <p class="arbete__body">Kontakt mellan sessionerna när processen kräver det.</p>
+          </div>
+          <div class="arbete__item">
+            <span class="arbete__no">03</span>
+            <h3 class="arbete__title">Individanpassat material</h3>
+            <p class="arbete__body">Verktyg och underlag byggda utifrån det som är relevant i processen.</p>
+          </div>
+          <div class="arbete__item">
+            <span class="arbete__no">04</span>
+            <h3 class="arbete__title">Uppföljning</h3>
+            <p class="arbete__body">Det som byggs blir synligt genom konkreta kvitton.</p>
+          </div>
+        </div>
+        <p class="vnote">Tydligast att skanna. Siffran i marginalen håller rubrikerna på en optisk linje.</p>
+      </div>
+    </section>
+
+    <section class="section"><div class="container"><hr class="rule" /></div></section>
+  </main>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

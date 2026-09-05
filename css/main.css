@@ -686,41 +686,59 @@ main > .hero { position: relative; z-index: 1; }
    and answers whichever row is hovered; on mobile the field is not rendered
    and the rows stand alone. */
 .paths { display: grid; gap: var(--space-lg); align-items: start; }
-.paths__list { border-top: 1px solid var(--hairline); }
-/* Rows scale down on small screens so each label stays on one line and the
-   list does not run the full height of the phone. */
+.paths__list { border-top: var(--hairline-w) solid var(--hairline); }
+/* Each entry is an editorial choice, not a row in a table: a small label, the
+   name in serif, and a quiet cue underneath. Generous air, one thin rule
+   between them, nothing that reads as a card.
+   Everything a visitor needs is visible at rest — hover only refines. */
 .path {
-  display: flex; align-items: baseline; justify-content: space-between;
-  gap: var(--space-sm);
-  padding-block: var(--space-md);
-  border-bottom: 1px solid var(--hairline);
-  font-family: var(--serif);
-  font-size: var(--step-1);
-  line-height: 1.15; letter-spacing: -0.015em;
+  display: block;
+  padding-block: var(--space-lg);
+  border-bottom: var(--hairline-w) solid var(--hairline);
   color: var(--ink);
   transition: color 0.4s var(--ease);
 }
-.path .arrow {
-  font-family: var(--sans); font-size: var(--step-0);
-  color: var(--muted); flex: none;
-  transition: transform 0.4s var(--ease), color 0.4s var(--ease);
+.path__no {
+  display: block;
+  font-family: var(--sans); font-size: var(--step--1); font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+  margin-bottom: var(--stack-1);
+  transition: color 0.4s var(--ease);
 }
-/* Only the hovered row reacts; the others stay exactly as they were. */
+.path__label {
+  display: block;
+  font-family: var(--serif); font-size: var(--step-2);
+  line-height: 1.15; letter-spacing: -0.015em;
+}
+.path__note {
+  margin-top: var(--stack-1);
+  font-size: var(--step--1); color: var(--muted); max-width: 42ch;
+}
+.path__go {
+  display: inline-flex; align-items: baseline; gap: 0.6em;
+  margin-top: var(--space-sm);
+  font-family: var(--sans); font-size: var(--step--1); font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+  transition: color 0.4s var(--ease), gap 0.4s var(--ease);
+}
+.path__go .arrow {
+  font-family: var(--sans); flex: none;
+  transition: transform 0.4s var(--ease);
+}
+/* Only the hovered entry reacts; the others stay exactly as they were. */
 .path:hover { color: var(--accent); }
-.path:hover .arrow { transform: translateX(6px); color: var(--accent); }
+.path:hover .path__go { color: var(--accent); gap: 1em; }
+.path:hover .path__go .arrow { transform: translateX(6px); }
 
+/* Not rendered below 980px: the field answers a hover, and there is no hover
+   on a phone. The entries stand on their own there — nothing is lost. */
 .paths__field { display: none; }
-
-@media (min-width: 640px) {
-  .path { font-size: var(--step-2); padding-block: var(--space-lg); gap: var(--space-md); }
-}
-/* Image field gets the larger share — the rows read fine narrower. */
+/* Image field gets the larger share — the entries read fine narrower. */
 @media (min-width: 980px) {
   .paths { grid-template-columns: 0.85fr 1fr; gap: var(--space-xl); align-items: start; }
-  .path { font-size: var(--step-2); }
   .paths__field {
     display: block; position: sticky; top: calc(var(--nav-h) + var(--space-md));
-    aspect-ratio: 3 / 4; border-radius: var(--radius-lg); overflow: hidden;
+    aspect-ratio: 3 / 4; overflow: hidden;
     background: var(--bg-2);
   }
   .paths__img {
@@ -730,9 +748,18 @@ main > .hero { position: relative; z-index: 1; }
   }
   .paths__img.is-active { opacity: 1; }
 }
+/* Mobile rhythm: the entries carry the page alone, so they get a touch less
+   air than the desktop --space-lg — enough to separate, not so much that the
+   three of them stretch past the fold. Measured against the homepage sofa
+   section, which is the reference for this page. */
+@media (max-width: 639px) {
+  .path { padding-block: var(--space-md); }
+  .path__label { font-size: var(--step-1); }
+}
 @media (prefers-reduced-motion: reduce) {
-  .path, .path .arrow, .paths__img { transition: opacity 0.2s, color 0.2s; }
-  .path:hover .arrow { transform: none; }
+  .path, .path__go, .path__go .arrow, .paths__img { transition: color 0.2s, opacity 0.2s; }
+  .path:hover .path__go { gap: 0.6em; }
+  .path:hover .path__go .arrow { transform: none; }
 }
 
 /* ---- Hero ---------------------------------------------------------------- */
@@ -799,6 +826,67 @@ main > .hero { position: relative; z-index: 1; }
 .feature__body { margin-top: 0.6rem; color: var(--ink-2); max-width: 60ch; }
 @media (min-width: 760px) {
   .feature { grid-template-columns: 3ch 1fr 1.4fr; gap: var(--space-lg); align-items: baseline; }
+}
+
+/* ---- ARBETET — what the work consists of --------------------------------
+   Hairlines instead of cards: no border box, no background, no shadow, no
+   icons. The rule IS the structure. Four variants share this base; each
+   modifier below sets only what differs (columns, numbering).
+
+   Mobile is a single vertical column in every variant — nothing depends on
+   hover or on a wide viewport. */
+.arbete { border-top: var(--hairline-w) solid var(--hairline); }
+.arbete__item {
+  padding-block: var(--space-md);
+  border-bottom: var(--hairline-w) solid var(--hairline);
+}
+.arbete__no {
+  display: block;
+  font-family: var(--sans); font-size: var(--step--1); font-weight: 500;
+  letter-spacing: 0.14em; color: var(--muted);
+  margin-bottom: var(--stack-1);
+  font-variant-numeric: tabular-nums;
+}
+.arbete__title {
+  font-family: var(--serif); font-size: var(--step-2);
+  line-height: 1.15; letter-spacing: -0.015em; margin: 0;
+}
+.arbete__body {
+  margin-top: var(--stack-1);
+  color: var(--ink-2); max-width: 46ch;
+}
+
+/* --- Variant A / B: 2x2 grid. The dividing lines do the work, so the cells
+   need horizontal air between them without ever becoming boxes. The rule sits
+   on top of each cell only — a full border would draw a card.
+   The generous block padding is what gives four one-line entries presence:
+   the air belongs to the type, not to empty rows. */
+@media (min-width: 760px) {
+  .arbete--grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    column-gap: var(--space-2xl);
+    border-top: 0;
+  }
+  .arbete--grid .arbete__item {
+    border-top: var(--hairline-w) solid var(--hairline);
+    border-bottom: 0;
+    padding-block: var(--space-lg) var(--space-xl);
+  }
+}
+
+/* --- Variant C / D: four full-width rows. On a wide screen the title and the
+   body sit side by side so each row stays one line tall and the list reads
+   as a table of contents rather than a stack of paragraphs. */
+@media (min-width: 860px) {
+  .arbete--rows .arbete__item {
+    display: grid; grid-template-columns: 1fr 1.3fr;
+    gap: var(--space-lg); align-items: baseline;
+    padding-block: var(--space-lg);
+  }
+  .arbete--rows .arbete__body { margin-top: 0; }
+  /* The number sits in the margin, so the titles stay on one optical line. */
+  .arbete--rows.arbete--numbered .arbete__item { grid-template-columns: 3ch 1fr 1.3fr; }
+  .arbete--rows.arbete--numbered .arbete__no { margin-bottom: 0; }
 }
 
 /* Pillars */
@@ -1030,6 +1118,22 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 .pagehero { padding-block: var(--space-2xl) var(--space-lg); }
 .pagehero__title { font-size: var(--step-4); max-width: 18ch; }
 .pagehero__lead { margin-top: var(--space-md); max-width: 52ch; }
+/* A figure that belongs to the opening. It follows the lead directly — no
+   rule, no empty band — so the picture reads as part of the headline rather
+   than as the next section. The hero's own bottom padding is cancelled here
+   so the two sit as one spread.
+   Weight comes from the crop: a tall 3:2 on desktop and 4:5 on a phone,
+   rather than a letterbox strip that reads as decoration. */
+.pagefigure { padding-block: 0 var(--band-tight); margin-top: calc(-1 * var(--space-lg)); }
+.pagefigure .media { aspect-ratio: 4 / 5; }
+@media (min-width: 760px) {
+  .pagefigure .media { aspect-ratio: 3 / 2; }
+}
+/* Slow, quiet zoom on reveal — the photograph settles rather than performs. */
+.pagefigure .media img { transition: transform 1.4s var(--ease), opacity 0.5s var(--ease); }
+@media (prefers-reduced-motion: reduce) {
+  .pagefigure .media img { transition: opacity 0.15s; }
+}
 /* Mark and intro copy centred as one column; the gap owns the rhythm so the
    spacing between mark, statement and body is even. */
 .intro-centered {
