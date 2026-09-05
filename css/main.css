@@ -42,20 +42,19 @@
   --step-4:  clamp(2.80rem, 2.10rem + 3.40vw, 5.20rem);
   --step-5:  clamp(3.40rem, 2.30rem + 5.20vw, 7.00rem);
 
-  /* Space */
-  --space-xs: 0.5rem;
-  --space-sm: 1rem;
-  --space-md: 2rem;
-  --space-lg: 4rem;
-  --space-xl: 7rem;
-  --space-2xl: 11rem;
+  /* Space — fluid throughout. ~1.6x between steps, so no jump reads as a gap.
+     The mobile floor is what matters: --space-2xl bottoms out at 5.5rem
+     instead of a flat 11rem, so a band reads as a deliberate break rather
+     than emptiness you scroll through. */
+  --space-xs:  0.5rem;   /* nothing to gain from making this fluid */
+  --space-sm:  clamp(0.875rem, 0.8rem + 0.4vw,  1rem);
+  --space-md:  clamp(1.5rem,   1.25rem + 1.2vw, 2rem);
+  --space-lg:  clamp(2.5rem,   1.9rem + 3vw,    4rem);
+  --space-xl:  clamp(4rem,     2.6rem + 6vw,    7rem);
+  --space-2xl: clamp(5.5rem,   3.2rem + 10vw,  10rem);
 
   /* Semantic rhythm. These name what the space is FOR, so pages stop setting
-     one-off inline margins.
-     NOTE: a custom property is substituted where it is DECLARED, not where it
-     is used — so the var(--space-*) references below resolve against the
-     fixed steps above. Any scope that overrides the scale (see .tj) must
-     re-declare the derived ones, or they keep the :root values. */
+     one-off inline margins. */
   --band:       var(--space-2xl);  /* between two sections / bands */
   --band-tight: var(--space-xl);   /* when two bands belong together */
   --stack-1:    0.6rem;            /* label → heading */
@@ -71,8 +70,17 @@
   --edge: 25px;               /* gap between the frame line and content (all sides) */
   --gutter: clamp(1.25rem, 5vw, 3rem);  /* outer page padding on narrow screens */
   --nav-h: 84px;              /* navbar height = the vertical lines start here */
-  --radius: 4px;
-  --radius-lg: 10px;
+  /* Corner radius signals "component in an interface"; a sharp edge signals
+     "printed image". Site-wide 0: media, cards and form fields all sit square.
+     Buttons are the deliberate exception — .btn keeps its own pill (100px),
+     because a button should still look like a button. */
+  --radius: 0;
+  --radius-lg: 0;
+  --img-scrim: linear-gradient(to top,
+                 rgba(28,27,25,0.78) 0%, rgba(28,27,25,0.18) 45%, transparent 75%);
+  --media-portrait: 4 / 5;
+  --media-wide:     16 / 10;
+  --media-tall:     3 / 4;
 
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   --dur:  0.8s;
@@ -673,57 +681,6 @@ main > .hero { position: relative; z-index: 1; }
   
 }
 
-/* ---- Tjänster section: scoped direction ----------------------------------
-   European premium / editorial. The reference is the homepage Tjänster block
-   with the sofa photo (.home-feature--image): full-bleed photo with NO corner
-   radius, copy laid over the bottom in the same column as everything else,
-   label → serif headline → text link with an arrow. No buttons, no shadows,
-   no cards.
-
-   Everything here is scoped to .tj (set on <body> in the four Tjänster pages)
-   so the rest of the site stays pixel-identical. When the direction is
-   settled these values can move to :root and cover the whole site without a
-   single rule being rewritten. */
-.tj {
-  /* Fluid spacing. ~1.6x between steps, so no jump reads as a gap. The mobile
-     floor is what matters: 5.5rem instead of today's flat 11rem, so a band
-     reads as a deliberate break rather than emptiness you scroll through. */
-  --space-sm:  clamp(0.875rem, 0.8rem + 0.4vw,  1rem);
-  --space-md:  clamp(1.5rem,   1.25rem + 1.2vw, 2rem);
-  --space-lg:  clamp(2.5rem,   1.9rem + 3vw,    4rem);
-  --space-xl:  clamp(4rem,     2.6rem + 6vw,    7rem);
-  --space-2xl: clamp(5.5rem,   3.2rem + 10vw,  10rem);
-  /* --space-xs stays 0.5rem — nothing to gain from making it fluid. */
-
-  /* Re-declared so they re-substitute against the fluid scale above. Without
-     this they keep the :root values, because a custom property resolves where
-     it is declared, not where it is used. --stack-1 is a literal, so it needs
-     no restating. */
-  --band:       var(--space-2xl);
-  --band-tight: var(--space-xl);
-  --stack-2:    var(--space-md);
-  --stack-3:    var(--space-lg);
-
-  /* Corner radius signals "component in an interface"; a sharp edge signals
-     "printed image". The reference block never sets a radius, and that is not
-     a coincidence — it is the one being pointed at. */
-  --radius-media: 0;
-  --img-scrim: linear-gradient(to top,
-                 rgba(28,27,25,0.78) 0%, rgba(28,27,25,0.18) 45%, transparent 75%);
-  --media-portrait: 4 / 5;
-  --media-wide:     16 / 10;
-  --media-tall:     3 / 4;
-}
-/* Media, cards and fields go to 0. Buttons deliberately do NOT — .btn keeps
-   its pill (border-radius: 100px) so a button still looks like a button. */
-.tj .media,
-.tj .paths__field,
-.tj .tj-figure,
-.tj .card,
-.tj .field input,
-.tj .field textarea,
-.tj .field select { border-radius: var(--radius-media); }
-
 /* ---- Tjänster: the three paths -------------------------------------------
    Big typographic rows. On desktop an editorial image field sits beside them
    and answers whichever row is hovered; on mobile the field is not rendered
@@ -1088,10 +1045,14 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 .section--intro { padding-top: var(--space-2xl); }
 .intro__mark { display: block; width: 100%; max-width: 220px; height: auto; }
 @media (min-width: 860px) { .intro__mark { max-width: 300px; } }
-.meta-label { font-family: var(--sans); font-size: var(--step--1); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+/* .meta-label removed — it duplicated .eyebrow (only the tracking differed,
+   0.14em vs 0.22em). One section-label class, site-wide. */
 
 /* Breadcrumb back to the parent Tjänster page, inside the eyebrow. */
-.tag-note { display: inline-block; padding: 0.35em 0.9em; border: 1px solid var(--hairline); border-radius: 100px; font-size: var(--step--1); color: var(--muted); }
+/* A label, not a button — so it follows the square rule. Only .btn keeps a
+   pill. (Currently unused in markup; kept consistent so it stays correct if
+   it comes back.) */
+.tag-note { display: inline-block; padding: 0.35em 0.9em; border: 1px solid var(--hairline); border-radius: var(--radius); font-size: var(--step--1); color: var(--muted); }
 [data-placeholder]::after { content: " · platshållare"; color: var(--accent); font-size: 0.7em; letter-spacing: 0.1em; text-transform: uppercase; vertical-align: super; }
 
 /* ---- Homepage variant B (test) -------------------------------------------
