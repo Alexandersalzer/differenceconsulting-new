@@ -77,6 +77,7 @@
      because a button should still look like a button. */
   --radius: 0;
   --radius-lg: 0;
+  --radius-btn: 4px;   /* buttons only — the sole allowed radius */
   --img-scrim: linear-gradient(to top,
                  rgba(28,27,25,0.78) 0%, rgba(28,27,25,0.18) 45%, transparent 75%);
   --media-portrait: 4 / 5;
@@ -248,7 +249,9 @@ main > .hero { position: relative; z-index: 1; }
   text-transform: uppercase;
   padding: 1.05em 2.2em;
   border: 1px solid var(--ink);
-  border-radius: 100px;
+  /* Softened corner rather than a full pill: still reads as a button, but
+     editorial instead of app/SaaS. The one place a radius is allowed. */
+  border-radius: var(--radius-btn);
   background: var(--ink);
   color: var(--on-ink);
   transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
@@ -855,6 +858,15 @@ main > .hero { position: relative; z-index: 1; }
 .arbete__title {
   font-family: var(--serif); font-size: var(--step-2);
   line-height: 1.15; letter-spacing: -0.015em; margin: 0;
+  /* Keeps a long name like "Mellan sessionerna" from breaking mid-word on a
+     narrow phone; it wraps at the space or not at all. */
+  text-wrap: balance;
+}
+/* On small phones --step-2 tops out too large for the longest titles, so the
+   hierarchy stays even: the name still reads clearly above the sentence
+   without dominating the row. */
+@media (max-width: 400px) {
+  .arbete__title { font-size: var(--step-1); }
 }
 .arbete__body {
   margin-top: var(--stack-1);
