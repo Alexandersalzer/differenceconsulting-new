@@ -60,6 +60,7 @@
   --stack-1:    0.6rem;            /* label → heading */
   --stack-2:    var(--space-md);   /* heading → lead / body */
   --stack-3:    var(--space-lg);   /* copy block → CTA / next block */
+  --stack-fig:  var(--space-md);   /* copy → figure inside the same passage */
 
   /* Layout — single source of truth for the site's content column.
      Navbar, hero, main content, footer and mobile menu all use --container
@@ -1126,9 +1127,12 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
    so the two sit as one spread.
    Weight comes from the crop: a tall 3:2 on desktop and 4:5 on a phone,
    rather than a letterbox strip that reads as decoration. */
-/* No bottom padding: the following .section brings its own --space-xl, and
+/* Sits close to the lead, but with a deliberate gap — not zero. The hero ends
+   with --space-lg of bottom padding, so that is pulled back and --stack-fig is
+   given instead, so the picture reads as the next beat in the same passage.
+   No bottom padding: the following .section brings its own --space-xl, and
    stacking both put two full bands after the picture where one is meant. */
-.pagefigure { padding-block: 0; margin-top: calc(-1 * var(--space-lg)); }
+.pagefigure { padding-block: 0; margin-top: calc(var(--stack-fig) - var(--space-lg)); }
 /* The close keeps the page's left edge instead of centring, so label,
    headline, intro, image, ARBETET and CTA all sit on one line down the page. */
 .pageclose .statement { max-width: 20ch; }
