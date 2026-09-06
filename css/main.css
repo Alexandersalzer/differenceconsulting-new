@@ -874,20 +874,22 @@ main > .hero { position: relative; z-index: 1; }
   }
 }
 
-/* --- Variant C / D: four full-width rows. On a wide screen the title and the
-   body sit side by side so each row stays one line tall and the list reads
-   as a table of contents rather than a stack of paragraphs. */
+/* --- Full-width rows. On a wide screen the name sits left and the sentence
+   right, so the parts read as one continuous way of working seen from the
+   side — a list of aspects, not a stack of products. The last row drops its
+   rule so the section ends on air rather than on a line. */
 @media (min-width: 860px) {
   .arbete--rows .arbete__item {
-    display: grid; grid-template-columns: 1fr 1.3fr;
-    gap: var(--space-lg); align-items: baseline;
+    display: grid; grid-template-columns: 1fr 1.6fr;
+    gap: var(--space-xl); align-items: baseline;
     padding-block: var(--space-lg);
   }
-  .arbete--rows .arbete__body { margin-top: 0; }
+  .arbete--rows .arbete__body { margin-top: 0; max-width: 54ch; }
   /* The number sits in the margin, so the titles stay on one optical line. */
-  .arbete--rows.arbete--numbered .arbete__item { grid-template-columns: 3ch 1fr 1.3fr; }
+  .arbete--rows.arbete--numbered .arbete__item { grid-template-columns: 3ch 1fr 1.6fr; }
   .arbete--rows.arbete--numbered .arbete__no { margin-bottom: 0; }
 }
+.arbete--rows .arbete__item:last-child { border-bottom: 0; }
 
 /* Pillars */
 .pillars { counter-reset: pillar; }
@@ -1124,7 +1126,12 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
    so the two sit as one spread.
    Weight comes from the crop: a tall 3:2 on desktop and 4:5 on a phone,
    rather than a letterbox strip that reads as decoration. */
-.pagefigure { padding-block: 0 var(--band-tight); margin-top: calc(-1 * var(--space-lg)); }
+/* No bottom padding: the following .section brings its own --space-xl, and
+   stacking both put two full bands after the picture where one is meant. */
+.pagefigure { padding-block: 0; margin-top: calc(-1 * var(--space-lg)); }
+/* The close keeps the page's left edge instead of centring, so label,
+   headline, intro, image, ARBETET and CTA all sit on one line down the page. */
+.pageclose .statement { max-width: 20ch; }
 .pagefigure .media { aspect-ratio: 4 / 5; }
 @media (min-width: 760px) {
   .pagefigure .media { aspect-ratio: 3 / 2; }
