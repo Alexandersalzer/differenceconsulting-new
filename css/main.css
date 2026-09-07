@@ -77,7 +77,7 @@
      because a button should still look like a button. */
   --radius: 0;
   --radius-lg: 0;
-  --radius-btn: 16px;  /* buttons only — softened pill, not a square */
+  --radius-btn: 8px;  /* buttons only — softened pill, not a square */
   --img-scrim: linear-gradient(to top,
                  rgba(28,27,25,0.78) 0%, rgba(28,27,25,0.18) 45%, transparent 75%);
   --media-portrait: 4 / 5;
