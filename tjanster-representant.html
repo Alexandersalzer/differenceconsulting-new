@@ -50,70 +50,54 @@
   <main>
     <section class="pagehero">
       <div class="container">
-        <p class="eyebrow reveal"><a class="link" href="tjanster.html">Tjänster</a> · Ingång 03</p>
-        <h1 class="pagehero__title reveal" style="margin-top:1rem;">Representant / agentur.</h1>
+        <p class="eyebrow reveal"><a class="link" href="tjanster.html">Tjänster</a></p>
+        <h1 class="pagehero__title reveal" style="margin-top:var(--stack-1);">Representant / agentur.</h1>
         <p class="lead pagehero__lead reveal">En agent eller representant kan initiera arbetet för en spelare eller annan individ som behöver en egen process parallellt med det övriga stödet runt personen.</p>
       </div>
     </section>
 
-    <section class="section--tight">
-      <div class="container"><hr class="rule" /></div>
-    </section>
-
-    <section class="section">
-      <div class="container grid grid--media reveal">
-        <div class="grid__media media media--wide">
+    <!-- The image follows straight after the lead — no rule, no empty band
+         between them, so the picture reads as part of the opening. -->
+    <section class="pagefigure reveal">
+      <div class="container">
+        <div class="media media--wide">
           <img fetchpriority="high" decoding="async" width="2400" height="1821" src="assets/joakimhallfoto_260822_260.jpg" alt="Rickson på väg mellan möten" />
         </div>
-        <div>
-          <p class="eyebrow">Så går processen till</p>
-          <ul class="stack-sm" style="margin-top:1rem; padding-left:1.1rem; color:var(--ink-2);">
-              <li>Ett samtal mellan representant och Rickson om spelarens situation och behov.</li>
-              <li>Ett första möte med spelaren där arbetet och dess ram sätts.</li>
-              <li>En långsiktig individuell process som följer karriärens faser.</li>
-              <li>Löpande, förtrolig avstämning inom överenskomna ramar.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--alt">
-      <div class="container grid grid--2-40 align-center">
-        <div class="reveal">
-          <p class="eyebrow">Kärnan</p>
-          <h2 class="h2" style="margin-top:1rem;">Ett arbete med hur du leder dig själv i prestation.</h2>
-        </div>
-        <div class="reveal body stack-sm">
-          <p>I grunden är arbetet detsamma för alla jag möter: att se verkligheten klarare, leda sig själv under press och omsätta riktning i synligt beteende. Det bedrivs huvudsakligen som långsiktiga individuella processer.</p>
-          <p>Det finns inga färdiga paket eller priskort. I stället byggs processen efter din verklighet. Vi börjar med ett samtal, och avgör tillsammans om arbetet är rätt, och hur det i så fall ska se ut.</p>
-        </div>
       </div>
     </section>
 
     <section class="section">
-      <div class="container">
-        <div class="reveal" style="margin-bottom:2.5rem;">
-          <p class="eyebrow">Vad arbetet kan innehålla</p>
-          <h2 class="h3" style="margin-top:1rem; max-width:22ch;">Struktur, inte lösa samtal.</h2>
-          <p class="body" style="margin-top:1.5rem;">Varje process sätts ihop individuellt. Beroende på var du befinner dig kan arbetet innehålla:</p>
-        </div>
-        <div class="grid grid--cards cols-3 reveal">
-          <div class="card"><h3 class="card__title">Sessioner</h3><p class="card__body">Återkommande samtal med tydlig struktur och riktning.</p></div>
-          <div class="card"><h3 class="card__title">Tillgänglighet mellan sessionerna</h3><p class="card__body">Stöd i stunder som inte kan vänta till nästa samtal.</p></div>
-          <div class="card"><h3 class="card__title">Individanpassat material</h3><p class="card__body">Verktyg, koder och underlag byggda för din verklighet.</p></div>
-          <div class="card"><h3 class="card__title">Struktur och uppföljning</h3><p class="card__body">Ett tydligt fokus mellan samtalen, med punkter att stämma av mot.</p></div>
-          <div class="card"><h3 class="card__title">Digital arbetsyta</h3><p class="card__body">En gemensam Drive när det är relevant, så inget tappas bort.</p></div>
-          <div class="card"><h3 class="card__title">Kontinuerliga kvitton</h3><p class="card__body">Förflyttning synlig över tid, i konkret beteende, inte lösa intryck.</p></div>
+      <div class="container reveal">
+        <p class="eyebrow">Arbetet</p>
+        <div class="arbete arbete--rows" style="margin-top:var(--stack-2);">
+          <div class="arbete__item">
+            <h3 class="arbete__title">Första samtalet</h3>
+            <p class="arbete__body">Ett samtal mellan representant och Rickson om spelarens situation och behov.</p>
+          </div>
+          <div class="arbete__item">
+            <h3 class="arbete__title">Ramen sätts</h3>
+            <p class="arbete__body">Ett första möte med spelaren där arbetet och dess ram sätts.</p>
+          </div>
+          <div class="arbete__item">
+            <h3 class="arbete__title">Långsiktig process</h3>
+            <p class="arbete__body">En långsiktig individuell process som följer karriärens faser.</p>
+          </div>
+          <div class="arbete__item">
+            <h3 class="arbete__title">Avstämning</h3>
+            <p class="arbete__body">Löpande, förtrolig avstämning inom överenskomna ramar.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- CTA -->
-    <section class="section section--dark">
-      <div class="container center">
-        <div class="reveal limit mx-auto">
-          <p class="statement mx-auto" style="text-align:center;">Är det här rätt ingång för dig? Börja med ett samtal.</p>
-          <div style="margin-top:2.5rem;"><a class="btn" href="kontakt.html">Kontakt <span class="arrow">→</span></a></div>
+    <!-- CTA — left-aligned so the close sits on the same line as everything
+         above it: label, headline, intro, image and ARBETET all share one
+         left edge down the page. -->
+    <section class="section section--dark pageclose">
+      <div class="container">
+        <div class="reveal">
+          <p class="statement">Inled en dialog.</p>
+          <div style="margin-top:var(--stack-3);"><a class="btn" href="kontakt.html">Skriv till Rickson <span class="arrow">→</span></a></div>
         </div>
       </div>
     </section>

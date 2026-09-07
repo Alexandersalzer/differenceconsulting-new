@@ -681,8 +681,6 @@ main > .hero { position: relative; z-index: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
   .home-feature__media img, .home-feature__portrait img { transition: none; }
-  .home-feature--image:hover .home-feature__media img,
-  
 }
 
 /* ---- Tjänster: the three paths -------------------------------------------
