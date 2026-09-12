@@ -1,0 +1,404 @@
+/* ==========================================================================
+   DIFFERENCISMEN — sidspecifik layout
+   Bygger på tokens i main.css. Inga nya färger, inga nya typsnitt.
+   Allt här är rytm, linjer och de fyra kapitelvisualerna.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Kapitelöppning — MÄNNISKAN / GRUNDEN / TILLSTÅNDEN / SYSTEMET
+   Fyra sidor ur samma bok: samma nummer, samma linje, samma rubrikvikt.
+   -------------------------------------------------------------------------- */
+/* Sidan har två kapitelvikter så den får en puls i stället för nio
+   likvärdiga block: tunga ögonblick (MÄNNISKAN, SYSTEMET, KVITTOT) och
+   lugnare kapitel däremellan. */
+.chapter {
+  padding-block: var(--space-lg);
+}
+.chapter + .chapter { padding-top: 0; }
+
+.chapter--major {
+  padding-block: var(--space-2xl);
+}
+.chapter--major + .chapter { padding-top: var(--space-lg); }
+
+.chapter.section--dark { padding-block: var(--space-2xl); }
+
+/* Blocket spänner hela kolumnen — annars centreras rubriken mot en smalare
+   axel än sidans ramlinjer och hamnar synligt snett. Radlängden hålls i
+   stället av .chapter__lead, som är det enda som behöver ett textmått. */
+.chapter__open {
+  text-align: center;
+}
+.chapter__no {
+  font-family: var(--sans);
+  font-size: var(--step--1);
+  letter-spacing: 0.32em;
+  color: var(--muted);
+  display: block;
+}
+.chapter__title {
+  font-family: var(--serif);
+  font-size: var(--step-4);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  margin-top: var(--space-md);
+  text-wrap: balance;
+}
+.chapter__title--hero {
+  font-size: var(--step-5);
+  letter-spacing: 0.04em;
+}
+/* Lugna kapitel: mindre rubrik, kortare linje — sidan tar en paus utan
+   att tystna helt */
+.chapter:not(.chapter--major) .chapter__title { font-size: var(--step-3); }
+.chapter:not(.chapter--major) .chapter__lead { font-size: var(--step-1); }
+.chapter:not(.chapter--major) .chapter__mark { height: clamp(32px, 4vw, 48px); }
+.chapter__lead {
+  font-family: var(--serif);
+  font-size: var(--step-2);
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin-top: var(--space-md);
+  margin-inline: auto;
+  max-width: 26ch;
+  text-wrap: balance;
+}
+/* Den tunna linjen under varje kapitelrubrik — seriens signatur */
+.chapter__mark {
+  width: 1px;
+  height: clamp(48px, 7vw, 88px);
+  background: var(--hairline);
+  margin: var(--space-lg) auto 0;
+}
+.section--dark .chapter__mark { background: rgba(244, 241, 234, 0.22); }
+.section--dark .chapter__no { color: rgba(244, 241, 234, 0.5); }
+.section--dark .chapter__lead { color: var(--on-ink); }
+
+/* På --bg-2 (den krämiga varianten) försvinner --hairline nästan helt —
+   main.css definierar --hairline-alt för just det fallet. Linjer byggda med
+   border växlar färg; linjer byggda som en tunn bakgrundsstapel (mark,
+   divider) växlar sin bakgrund. */
+.section--alt .pillar,
+.section--alt .state,
+.section--alt .states,
+.section--alt .case,
+.section--alt .case__row,
+.section--alt .glossary,
+.section--alt .glossary__row {
+  border-color: var(--hairline-alt);
+}
+.section--alt .divider,
+.section--alt .chapter__mark {
+  background: var(--hairline-alt);
+}
+
+/* Underrubrik inne i ett kapitel — Mönstret, Sekunden, Kontrollpunkterna.
+   Egen vikt så den inte förväxlas med kapitelnumret. */
+.subhead {
+  font-family: var(--serif);
+  font-size: var(--step-1);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   Statement — meningar som får stå ensamma
+   -------------------------------------------------------------------------- */
+.statement-block {
+  padding-block: var(--space-xl);
+  text-align: center;
+}
+.statement-line {
+  font-family: var(--serif);
+  font-size: clamp(1.9rem, 1.1rem + 3.6vw, 4.2rem);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  max-width: 20ch;
+  margin-inline: auto;
+  text-wrap: balance;
+  color: var(--ink);
+}
+.section--dark .statement-line { color: var(--on-ink); }
+/* Versalt, spärrat statement — används för lagarna och slutsekvensen */
+.statement-caps {
+  font-family: var(--sans);
+  font-size: clamp(0.82rem, 0.7rem + 0.7vw, 1.15rem);
+  letter-spacing: 0.18em;
+  line-height: 2.1;
+  text-transform: uppercase;
+  text-align: center;
+}
+.statement-caps span { display: block; }
+.statement-caps--quiet { color: var(--muted); }
+.section--dark .statement-caps--quiet { color: rgba(244, 241, 234, 0.55); }
+
+/* --------------------------------------------------------------------------
+   Textkolumn — koncentrerad brödtext, centrerad i editorialt läge
+   -------------------------------------------------------------------------- */
+.prose {
+  max-width: 58ch;
+  margin-inline: auto;
+}
+.prose p {
+  font-size: var(--step-0);
+  line-height: 1.7;
+  color: var(--ink-2);
+}
+.prose p + p { margin-top: 1.35em; }
+.prose--center { text-align: center; }
+.section--dark .prose p { color: rgba(244, 241, 234, 0.72); }
+
+/* Radlistorna ärver blockets färg — slipper inline-överstyrning på mörk botten */
+.section--dark .line-list,
+.section--dark .sequence { color: var(--on-ink); }
+
+/* Radbrutna listor utan punkter — "I motgång. I framgång." */
+.line-list {
+  list-style: none;
+  padding: 0;
+  font-family: var(--serif);
+  font-size: var(--step-1);
+  line-height: 1.85;
+  color: var(--ink);
+}
+
+/* --------------------------------------------------------------------------
+   GRUNDEN — de fem pelarna som numrerad editorial-lista
+   Inga kort. Bara linjer och luft.
+   -------------------------------------------------------------------------- */
+/* Pelarna följer sidans centrerade rytm — siffran står som en egen rad
+   ovanför namnet, aldrig som en kolumn vid sidan om. */
+.pillars {
+  max-width: 640px;
+  margin-inline: auto;
+}
+.pillar {
+  padding-block: var(--space-lg);
+  border-bottom: 1px solid var(--hairline);
+  text-align: center;
+}
+.pillar:last-child { border-bottom: 0; }
+.pillar__name {
+  font-family: var(--sans);
+  font-size: var(--step--1);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.pillar__claim {
+  font-family: var(--serif);
+  font-size: var(--step-2);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin-top: 0.7rem;
+}
+.pillar__body {
+  font-size: var(--step-0);
+  line-height: 1.65;
+  color: var(--ink-2);
+  max-width: 42ch;
+  margin: var(--space-sm) auto 0;
+}
+
+/* --------------------------------------------------------------------------
+   TILLSTÅNDEN — fyra jämbördiga tillstånd, aldrig en trappa
+   Delad linje i mitten signalerar samtidighet, inte ordning.
+   -------------------------------------------------------------------------- */
+.states {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 860px;
+  margin-inline: auto;
+  border-top: 1px solid var(--hairline);
+  border-left: 1px solid var(--hairline);
+}
+.state {
+  border-right: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  padding: var(--space-lg) var(--space-md);
+  text-align: center;
+}
+.state__name {
+  font-family: var(--sans);
+  font-size: var(--step--1);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.state__claim {
+  font-family: var(--serif);
+  font-size: var(--step-2);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin-top: 0.6rem;
+}
+.state__body {
+  font-size: var(--step--1);
+  line-height: 1.65;
+  color: var(--ink-2);
+  margin-top: var(--space-sm);
+  max-width: 34ch;
+  margin-inline: auto;
+}
+@media (max-width: 700px) {
+  .states { grid-template-columns: 1fr; }
+}
+
+/* --------------------------------------------------------------------------
+   SYSTEMET — arbetsrörelsen
+   Byggs stegvis vid scroll. Linjen mellan stegen är rörelsen.
+   -------------------------------------------------------------------------- */
+.flow {
+  max-width: 340px;
+  margin-inline: auto;
+  text-align: center;
+}
+.flow__step {
+  font-family: var(--sans);
+  font-size: var(--step--1);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding-block: 0.9rem;
+}
+/* Sista steget stängs inte — rörelsen fortsätter */
+.flow__step--return {
+  color: var(--muted);
+  font-style: normal;
+}
+.flow__link {
+  width: 1px;
+  height: 26px;
+  margin-inline: auto;
+  background: currentColor;
+  opacity: 0.28;
+}
+.section--dark .flow__step--return { color: rgba(244, 241, 234, 0.55); }
+
+/* Stegvis uppbyggnad — bara när användaren tillåter rörelse */
+@media (prefers-reduced-motion: no-preference) {
+  .flow--animate .flow__step,
+  .flow--animate .flow__link {
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.25s linear, transform 0.25s linear;
+  }
+  .flow--animate .flow__link { transform: none; }
+  .flow--animate.is-running .flow__step,
+  .flow--animate.is-running .flow__link {
+    opacity: 1;
+    transform: none;
+  }
+  .flow--animate.is-running .flow__link { opacity: 0.28; }
+}
+
+/* Ordlistan under modellen */
+.glossary {
+  max-width: 720px;
+  margin-inline: auto;
+  border-top: 1px solid var(--hairline);
+}
+.section--dark .glossary,
+.section--dark .glossary__row { border-color: rgba(244, 241, 234, 0.14); }
+.glossary__row {
+  display: grid;
+  grid-template-columns: 13rem 1fr;
+  gap: var(--space-md);
+  padding-block: var(--space-md);
+  border-bottom: 1px solid var(--hairline);
+  align-items: baseline;
+}
+.glossary__term {
+  font-family: var(--sans);
+  font-size: var(--step--1);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.glossary__def {
+  font-size: var(--step-0);
+  line-height: 1.65;
+  color: var(--ink-2);
+}
+.section--dark .glossary__def { color: rgba(244, 241, 234, 0.72); }
+@media (max-width: 640px) {
+  .glossary__row { grid-template-columns: 1fr; gap: 0.5rem; }
+}
+
+/* --------------------------------------------------------------------------
+   I PRAKTIKEN — ett konkret förlopp, läst som en rad
+   -------------------------------------------------------------------------- */
+.case {
+  max-width: 720px;
+  margin-inline: auto;
+  border-top: 1px solid var(--hairline);
+}
+.case__row {
+  display: grid;
+  grid-template-columns: 11rem 1fr;
+  gap: var(--space-md);
+  padding-block: var(--space-md);
+  border-bottom: 1px solid var(--hairline);
+  align-items: baseline;
+}
+.case__label {
+  font-family: var(--sans);
+  font-size: var(--step--1);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.case__value {
+  font-family: var(--serif);
+  font-size: var(--step-1);
+  line-height: 1.35;
+}
+@media (max-width: 640px) {
+  .case__row { grid-template-columns: 1fr; gap: 0.4rem; }
+}
+
+/* --------------------------------------------------------------------------
+   Kontrollpunkter — en rad ord, åtskilda av punkter
+   -------------------------------------------------------------------------- */
+/* Ett radbrytande ordflöde, inte en fast rad — width:100% + centrerad
+   text räcker; nowrap på varje span tvingade tidigare hela raden bredare
+   än sin kolumn och knuffade den ur mitten. */
+.checkpoints {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 0.6em;
+  row-gap: 0.4em;
+  width: 100%;
+  font-family: var(--sans);
+  font-size: clamp(0.78rem, 0.66rem + 0.6vw, 1.05rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: center;
+}
+.checkpoints i {
+  font-style: normal;
+  color: var(--muted);
+}
+
+/* --------------------------------------------------------------------------
+   Sekvens — INDIVIDEN och KVITTOT: korta rader med egen rytm
+   -------------------------------------------------------------------------- */
+.sequence {
+  list-style: none;
+  padding: 0;
+  font-family: var(--serif);
+  font-size: var(--step-1);
+  line-height: 2;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   Delare mellan kapitel
+   -------------------------------------------------------------------------- */
+.divider {
+  width: 1px;
+  height: clamp(64px, 9vw, 120px);
+  background: var(--hairline);
+  margin-inline: auto;
+}
