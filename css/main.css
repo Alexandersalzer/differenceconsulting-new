@@ -906,16 +906,44 @@ main > .hero { position: relative; z-index: 1; }
 }
 .arbete--rows .arbete__item:last-child { border-bottom: 0; }
 
-/* Pillars */
-.pillars { counter-reset: pillar; }
+/* Pillars — Differencismen/Grunden: fem pelare, centrerad editorial-lista.
+   Siffran kommer enbart från counter(); skriv aldrig ut numret i markupen
+   också, då dubbleras det. */
+.pillars { max-width: 640px; margin-inline: auto; counter-reset: pillar; }
 .pillar {
-  display: grid; gap: 0.5rem;
-  padding-block: var(--space-md);
+  padding-block: var(--space-lg);
   border-top: 1px solid var(--hairline);
+  text-align: center;
 }
-.pillar__name { font-size: var(--step-2); display: flex; align-items: baseline; gap: 1rem; }
-.pillar__name::before { counter-increment: pillar; content: counter(pillar, decimal-leading-zero); font-family: var(--sans); font-size: var(--step--1); letter-spacing: 0.1em; color: var(--accent); }
-.pillar__body { color: var(--ink-2); max-width: 62ch; }
+.pillar:last-child { border-bottom: 1px solid var(--hairline); }
+.pillar__name {
+  font-family: var(--serif);
+  font-size: var(--step-2);
+  letter-spacing: -0.015em;
+  display: block;
+}
+.pillar__name::before {
+  counter-increment: pillar;
+  content: counter(pillar, decimal-leading-zero) " · ";
+  font-family: var(--sans);
+  font-size: var(--step--1);
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.pillar__claim {
+  font-family: var(--serif);
+  font-size: var(--step-1);
+  color: var(--ink-2);
+  margin-top: 0.3rem;
+}
+.pillar__body {
+  color: var(--ink-2);
+  max-width: 42ch;
+  margin: var(--space-sm) auto 0;
+  text-align: center;
+}
 
 /* Shift examples (from → to) */
 .shift {
@@ -1021,7 +1049,7 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 .site-footer { background: var(--bg); color: var(--ink); padding-block: var(--space-lg); border-top: 1px solid var(--hairline); }
 .site-footer a { color: var(--muted); transition: color 0.3s; }
 .site-footer a:hover { color: var(--ink); }
-.footer__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-sm) var(--space-md); }
+.footer__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--space-sm) var(--space-md); text-align: center; }
 .footer__logo { display: inline-flex; align-items: center; gap: 0.7rem; }
 .footer__logo .logo__mark { width: 30px; height: 30px; }
 .footer__logo .logo__mark path { fill: var(--ink); }
@@ -1320,4 +1348,511 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
   .vc__bleed-media img, .vc__offset-media img { transition: none; }
   .vc--bleed:hover .vc__bleed-media img, .vc--offset:hover .vc__offset-media img { transform: none; }
+}
+
+
+/* ==========================================================================
+   DIFFERENCISMEN — hub + kapitelsystem
+   Sammanslaget hit från en tidigare separat fil (css/differencismen.css) —
+   allt i ett enda designsystem, ingen egen stilfil för en enskild sida.
+   ========================================================================== */
+/* ==========================================================================
+   DIFFERENCISMEN — hub + kapitelsystem
+   Bygger på tokens i main.css. Delas mellan differencismen.html (hub) och
+   differencismen/*.html (nio kapitel). Samma klasser, samma editoriala
+   disciplin, genomgående centrerad korta statements / vänsterställd längre
+   brödtext.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Kapitelöppning — rubrik + kort ledtext, samma familj i alla kapitel
+   -------------------------------------------------------------------------- */
+.chapter {
+  padding-block: var(--space-lg);
+}
+.chapter + .chapter { padding-top: 0; }
+.chapter--major { padding-block: var(--space-2xl); }
+.chapter.section--dark { padding-block: var(--space-2xl); }
+
+.chapter__open { text-align: center; }
+.chapter__no {
+  font-family: var(--sans);
+  font-size: var(--step--1);
+  letter-spacing: 0.32em;
+  color: var(--muted);
+  display: block;
+}
+.chapter__title {
+  font-family: var(--serif);
+  font-size: var(--step-4);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  margin-top: var(--space-md);
+  text-wrap: balance;
+}
+/* --step-5 golv (3.40rem) är för brett för "DIFFERENCISMEN" på en telefon —
+   egen clamp som skalar rent mot vw i stället för ett fast minimivärde. */
+.chapter__title--hero {
+  font-size: clamp(1.6rem, 8.2vw, 7rem);
+  letter-spacing: 0.02em;
+}
+@media (max-width: 400px) {
+  .chapter__title--hero { letter-spacing: 0; }
+}
+.chapter:not(.chapter--major) .chapter__title { font-size: var(--step-3); }
+.chapter:not(.chapter--major) .chapter__lead { font-size: var(--step-1); }
+.chapter__lead {
+  font-family: var(--serif);
+  font-size: var(--step-2);
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin-top: var(--space-md);
+  margin-inline: auto;
+  max-width: 26ch;
+  text-wrap: balance;
+}
+.section--dark .chapter__no { color: rgba(244, 241, 234, 0.5); }
+.section--dark .chapter__lead { color: var(--on-ink); }
+
+.section--alt .pillar,
+.section--alt .state,
+.section--alt .states,
+.section--alt .case,
+.section--alt .case__row,
+.section--alt .glossary,
+.section--alt .glossary__row {
+  border-color: var(--hairline-alt);
+}
+
+.subhead {
+  font-family: var(--serif);
+  font-size: var(--step-1);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   Statement — korta rader som får stå ensamma. ALDRIG längre brödtext.
+   -------------------------------------------------------------------------- */
+.statement-block { padding-block: var(--space-xl); text-align: center; }
+.statement-line {
+  font-family: var(--serif);
+  font-size: clamp(1.9rem, 1.1rem + 3.6vw, 4.2rem);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  max-width: 20ch;
+  margin-inline: auto;
+  text-wrap: balance;
+  color: var(--ink);
+}
+.section--dark .statement-line { color: var(--on-ink); }
+.statement-caps {
+  font-family: var(--sans);
+  font-size: clamp(0.82rem, 0.7rem + 0.7vw, 1.15rem);
+  letter-spacing: 0.18em;
+  line-height: 2.1;
+  text-transform: uppercase;
+  text-align: center;
+}
+.statement-caps span { display: block; }
+.statement-caps--quiet { color: var(--muted); }
+.section--dark .statement-caps--quiet { color: rgba(244, 241, 234, 0.55); }
+
+/* --------------------------------------------------------------------------
+   Brödtext — smalare, editorial kolumn. Genomgående centrerad, som resten
+   av sidan. Ingen vänsterställd variant.
+   -------------------------------------------------------------------------- */
+.prose {
+  max-width: 52ch;
+  margin-inline: auto;
+  text-align: center;
+}
+.prose p {
+  font-size: var(--step-0);
+  line-height: 1.7;
+  color: var(--ink-2);
+}
+.prose p + p { margin-top: 1.35em; }
+.section--dark .prose p { color: rgba(244, 241, 234, 0.72); }
+
+.section--dark .line-list,
+.section--dark .sequence { color: var(--on-ink); }
+.line-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  font-family: var(--serif);
+  font-size: var(--step-1);
+  line-height: 1.85;
+  color: var(--ink);
+}
+
+/* "I MOTGÅNG. I FRAMGÅNG." osv — korta versala rader, egen rytm.
+   Ärver ingenting från .line-list i markupen, så resetet upprepas här —
+   annars kvarstår webbläsarens default list-style/padding och ger bullets. */
+.line-list--caps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  font-family: var(--sans);
+  font-size: var(--step-0);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 2.2;
+  color: inherit;
+}
+
+/* GRUNDEN: .pillars/.pillar/.pillar__name/.pillar__claim/.pillar__body
+   definieras i main.css (delad komponent). Numret kommer enbart från
+   counter() där — skriv aldrig en siffra i markupen. */
+.pillars--pick .pillar { cursor: pointer; transition: opacity .2s var(--ease); }
+.pillars--pick .pillar.is-dim { opacity: .42; }
+
+/* --------------------------------------------------------------------------
+   TILLSTÅNDEN — öppna editoriala rader, INGEN card/box-känsla
+   -------------------------------------------------------------------------- */
+.states {
+  max-width: 640px;
+  margin-inline: auto;
+}
+.state {
+  padding-block: var(--space-lg);
+  border-bottom: 1px solid var(--hairline);
+  text-align: center;
+  cursor: pointer;
+}
+.state:last-child { border-bottom: 0; }
+.state__name {
+  font-family: var(--sans);
+  font-size: var(--step--1);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.state__claim {
+  font-family: var(--serif);
+  font-size: var(--step-2);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin-top: 0.6rem;
+}
+.state__body {
+  font-size: var(--step-0);
+  line-height: 1.65;
+  color: var(--ink-2);
+  margin-top: var(--space-sm);
+  max-width: 40ch;
+  margin-inline: auto;
+  display: none;
+}
+.state.is-active .state__body { display: block; }
+.state.is-active .state__name { color: var(--accent); }
+
+/* --------------------------------------------------------------------------
+   SYSTEMET — den vertikala kedjan, sidans monumentala ögonblick
+   -------------------------------------------------------------------------- */
+.flow { max-width: 340px; margin-inline: auto; text-align: center; }
+.flow__step {
+  font-family: var(--sans);
+  font-size: var(--step--1);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding-block: 0.9rem;
+}
+.flow__step--return { color: var(--muted); font-style: normal; }
+.flow__link {
+  width: 1px;
+  height: 26px;
+  margin-inline: auto;
+  background: currentColor;
+  opacity: 0.28;
+}
+.section--dark .flow__step--return { color: rgba(244, 241, 234, 0.55); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .flow--animate .flow__step,
+  .flow--animate .flow__link {
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.25s linear, transform 0.25s linear;
+  }
+  .flow--animate .flow__link { transform: none; }
+  .flow--animate.is-running .flow__step,
+  .flow--animate.is-running .flow__link { opacity: 1; transform: none; }
+  .flow--animate.is-running .flow__link { opacity: 0.28; }
+}
+
+/* Ordlistan och I PRAKTIKEN-raderna: en kolumn, alltid centrerad — ingen
+   tvåkolumns etikett+definition-layout, den blir ofrånkomligen vänsterställd. */
+.glossary { max-width: 560px; margin-inline: auto; border-top: 1px solid var(--hairline); }
+.section--dark .glossary,
+.section--dark .glossary__row { border-color: rgba(244, 241, 234, 0.14); }
+.glossary__row {
+  padding-block: var(--space-md);
+  border-bottom: 1px solid var(--hairline);
+  text-align: center;
+}
+.glossary__term {
+  display: block;
+  font-family: var(--sans);
+  font-size: var(--step--1);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+.glossary__def {
+  font-size: var(--step-0);
+  line-height: 1.65;
+  color: var(--ink-2);
+  max-width: 40ch;
+  margin-inline: auto;
+}
+.section--dark .glossary__def { color: rgba(244, 241, 234, 0.72); }
+
+/* --------------------------------------------------------------------------
+   I PRAKTIKEN — ett konkret förlopp
+   -------------------------------------------------------------------------- */
+.case { max-width: 560px; margin-inline: auto; border-top: 1px solid var(--hairline); }
+.case__row {
+  padding-block: var(--space-md);
+  border-bottom: 1px solid var(--hairline);
+  text-align: center;
+}
+.case__label {
+  display: block;
+  font-family: var(--sans);
+  font-size: var(--step--1);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+.case__value {
+  font-family: var(--serif);
+  font-size: var(--step-1);
+  line-height: 1.35;
+  max-width: 34ch;
+  margin-inline: auto;
+}
+
+.checkpoints {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 0.6em;
+  row-gap: 0.4em;
+  width: 100%;
+  font-family: var(--sans);
+  font-size: clamp(0.78rem, 0.66rem + 0.6vw, 1.05rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: center;
+}
+.checkpoints i { font-style: normal; color: var(--muted); }
+
+.sequence {
+  list-style: none;
+  padding: 0;
+  font-family: var(--serif);
+  font-size: var(--step-1);
+  line-height: 2;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   "Så används det" — en enda orienterande rad, inget stycke
+   -------------------------------------------------------------------------- */
+.usage-line {
+  font-family: var(--sans);
+  font-size: var(--step--1);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   Reflektionsfråga — max en per kapitel, egen tyst vikt
+   -------------------------------------------------------------------------- */
+.reflect {
+  text-align: center;
+  padding-block: var(--space-lg);
+  border-top: 1px solid var(--hairline);
+}
+.section--dark .reflect { border-color: rgba(244, 241, 234, 0.14); }
+.section--alt .reflect { border-color: var(--hairline-alt); }
+.reflect__label {
+  font-family: var(--sans);
+  font-size: var(--step--1);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.reflect__q {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: var(--step-1);
+  line-height: 1.4;
+  max-width: 32ch;
+  margin: 0.6rem auto 0;
+  text-wrap: balance;
+}
+
+/* ==========================================================================
+   HUBBEN — differencismen.html: kapitelöversikt mellan Hero och CTA
+   ========================================================================== */
+.hub {
+  text-align: center;
+  padding-top: var(--space-lg);
+  padding-bottom: var(--space-xl);
+}
+
+/* Rekommenderad läsordning, under listorna — sajtens .cta, ingen egen form. */
+.start-here { margin-top: var(--space-xl); }
+
+.hub-group { margin-top: var(--space-xl); }
+/* Första gruppen möter hero:n direkt, utan extra band emellan. */
+.hub-group--first { margin-top: 0; }
+.hub-group__label {
+  font-family: var(--sans);
+  font-size: var(--step--1);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--space-md);
+}
+.hub-list {
+  max-width: 640px;
+  margin-inline: auto;
+  border-top: 1px solid var(--hairline);
+}
+/* Centrerad rad: nummer ovanför, namn, ledtext under — ingen
+   vänsterställd etikett+text-tabellrad, ingen pil-ikon. */
+.hub-item {
+  display: block;
+  text-align: center;
+  padding-block: var(--space-md);
+  border-bottom: 1px solid var(--hairline);
+  text-decoration: none;
+  color: inherit;
+  transition: opacity .15s var(--ease);
+}
+.hub-item:hover { opacity: 0.6; }
+.hub-item__no {
+  display: block;
+  font-family: var(--sans);
+  font-size: var(--step--1);
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+.hub-item__title {
+  font-family: var(--serif);
+  font-size: var(--step-1);
+  letter-spacing: -0.01em;
+}
+.hub-item__lead {
+  font-size: var(--step--1);
+  color: var(--muted);
+  margin-top: 0.2rem;
+}
+
+/* ==========================================================================
+   KAPITEL-CHROME — delas av alla nio differencismen/*.html-filer
+   ========================================================================== */
+
+/* Kapitelraden: siffrorna 01–09 som en tyst orienteringsrad. Ingen linje
+   över eller under — sidans rubrik ska möta luft, inte en ram. Storleken
+   följer .eyebrow-skalan, samma som sajtens övriga micro-labels. */
+.chapter-rail {
+  text-align: center;
+  padding-top: var(--space-md);
+}
+.chapter-rail__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.2em 1.1em;
+}
+.chapter-rail a {
+  font-family: var(--sans);
+  font-size: var(--step--1);
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  text-decoration: none;
+  padding-bottom: 0.35em;
+  border-bottom: var(--hairline-w) solid transparent;
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.chapter-rail a:hover { color: var(--ink); border-color: var(--hairline); }
+/* Aktivt kapitel: skriver ut sitt namn och bär en understruken markering,
+   så det syns direkt både var man är och att de andra går att välja. */
+.chapter-rail a.is-current {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.chapter-rail a.is-current .rail-name { display: inline; }
+.rail-name { display: none; }
+.section--dark .chapter-rail a { color: rgba(244, 241, 234, 0.45); }
+.section--dark .chapter-rail a:hover { border-color: rgba(244, 241, 234, 0.28); }
+.section--dark .chapter-rail a:hover,
+.section--dark .chapter-rail a.is-current { color: var(--on-ink); }
+.section--dark .chapter-rail a.is-current { border-color: var(--on-ink); }
+.chapter-rail .rail-sep { display: none; }
+
+/* Orientering under raden: kapitlets namn och position. */
+.chapter-orient {
+  text-align: center;
+  padding-bottom: var(--space-md);
+  padding-top: var(--space-sm);
+  font-family: var(--sans);
+  font-size: var(--step--1);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.chapter-orient__count { font-variant-numeric: tabular-nums; }
+.chapter-orient a { color: var(--muted); }
+.chapter-orient a:hover { color: var(--ink); }
+
+/* Föregående / Nästa — sajtens .cta-komponent, inget eget mönster. */
+.chapter-pager {
+  text-align: center;
+  padding-block: var(--space-xl);
+}
+.pager-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md) var(--space-lg);
+}
+
+/* --------------------------------------------------------------------------
+   Mobil — texthantering: långa versala ord måste kunna brytas; korta
+   statements förblir centrerade, brödtext är redan vänsterställd via .prose
+   -------------------------------------------------------------------------- */
+@media (max-width: 560px) {
+  .chapter__title,
+  .statement-caps,
+  .statement-line,
+  .pillar__name,
+  .state__name,
+  .glossary__term,
+  .case__label,
+  .hub-item__title {
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
+  .chapter__lead { max-width: 22ch; }
+  .statement-caps { letter-spacing: 0.1em; line-height: 1.9; }
+  .checkpoints { letter-spacing: 0.12em; column-gap: 0.5em; }
+  .pillar__body,
+  .state__body { max-width: 32ch; }
+  .glossary,
+  .case { max-width: 100%; }
 }
