@@ -311,6 +311,8 @@ main > .hero { position: relative; z-index: 1; }
 .cta .arrow { transition: transform 0.3s var(--ease); }
 .cta:hover { color: var(--ink); gap: 1em; border-color: var(--ink); }
 .cta:hover .arrow { transform: translateX(3px); }
+/* Bakåtlänk: pilen sitter först och ska röra sig åt sitt eget håll. */
+.cta:hover .arrow:first-child { transform: translateX(-3px); }
 
 /* On a photo or the dark block. */
 .cta--on-dark,
@@ -1702,6 +1704,14 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
   text-wrap: balance;
 }
 
+/* Hero: premissen bär mer tyngd än det förklarande stycket under. */
+.hero-premise {
+  font-size: var(--step-1);
+  line-height: 1.45;
+  text-wrap: balance;
+  margin-bottom: var(--space-md);
+}
+
 /* ==========================================================================
    HUBBEN — differencismen.html: kapitelöversikt mellan Hero och CTA
    ========================================================================== */
@@ -1717,7 +1727,11 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 .hub-group { margin-top: var(--space-xl); }
 /* Första gruppen möter hero:n direkt, utan extra band emellan. */
 .hub-group--first { margin-top: 0; }
+/* Etiketterna linjerar med listan under, inte med sidans mitt. */
 .hub-group__label {
+  max-width: 640px;
+  margin-inline: auto;
+  text-align: left;
   font-family: var(--sans);
   font-size: var(--step--1);
   letter-spacing: 0.2em;
@@ -1730,11 +1744,29 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
   margin-inline: auto;
   border-top: 1px solid var(--hairline);
 }
-/* Centrerad rad: nummer ovanför, namn, ledtext under — ingen
-   vänsterställd etikett+text-tabellrad, ingen pil-ikon. */
+
+/* Orienteringsrad ovanför första gruppen: säger att man får välja. */
+.hub-note {
+  max-width: 640px;
+  margin-inline: auto;
+  text-align: left;
+  font-family: var(--sans);
+  font-size: var(--step--1);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--space-lg);
+}
+
+/* Kapitelingången: nummerrad, namn och ledtext på var sin rad — aldrig
+   hoptryckta sidled. Hela ytan mellan linjerna är klickbar; pilen ligger
+   i egen kolumn och håller sig ur vägen för rubrikens radfall. */
 .hub-item {
-  display: block;
-  text-align: center;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-sm);
+  text-align: left;
   padding-block: var(--space-md);
   border-bottom: 1px solid var(--hairline);
   text-decoration: none;
@@ -1742,24 +1774,52 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
   transition: opacity .15s var(--ease);
 }
 .hub-item:hover { opacity: 0.6; }
+/* Etikettraden "01 — MÄNNISKAN": nummer och namn hör ihop på samma rad,
+   ledtexten får egen rad under. Sans och versalt, som sajtens micro-labels. */
 .hub-item__no {
-  display: block;
   font-family: var(--sans);
   font-size: var(--step--1);
   letter-spacing: 0.2em;
   color: var(--muted);
-  margin-bottom: 0.4rem;
 }
+/* Strecket bär den enda tillåtna brytpunkten i etikettraden: på smal
+   skärm faller namnet ned på egen rad i stället för att spränga bredden. */
+.hub-item__no::after {
+  content: "—";
+  margin-inline: 0.55em 0.45em;
+  letter-spacing: 0;
+}
+.hub-item__label { text-wrap: balance; }
 .hub-item__title {
-  font-family: var(--serif);
-  font-size: var(--step-1);
-  letter-spacing: -0.01em;
+  font-family: var(--sans);
+  font-size: var(--step--1);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.5;
 }
+/* Etikettraden som helhet: bryts efter ledtexten, inte inuti namnet. */
+.hub-item__label { display: block; margin-bottom: 0.55rem; }
 .hub-item__lead {
+  display: block;
   font-size: var(--step--1);
   color: var(--muted);
-  margin-top: 0.2rem;
+  margin-top: 0.45rem;
+  line-height: 1.5;
 }
+/* Diskret riktningsmarkör — aldrig en knapp. */
+.hub-item__go {
+  grid-column: 2;
+  grid-row: 1 / -1;
+  align-self: center;
+  font-family: var(--sans);
+  font-size: var(--step--1);
+  color: var(--muted);
+  transition: transform 0.3s var(--ease);
+}
+.hub-item:hover .hub-item__go { transform: translateX(3px); }
+
+/* Text i egen kolumn så pilen inte trycker ihop långa namn. */
+.hub-item__text { grid-column: 1; min-width: 0; }
 
 /* ==========================================================================
    KAPITEL-CHROME — delas av alla nio differencismen/*.html-filer
@@ -1842,12 +1902,22 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
   .pillar__name,
   .state__name,
   .glossary__term,
-  .case__label,
-  .hub-item__title {
+  .case__label {
     overflow-wrap: break-word;
     word-break: break-word;
     hyphens: auto;
   }
+  /* Kapitelnamnet ska falla naturligt, aldrig huggas mitt i ordet.
+     På smal skärm får "08 — RIKTNINGSVÄGLEDNING" bryta efter strecket
+     i stället för att spränga raden. */
+  .hub-item__title {
+    overflow-wrap: break-word;
+    hyphens: none;
+    letter-spacing: 0.1em;
+  }
+  /* Generösare tryckyta och mer luft mellan ingångarna på mobil. */
+  .hub-item { padding-block: var(--space-lg); gap: var(--space-xs); }
+  .hub-item__lead { max-width: 30ch; }
   .chapter__lead { max-width: 22ch; }
   .statement-caps { letter-spacing: 0.1em; line-height: 1.9; }
   .checkpoints { letter-spacing: 0.12em; column-gap: 0.5em; }
