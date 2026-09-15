@@ -1051,7 +1051,9 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 .site-footer { background: var(--bg); color: var(--ink); padding-block: var(--space-lg); border-top: 1px solid var(--hairline); }
 .site-footer a { color: var(--muted); transition: color 0.3s; }
 .site-footer a:hover { color: var(--ink); }
-.footer__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--space-sm) var(--space-md); text-align: center; }
+/* Logotyp och stämpel i var sin ände av raden — footern ska bära sidans
+   bredd, inte samlas i mitten. */
+.footer__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-sm) var(--space-md); }
 .footer__logo { display: inline-flex; align-items: center; gap: 0.7rem; }
 .footer__logo .logo__mark { width: 30px; height: 30px; }
 .footer__logo .logo__mark path { fill: var(--ink); }
@@ -1835,15 +1837,25 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
    följer .eyebrow-skalan, samma som sajtens övriga micro-labels. */
 .chapter-rail {
   text-align: center;
-  padding-top: var(--space-md);
+  /* Extra luft över raden: där tonar kapitelnamnet fram vid hover. */
+  padding-top: calc(var(--space-md) + 1.4em);
 }
+/* Negativ gap finns inte: tryckytan växer inåt via padding på länkarna,
+   så gapet krymps för att hålla samma optiska avstånd som förut. */
 .chapter-rail__inner {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.2em 1.1em;
+  gap: 0.2em 0;
 }
+/* Generös tryckyta runt siffran — målet ska vara lätt att träffa med
+   både pekare och tumme, medan siffrorna ser lika glesa ut som förut. */
 .chapter-rail a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding-inline: 0.55em;
   font-family: var(--sans);
   font-size: var(--step--1);
   letter-spacing: 0.12em;
@@ -1861,30 +1873,41 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
   border-color: var(--ink);
 }
 
-/* Namnet ligger hopvikt bredvid siffran och vecklar ut sig vid hover eller
-   tangentbordsfokus — raden förblir en sifferrad tills man söker sig till
-   den. Bredd, inte display, så övergången går att animera. */
+/* Namnet tonar fram ovanför siffran vid hover eller tangentbordsfokus.
+   Det ligger utanför flödet, så raden behåller exakt sin bredd — inga
+   syskon som hoppar i sidled när man rör sig längs siffrorna. */
 .rail-name {
-  display: inline-block;
-  max-width: 0;
-  overflow: hidden;
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translateX(-50%);
   white-space: nowrap;
-  vertical-align: bottom;
+  font-size: 0.92em;
+  letter-spacing: 0.1em;
+  color: var(--ink);
   opacity: 0;
-  transition: max-width 0.35s var(--ease), opacity 0.25s var(--ease);
+  pointer-events: none;
+  transition: opacity 0.25s var(--ease);
 }
 .chapter-rail a:hover .rail-name,
-.chapter-rail a:focus-visible .rail-name,
-.chapter-rail a.is-current .rail-name {
-  max-width: 14em;
+.chapter-rail a:focus-visible .rail-name {
   opacity: 1;
 }
-/* Utan hover — touch — skulle nio utskrivna namn bli ett tungt block.
-   Där bär raden bara det aktiva kapitlets namn; siffrorna räcker som mål,
-   och namnen finns ändå i pagern längst ned. */
+/* Aktivt kapitel bär sitt namn permanent, i flödet — det är sidans
+   position, inte en hover-upplysning. */
+.chapter-rail a.is-current .rail-name {
+  position: static;
+  transform: none;
+  opacity: 1;
+  margin-left: 0.5em;
+  color: inherit;
+}
+/* Utan hover — touch — når man aldrig de infällda namnen. Siffrorna är
+   målen, det aktiva kapitlet skriver ut sig, och namnen finns i pagern. */
 @media (hover: none) {
-  .rail-name { transition: none; }
-  .chapter-rail a:not(.is-current) .rail-name { max-width: 0; opacity: 0; }
+  .chapter-rail a:not(.is-current) .rail-name { display: none; }
+  /* Ingen hover att visa namn för — då behövs inte luften över raden. */
+  .chapter-rail { padding-top: var(--space-md); }
 }
 @media (prefers-reduced-motion: reduce) {
   .rail-name { transition: none; }
@@ -1894,6 +1917,7 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 .section--dark .chapter-rail a:hover,
 .section--dark .chapter-rail a.is-current { color: var(--on-ink); }
 .section--dark .chapter-rail a.is-current { border-color: var(--on-ink); }
+.section--dark .rail-name { color: var(--on-ink); }
 .chapter-rail .rail-sep { display: none; }
 
 /* Orientering under raden: kapitlets namn och position. */
