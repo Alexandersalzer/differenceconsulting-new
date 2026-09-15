@@ -1051,15 +1051,13 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 .site-footer { background: var(--bg); color: var(--ink); padding-block: var(--space-lg); border-top: 1px solid var(--hairline); }
 .site-footer a { color: var(--muted); transition: color 0.3s; }
 .site-footer a:hover { color: var(--ink); }
-/* Logotyp och stämpel i var sin ände av raden — footern ska bära sidans
-   bredd, inte samlas i mitten. */
-.footer__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-sm) var(--space-md); }
+/* Logotypen ensam kvar i footern och står centrerad. */
+.footer__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--space-sm) var(--space-md); }
 .footer__logo { display: inline-flex; align-items: center; gap: 0.7rem; }
 .footer__logo .logo__mark { width: 30px; height: 30px; }
 .footer__logo .logo__mark path { fill: var(--ink); }
 .footer__logo .logo__word { color: var(--ink); font-family: var(--serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; }
 .footer__logo .logo__word span { color: var(--muted); }
-.footer__stamp { font-family: var(--sans); font-size: var(--step--1); letter-spacing: 0.04em; color: var(--muted); }
 
 
 /* ---- Reveal-on-scroll ---------------------------------------------------- */
