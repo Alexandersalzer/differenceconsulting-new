@@ -527,13 +527,24 @@ main > .hero { position: relative; z-index: 1; }
    stretched across 1440px. */
 /* Full container width — no measure cap. A capped column reads as a blog
    layout; the rules running the whole width read as navigation. */
-.mobile-menu__links { display: flex; flex-direction: column; }
+/* Listan tar resten av skärmen och centrerar länkarna i den ytan —
+   menyn ska läsas som ett stilla uppslag, inte en lista som hänger
+   i överkanten. */
+.mobile-menu__links {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  padding-bottom: var(--space-xl);
+}
 /* Menu rows use the shared .link-row component, so they look and behave
-   exactly like the sitemap and service links. Only the rhythm is set here. */
+   exactly like the sitemap and service links. Only the rhythm is set here.
+   Inne i menyn bär raderna varken avdelare eller pil: namnen står fria. */
 .mobile-menu__links .link-row {
   padding-block: 0.55em;
-  border-bottom: 1px solid var(--hairline);
+  justify-content: flex-start;
 }
+.mobile-menu__links .link-row .arrow { display: none; }
 /* The CTA is the shared .btn — every visual style and the hover come from
    .btn, so it is identical to all other buttons on the site. Only layout is
    set here. The line-reset stops it inheriting the big serif link type;
