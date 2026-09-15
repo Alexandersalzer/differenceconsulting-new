@@ -539,12 +539,17 @@ main > .hero { position: relative; z-index: 1; }
 }
 /* Menu rows use the shared .link-row component, so they look and behave
    exactly like the sitemap and service links. Only the rhythm is set here.
-   Inne i menyn bär raderna varken avdelare eller pil: namnen står fria. */
+   Inne i menyn står namnen helt fria: ingen avdelare, ingen pil och
+   inget streck under orden. Färgskiftet vid hover är enda markören. */
 .mobile-menu__links .link-row {
   padding-block: 0.55em;
   justify-content: flex-start;
 }
 .mobile-menu__links .link-row .arrow { display: none; }
+.mobile-menu__links .link-row__label {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
 /* The CTA is the shared .btn — every visual style and the hover come from
    .btn, so it is identical to all other buttons on the site. Only layout is
    set here. The line-reset stops it inheriting the big serif link type;
