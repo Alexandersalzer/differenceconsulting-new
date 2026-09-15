@@ -1705,9 +1705,14 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 }
 
 /* Hero: premissen bär mer tyngd än det förklarande stycket under. */
+/* Premissen bär mer tyngd än förklaringen under: större grad och en egen,
+   snävare bredd så den läses som ett påstående, inte som brödtext. Den
+   längre förklaringen behåller .prose 52ch även på stora skärmar. */
 .hero-premise {
   font-size: var(--step-1);
   line-height: 1.45;
+  max-width: 34ch;
+  margin-inline: auto;
   text-wrap: balance;
   margin-bottom: var(--space-md);
 }
@@ -1855,8 +1860,35 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
   color: var(--ink);
   border-color: var(--ink);
 }
-.chapter-rail a.is-current .rail-name { display: inline; }
-.rail-name { display: none; }
+
+/* Namnet ligger hopvikt bredvid siffran och vecklar ut sig vid hover eller
+   tangentbordsfokus — raden förblir en sifferrad tills man söker sig till
+   den. Bredd, inte display, så övergången går att animera. */
+.rail-name {
+  display: inline-block;
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: bottom;
+  opacity: 0;
+  transition: max-width 0.35s var(--ease), opacity 0.25s var(--ease);
+}
+.chapter-rail a:hover .rail-name,
+.chapter-rail a:focus-visible .rail-name,
+.chapter-rail a.is-current .rail-name {
+  max-width: 14em;
+  opacity: 1;
+}
+/* Utan hover — touch — skulle nio utskrivna namn bli ett tungt block.
+   Där bär raden bara det aktiva kapitlets namn; siffrorna räcker som mål,
+   och namnen finns ändå i pagern längst ned. */
+@media (hover: none) {
+  .rail-name { transition: none; }
+  .chapter-rail a:not(.is-current) .rail-name { max-width: 0; opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rail-name { transition: none; }
+}
 .section--dark .chapter-rail a { color: rgba(244, 241, 234, 0.45); }
 .section--dark .chapter-rail a:hover { border-color: rgba(244, 241, 234, 0.28); }
 .section--dark .chapter-rail a:hover,
@@ -1865,15 +1897,18 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 .chapter-rail .rail-sep { display: none; }
 
 /* Orientering under raden: kapitlets namn och position. */
+/* Positionsangivelsen är orientering, inte rubrik: mindre och tystare än
+   railen ovanför, så kapitelnamnet under är sidans första riktiga röst. */
 .chapter-orient {
   text-align: center;
   padding-bottom: var(--space-md);
   padding-top: var(--space-sm);
   font-family: var(--sans);
   font-size: var(--step--1);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--muted);
+  opacity: 0.68;
 }
 .chapter-orient__count { font-variant-numeric: tabular-nums; }
 .chapter-orient a { color: var(--muted); }
