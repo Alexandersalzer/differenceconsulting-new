@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Utkast och testfiler som ännu ligger kvar i produktion.
+# De bör tas bort från servern — tills dess hålls de utanför index.
+Disallow: /_arbete-varianter.html
+Disallow: /gammal-startsida-utkast.html
+Disallow: /startsida-variant-b.html
+Disallow: /startsida-variant-c.html
+Disallow: /fonttest.html
+
+Sitemap: https://differenceconsulting.se/sitemap.xml
