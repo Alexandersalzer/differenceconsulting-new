@@ -1910,11 +1910,19 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
   color: inherit;
 }
 /* Utan hover — touch — når man aldrig de infällda namnen. Siffrorna är
-   målen, det aktiva kapitlet skriver ut sig, och namnen finns i pagern. */
+   målen, och namnen finns i pagern. */
 @media (hover: none) {
   .chapter-rail a:not(.is-current) .rail-name { display: none; }
   /* Ingen hover att visa namn för — då behövs inte luften över raden. */
   .chapter-rail { padding-top: var(--space-md); }
+}
+/* På smala skärmar bär raden bara siffrorna — även det aktiva kapitlets
+   namn fälls in. Utskrivet ("02 Grunden") åt det så mycket bredd att sista
+   siffran låg 10px från kanten vid 360px och bröt till två rader vid 320px.
+   Understrykningen visar ändå var man är, och namnet står i rubriken direkt
+   under raden. */
+@media (max-width: 560px) {
+  .chapter-rail a.is-current .rail-name { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .rail-name { transition: none; }
