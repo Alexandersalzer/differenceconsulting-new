@@ -940,16 +940,9 @@ main > .hero { position: relative; z-index: 1; }
   letter-spacing: -0.015em;
   display: block;
 }
-.pillar__name::before {
-  counter-increment: pillar;
-  content: counter(pillar, decimal-leading-zero) " · ";
-  font-family: var(--sans);
-  font-size: var(--step--1);
-  letter-spacing: 0.1em;
-  color: var(--accent);
-  display: block;
-  margin-bottom: 0.5rem;
-}
+/* Pelarna numreras inte längre: kapitlet bär redan sitt eget nummer i
+   rubriken ("02 GRUNDEN"), så en egen 01–05-räkning läste som en andra
+   numrering av samma sak. Namnet står för sig självt. */
 .pillar__claim {
   font-family: var(--serif);
   font-size: var(--step-1);
