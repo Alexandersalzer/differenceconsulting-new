@@ -1790,17 +1790,25 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 .hub-item:hover { opacity: 0.6; }
 /* Etikettraden "01 — MÄNNISKAN": nummer och namn hör ihop på samma rad,
    ledtexten får egen rad under. Sans och versalt, som sajtens micro-labels. */
+/* Siffran är radens ankare: serif, i rubrikstorlek, så ögat hittar 01–09
+   direkt i listan i stället för att leta efter en detalj i micro-text. */
 .hub-item__no {
-  font-family: var(--sans);
-  font-size: var(--step--1);
-  letter-spacing: 0.2em;
-  color: var(--muted);
+  font-family: var(--serif);
+  font-size: var(--step-2);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
 }
 /* Strecket bär den enda tillåtna brytpunkten i etikettraden: på smal
    skärm faller namnet ned på egen rad i stället för att spränga bredden. */
 .hub-item__no::after {
   content: "—";
-  margin-inline: 0.55em 0.45em;
+  font-family: var(--sans);
+  font-size: var(--step--1);
+  color: var(--muted);
+  vertical-align: middle;
+  margin-inline: 0.5em 0.45em;
   letter-spacing: 0;
 }
 .hub-item__label { text-wrap: balance; }
@@ -2000,3 +2008,12 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
   .glossary,
   .case { max-width: 100%; }
 }
+
+/* Kapitelöversikten bär en egen sandton. Gruppindelningen 4+5 syns genom
+   tonskiftet och extra luft mellan grupperna — inte genom textetiketter. */
+.hub--band {
+  background: var(--bg-2);
+  padding-top: var(--space-2xl);
+  padding-bottom: var(--space-2xl);
+}
+.hub--band .hub-group { margin-top: var(--space-2xl); }
