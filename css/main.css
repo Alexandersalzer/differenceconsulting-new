@@ -651,6 +651,15 @@ main > .hero { position: relative; z-index: 1; }
 .home-feature--type .container, .home-feature--portrait .container,
 .home-feature--quote .container, .home-feature--close .container { width: 100%; }
 .home-feature--type .home-feature__display { max-width: 20ch; }
+/* Blocket på mörk botten: rubrik och cue måste bära ljus text, annars står
+   de i --ink mot --ink-block och försvinner. */
+.home-feature--type.section--dark .home-feature__display { color: var(--on-ink); }
+.home-feature--type.section--dark .home-feature__go { color: rgba(244,241,234,0.7); }
+.home-feature--type.section--dark:hover .home-feature__go { color: var(--on-ink); }
+/* Loggan är en mörk PNG — inverteras så den syns mot --ink-block. */
+.home-feature--type.section--dark .home-feature__mark { filter: invert(1); }
+/* Pilen ärver inte cue-färgen, så den sätts här. */
+.home-feature--type.section--dark .home-feature__go .arrow { color: inherit; }
 /* Mark, headline and cue centred in one stack. A single gap value sets the
    rhythm so the spacing between each item is even. */
 .home-feature__stack {
@@ -1964,7 +1973,7 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 /* Föregående / Nästa — sajtens .cta-komponent, inget eget mönster. */
 .chapter-pager {
   text-align: center;
-  padding-block: var(--space-xl);
+  padding-block: 0;
 }
 .pager-row {
   display: flex;
@@ -2017,3 +2026,37 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
   padding-bottom: var(--space-2xl);
 }
 .hub--band .hub-group { margin-top: var(--space-2xl); }
+
+/* Schackillustrationen i Ombyggnaden är redan vit tusch på mörk botten och
+   behöver varken filter eller egen bakgrund — bara att .media inte lägger
+   sin ljusa platshållarfärg bakom den. */
+.rk-chess { background: transparent; }
+
+/* Frågorna i Ombyggnaden: en tankegång, inte en FAQ. Bara en mycket svag
+   linje mellan raderna — ingen ram runt varje post, ingen rubriknivå. */
+.rk-questions p {
+  font-family: var(--serif);
+  font-size: var(--step-1);
+  line-height: 1.5;
+  padding-block: var(--space-sm);
+  border-bottom: 1px solid rgba(244, 241, 234, 0.08);
+  margin: 0;
+}
+.rk-questions p:last-child { border-bottom: 0; }
+.rk-questions { max-width: 46ch; }
+
+
+
+/* Divider mellan de två mörka sektionerna: full skärmbredd, ingen padding,
+   ligger exakt i skarven. Eget element mellan sektionerna, med samma mörka
+   botten runt sig så den läser som en linje och inte som ett glapp. */
+/* Bandet bär den mörka bottnen hela vägen ut; linjen inuti följer
+   containern, så den slutar där sidans innehåll slutar. */
+.rk-divider-band { background: var(--ink-block); position: relative; z-index: 1; }
+/* Schackbilden centrerad i bandet, måttlig storlek — den är en övergång
+   mellan två textsektioner, inte ett eget bildögonblick. */
+.rk-divider-band .rk-chess {
+  max-width: 620px;
+  margin-inline: auto;
+  padding-block: 0;
+}
