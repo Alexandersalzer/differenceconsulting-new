@@ -1197,6 +1197,10 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 .pagefigure { padding-block: 0; margin-top: calc(var(--stack-fig) - var(--space-lg)); }
 /* The close keeps the page's left edge instead of centring, so label,
    headline, intro, image, ARBETET and CTA all sit on one line down the page. */
+.pagehero + .receipt-main {
+  padding-top: calc(var(--stack-3) - var(--space-lg));
+}
+
 .pageclose .statement { max-width: 20ch; }
 .pagefigure .media { aspect-ratio: 4 / 5; }
 @media (min-width: 760px) {
@@ -2059,6 +2063,147 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
   max-width: 620px;
   margin-inline: auto;
   padding-block: 0;
+}
+
+/* ==========================================================================
+   KVITTON — kvitton.html
+   Huvudkvitto (editorialt), tre kortare kvitton, typografiskt bevisarkiv.
+   Allt centrerat utom arkivet, som växlar sida på desktop.
+   ========================================================================== */
+.receipt__env,
+.archive__env {
+  font-family: var(--sans);
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.receipt__head { text-align: center; }
+.receipt__head > * + * { margin-top: var(--stack-1); }
+
+/* Huvudkvittot — sidans största kvitto, långsamt och luftigt. */
+.receipt-main { padding-block: var(--space-2xl); }
+.receipt-main__core {
+  font-family: var(--serif);
+  font-size: var(--step-4);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-align: center;
+  max-width: 20ch;
+  margin: var(--band-tight) auto 0;
+  text-wrap: balance;
+}
+.receipt-main__core span { display: block; margin-top: 0.35em; color: var(--ink-2); font-style: italic; }
+.receipt__turn {
+  font-family: var(--serif);
+  font-size: var(--step-3);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  text-align: center;
+  max-width: 20ch;
+  margin: var(--band-tight) auto 0;
+  text-wrap: balance;
+}
+.receipt__close {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: var(--step-1);
+  line-height: 1.45;
+  color: var(--ink);
+  text-align: center;
+  max-width: 36ch;
+  margin: var(--stack-3) auto 0;
+  text-wrap: balance;
+}
+
+/* Olika verkligheter — tre distinkta block, ingen kortram. */
+.receipts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  margin-top: var(--band-tight);
+}
+.receipt {
+  padding-top: var(--space-xl);
+  border-top: var(--hairline-w) solid var(--hairline-alt);
+}
+.receipt__lead,
+.prose .receipt__lead {
+  font-family: var(--serif);
+  font-size: var(--step-2);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-align: center;
+  max-width: 24ch;
+  margin: var(--stack-2) auto var(--stack-2);
+  text-wrap: balance;
+}
+.prose .receipt__lead { margin-top: 0; }
+.section--dark .prose .receipt__lead { color: var(--on-ink); }
+.prose .receipts__intro {
+  font-family: var(--serif);
+  font-size: var(--step-1);
+  color: var(--ink);
+}
+
+/* Det som började bära — typografiskt bevisarkiv. Miljön liten, kärnan
+   stor. Raderna växlar sida på desktop så man rör sig genom spår. */
+.archive__intro {
+  font-family: var(--serif);
+  font-size: var(--step-1);
+  color: var(--ink-2);
+  margin-top: var(--stack-2);
+}
+.archive {
+  list-style: none;
+  padding: 0;
+  margin: var(--band-tight) 0 0;
+}
+.archive__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-block: var(--space-lg);
+  border-top: var(--hairline-w) solid var(--hairline);
+}
+.archive__item:last-child { border-bottom: var(--hairline-w) solid var(--hairline); }
+.archive__env { color: var(--muted); }
+.archive__core {
+  font-family: var(--serif);
+  font-size: var(--step-3);
+  line-height: 1.08;
+  letter-spacing: 0.005em;
+  color: var(--ink);
+  max-width: 18ch;
+  margin-top: var(--stack-2);
+  text-wrap: balance;
+}
+.archive__note {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: var(--step-0);
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 40ch;
+  margin-top: var(--space-sm);
+}
+@media (min-width: 860px) {
+  .archive__item { padding-block: var(--space-xl); }
+  .archive__item:nth-child(odd)  { align-items: flex-start; text-align: left;  padding-right: 22%; }
+  .archive__item:nth-child(even) { align-items: flex-end;   text-align: right; padding-left: 22%; }
+}
+
+/* Avslut — minimalistiskt. */
+.closing { padding-block: var(--space-2xl); }
+.closing__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md) var(--space-lg);
+  margin-top: var(--stack-3);
 }
 
 /* --------------------------------------------------------------------------
