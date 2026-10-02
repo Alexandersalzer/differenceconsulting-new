@@ -2060,3 +2060,42 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
   margin-inline: auto;
   padding-block: 0;
 }
+
+/* --------------------------------------------------------------------------
+   DIFFERENCISMEN — introduktionssida. Mer vertikal luft per tanke,
+   Tillstånden som en ren ordglimt (ingen rangordning, inga definitioner).
+   -------------------------------------------------------------------------- */
+.section--air { padding-block: var(--space-2xl); }
+@media (min-width: 860px) {
+  .section--air { padding-block: calc(var(--space-2xl) * 1.4); }
+}
+.state-words {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  font-family: var(--serif);
+  font-size: var(--step-3);
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+@media (max-width: 400px) {
+  .state-words { letter-spacing: 0.02em; }
+}
+.state-words__note {
+  max-width: 34ch;
+  margin: var(--space-xl) auto 0;
+  text-align: center;
+  font-size: var(--step-0);
+  line-height: 1.6;
+  color: rgba(244, 241, 234, 0.6);
+}
+.intro-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-md) var(--space-lg);
+  margin-top: var(--space-2xl);
+}
