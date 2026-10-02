@@ -109,4 +109,36 @@
       a.addEventListener('focus', function () { showPath(name); });
     });
   }
+
+  // Rickson: schackbilden i .turn fäster 2rem från viewportens topp medan
+  // texten scrollar, och stannar inom .turn__media. Desktop only (>= 900px).
+  // Byter bara klass (fixed / absolute) — webbläsaren håller bilden still,
+  // så den laggar inte efter scrollen som en transform gör.
+  var turnMedia = document.querySelector('.turn__media');
+  var turnSticky = document.querySelector('.turn__sticky');
+  if (turnMedia && turnSticky) {
+    var turnDesktop = window.matchMedia('(min-width: 900px)');
+    var turnState = '';
+    var setTurnState = function (state) {
+      if (state === turnState) return;
+      turnState = state;
+      turnSticky.classList.toggle('is-fixed', state === 'fixed');
+      turnSticky.classList.toggle('is-bottom', state === 'bottom');
+    };
+    var updateTurn = function () {
+      if (!turnDesktop.matches) { setTurnState(''); turnSticky.style.left = turnSticky.style.width = ''; return; }
+      var offset = parseFloat(getComputedStyle(document.documentElement).fontSize) * 2;
+      var rect = turnMedia.getBoundingClientRect();
+      var h = turnSticky.offsetHeight;
+      if (rect.top > offset) setTurnState('');
+      else if (rect.bottom - h < offset) setTurnState('bottom');
+      else setTurnState('fixed');
+      // Fixed tar bilden ur kolumnen — ge den kolumnens bredd och vänsterkant.
+      turnSticky.style.left = turnState === 'fixed' ? rect.left + 'px' : '';
+      turnSticky.style.width = turnState === 'fixed' ? rect.width + 'px' : '';
+    };
+    window.addEventListener('scroll', updateTurn, { passive: true });
+    window.addEventListener('resize', updateTurn);
+    updateTurn();
+  }
 })();

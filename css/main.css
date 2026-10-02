@@ -2099,3 +2099,35 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
   gap: var(--space-md) var(--space-lg);
   margin-top: var(--space-2xl);
 }
+
+/* ==========================================================================
+   RICKSON — Vändpunkten + Ombyggnaden (rickson.html)
+   Mörk sektion. Text vänster, schackbilden sticky till höger.
+   Text använder sajtens klasser (eyebrow, h3, body, stack-sm, lead).
+   ========================================================================== */
+.turn__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  grid-template-areas: "head media" "body media";
+  column-gap: var(--space-xl);
+}
+.turn__head  { grid-area: head; }
+.turn__body  { grid-area: body; margin-top: var(--space-lg); }
+.turn__media { grid-area: media; margin: 0; align-self: stretch; position: relative; }
+/* Fästs 2rem från viewportens topp, clampad inom .turn__media. JS (main.js)
+   växlar bara klass: position: sticky fungerar inte här eftersom html/body
+   har overflow-x: hidden, och fixed/absolute ger ingen scroll-lagg. */
+.turn__sticky.is-fixed  { position: fixed; top: 2rem; }
+.turn__sticky.is-bottom { position: absolute; left: 0; right: 0; bottom: 0; }
+.turn__sticky img { display: block; width: 100%; height: auto; }
+
+.turn__questions { list-style: none; margin: var(--space-sm) 0 var(--space-lg); padding: 0; }
+.turn__questions li { padding-block: var(--space-sm); border-top: 1px solid rgba(255, 255, 255, 0.14); }
+.turn__questions li:last-child { border-bottom: 1px solid rgba(255, 255, 255, 0.14); }
+
+@media (max-width: 899px) {
+  .turn__grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "media" "body"; }
+  .turn__media { margin-top: var(--space-lg); }
+  .turn__sticky.is-fixed,
+  .turn__sticky.is-bottom { position: static; }
+}
