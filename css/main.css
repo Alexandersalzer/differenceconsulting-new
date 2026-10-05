@@ -2276,3 +2276,23 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
   .turn__sticky.is-fixed,
   .turn__sticky.is-bottom { position: static; }
 }
+
+/* ==========================================================================
+   KLUBB — Processen (tjanster-klubb.html)
+   Ett tvåkolumnsgrid (grid--2-40) genom hela sektionen. Stegen står
+   vertikalt i högerkolumnen mellan hårlinjer. Under 900px: en kolumn.
+   ========================================================================== */
+.process .grid--2-40 > * { min-width: 0; }
+.process-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-bottom: var(--hairline-w) solid var(--hairline);
+}
+.process-steps .flow__step {
+  padding-block: var(--space-sm);
+  border-top: var(--hairline-w) solid var(--hairline);
+}
+@media (max-width: 899px) {
+  .process .grid--2-40 { grid-template-columns: minmax(0, 1fr); }
+}
