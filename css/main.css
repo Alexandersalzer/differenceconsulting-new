@@ -716,6 +716,8 @@ main > .hero { position: relative; z-index: 1; }
    and the rows stand alone. */
 .paths { display: grid; gap: var(--space-lg); align-items: start; }
 .paths__list { border-top: var(--hairline-w) solid var(--hairline); }
+/* Om oss: bara listan, ingen bildyta bredvid. */
+.paths.paths--solo { grid-template-columns: 1fr; }
 /* Each entry is an editorial choice, not a row in a table: a small label, the
    name in serif, and a quiet cue underneath. Generous air, one thin rule
    between them, nothing that reads as a card.
@@ -1874,7 +1876,8 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.2em 0;
+  /* Litet mellanrum mellan Översikt · Systemet · Grundlagarna. */
+  gap: 0.2em var(--space-sm);
 }
 /* Generös tryckyta runt siffran — målet ska vara lätt att träffa med
    både pekare och tumme, medan siffrorna ser lika glesa ut som förut. */
@@ -2296,3 +2299,198 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 @media (max-width: 899px) {
   .process .grid--2-40 { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* ==========================================================================
+   RICKSON — origin story (rickson.html)
+   .rk-pause: sidan nästan stannar — ett typografiskt break med mycket tomrum.
+   .rk-brick: BRICKBYBORINGBRICK som större typografiskt moment.
+   ========================================================================== */
+.rk-pause {
+  min-height: 80svh;
+  display: flex;
+  align-items: center;
+}
+.rk-pause .container { width: 100%; }
+/* Muren: varje rad skalas av main.js så att den fyller exakt containerbredden,
+   kanterna i linje som en tegelsten. Under 600px staplas orden vertikalt i en
+   gemensam storlek (BORING fyller bredden). Rad 1 glider åt vänster, rad 2 åt
+   höger, högst 3 %, kopplat till scroll — exakt i linje mitt i skärmen.
+   Animationen ska ALLTID vara kvar (Alex beslut 2026-10-05). */
+.rk-wall { overflow-x: clip; }
+.rk-brick {
+  font-family: var(--sans);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  margin: 0;
+}
+.rk-brick__line { display: block; will-change: transform; }
+.rk-brick__line > span { display: inline; }
+/* Block som bara ska ligga i högerkolumnen av grid--2-40. */
+@media (min-width: 760px) { .rk-col2 { grid-column: 2; } }
+@media (max-width: 599px) {
+  .rk-brick__line > span { display: block; }
+  .rk-brick__line + .rk-brick__line { margin-top: 0.15em; }
+}
+
+
+/* Scroll-driven word reveal: delarna i ett .reveal-seq-block (ord, rader,
+   listpunkter) tonar upp en i taget medan blocket scrollar upp genom
+   skärmen. main.js sätter --lit (0–1) per del, kopplat till scroll, så att
+   varje del tonar mjukt i stället för att slå om. */
+.reveal-seq > * { transition: opacity 0.2s linear; }
+html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
+@media (prefers-reduced-motion: reduce) {
+  html.js .reveal-seq > * { opacity: 1; transition: none; }
+}
+}
+}
+
+/* ==========================================================================
+   DIFFERENCE CONSULTING — bolagssidan (difference-consulting.html)
+   Tre engelska statements som stora editorial moments, mycket luft.
+   ========================================================================== */
+.dc-moment { padding-block: var(--space-2xl); }
+.dc-moment .h1 { max-width: 14ch; line-height: 1.02; }
+
+/* ==========================================================================
+   DIFFERENCISMEN — tre rum, samma värld (differencismen*.html)
+   Fem strukturer: Masthead, Split, Statement, Rader, Specialform.
+   Betoning i brödtext görs bara med vikt 500.
+   ========================================================================== */
+.body strong,
+.arbete__body strong { font-weight: 500; color: var(--ink); }
+
+/* Statement: stor vänsterställd text på egen yta. Zilla Slab i versaler,
+   samma familj som muren. Raderna tänds med reveal-seq. Storleken krymper
+   med bredden så att längsta ordet ryms på mobil. */
+.dz-surface { padding-block: var(--space-2xl); }
+.dz-statement {
+  margin: 0;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: min(var(--step-4), 9vw);
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+.dz-statement span { display: block; }
+.dz-sign { margin-top: var(--space-xl); text-align: left; }
+/* Rader: samma kolumnlinje som Split (grid--2-40), så att all text i
+   högerkolumnen delar vänsterkant genom hela Differencismen. */
+@media (min-width: 860px) {
+  .arbete--split .arbete__item { grid-template-columns: 4fr 6fr; gap: var(--space-lg); }
+}
+/* Text efter ett statement: i högerkolumnen, en sektionsluft under. */
+.dz-after { margin-top: var(--space-xl); }
+.section--dark .body strong,
+.section--dark .arbete__body strong { color: var(--on-ink); }
+/* Länk vidare under ett statement. */
+.dz-link { margin-top: var(--space-lg); }
+/* Statement med långa rader (lagarna): ett steg mindre så att varje lag
+   ryms på en rad. */
+.dz-statement--long { font-size: min(var(--step-3), 5.2vw); }
+@media (max-width: 599px) {
+  /* På mobil får lagarna bryta — större text väger mer än en rad per lag. */
+  .dz-statement--long { font-size: 7.5vw; }
+  .dz-statement--long span + span { margin-top: 0.35em; }
+}
+/* Korta rader i underrubrikstorlek, en per rad (tänds med reveal-seq). */
+.dz-lines span { display: block; }
+.stack-sm > .dz-lines { margin-top: var(--space-md); }
+.stack-sm > .dz-link { margin-top: var(--space-lg); }
+
+/* Meny med text i stället för bild (Differencismen). Raderna fungerar som
+   Tjänster; på desktop visas den hovrade radens text i fältet till höger,
+   på mobil står texten direkt under varje rad. */
+.path__detail { display: block; margin-top: var(--space-md); color: var(--ink-2); }
+.path__detail > span { display: block; }
+.path__detail .dz-em { color: var(--ink); }
+.path:hover .path__detail { color: var(--ink-2); }
+@media (min-width: 980px) {
+  .paths--text .path__detail { display: none; }
+  .paths__field--text {
+    aspect-ratio: auto; overflow: visible; background: none;
+    display: grid;
+  }
+  .paths__panel {
+    grid-area: 1 / 1;
+    opacity: 0; transition: opacity 0.5s var(--ease);
+    pointer-events: none;
+  }
+  .paths__panel.is-active { opacity: 1; pointer-events: auto; }
+  .paths__panel > span { display: block; }
+}
+/* Betonade rader i brödtext: samma storlek, bara vikt 500. */
+.dz-em { font-weight: 500; color: var(--ink); }
+
+/* Rörelsen: de tio stegen som en löpande typografisk kedja. Varje steg står
+   ihop med sin pil och bryter som en enhet; stegen tänds i ordning längs
+   kedjan med reveal-seq. */
+.dz-chain {
+  margin: 0;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: min(var(--step-3), 7vw);
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+.dz-chain span { white-space: nowrap; }
+.dz-chain i { font-style: normal; color: var(--muted); padding-inline: 0.1em; }
+
+/* Tillstånden: ett band mellan två hårlinjer, fyra lika breda fält. Orden
+   tonar in samtidigt (ingen rangordning) — de ligger runt rörelsen, de är
+   inte fler steg. Två och två på mobil. */
+.dz-band {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: var(--hairline-w) solid var(--hairline);
+  border-bottom: var(--hairline-w) solid var(--hairline);
+  font-family: var(--sans);
+  font-weight: 500;
+  /* Skalar med fältets bredd så att längsta ordet (Självvarande) ryms. */
+  font-size: min(30px, 2.1vw);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.dz-band li { padding: var(--space-md) var(--space-sm); }
+.dz-band li:first-child { padding-left: 0; }
+.dz-band li + li { border-left: var(--hairline-w) solid var(--hairline); }
+@media (max-width: 899px) {
+  .dz-band { grid-template-columns: repeat(2, minmax(0, 1fr)); font-size: min(30px, 4.4vw); }
+  .dz-band li:nth-child(odd) { padding-left: 0; border-left: 0; }
+  .dz-band li:nth-child(n+3) { border-top: var(--hairline-w) solid var(--hairline); }
+}
+
+/* Sekunden: öppningen tar nästan en hel skärm — zoom-in från arkitekturen
+   till ett enda ögonblick. */
+.dz-zoom { min-height: 60svh; display: grid; align-content: center; }
+
+/* Långa enskilda ord i sidtitlar (Differencismens): krymper med bredden så
+   att ordet aldrig går utanför kanten på mobil. */
+.dz-title-long { font-size: min(var(--step-4), 11vw); }
+
+/* Grundlagarna: en lag i taget. Liten fråga, nummer och lagens namn i
+   Zilla-versaler, underrubrik, texten i högerkolumnen och lagens slutord. */
+.dz-law {
+  margin: var(--stack-2) 0 0;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: min(var(--step-3), 7.5vw);
+  line-height: 1.08;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  max-width: 20ch;
+}
+.dz-law__no { color: var(--muted); }
+.dz-law__sub { margin-top: var(--stack-2); max-width: 40ch; }
+.dz-law__end { margin-top: var(--space-lg); color: var(--ink); }
+.section--dark .dz-law__end { color: var(--on-ink); }
+/* Två länkar vidare bredvid varandra under texten. */
+.dz-links { display: flex; flex-wrap: wrap; gap: var(--space-sm) var(--space-lg); margin-top: var(--space-lg); }
