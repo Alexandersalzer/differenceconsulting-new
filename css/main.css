@@ -120,6 +120,8 @@ p { margin: 0; }
 .h1        { font-size: var(--step-4); }
 .h2        { font-size: var(--step-3); }
 .h3        { font-size: var(--step-2); }
+/* Rubrikklasser på andra element än h1–h4 (t.ex. p.h3) får samma rubrikstil. */
+.h1, .h2, .h3, .h4 { font-family: var(--serif); font-weight: 400; line-height: 1.05; letter-spacing: -0.015em; }
 .h4        { font-size: var(--step-1); }
 .lead      { font-size: var(--step-1); line-height: 1.5; color: var(--ink-2); font-family: var(--sans); }
 .body      { font-size: var(--step-0); color: var(--ink-2); max-width: var(--measure); }
@@ -502,6 +504,7 @@ main > .hero { position: relative; z-index: 1; }
 .mobile-menu {
   position: fixed; inset: 0; z-index: 60; background: var(--bg);
   display: flex; flex-direction: column;
+  overflow-y: auto; /* scrollar på korta skärmar i stället för att klippa */
   animation: menuIn 0.35s var(--ease);
 }
 @keyframes menuIn { from { opacity: 0; } to { opacity: 1; } }
@@ -534,7 +537,7 @@ main > .hero { position: relative; z-index: 1; }
   display: flex;
   flex-direction: column;
   flex: 1;
-  justify-content: center;
+  justify-content: safe center;
   padding-bottom: var(--space-xl);
 }
 /* Menu rows use the shared .link-row component, so they look and behave
@@ -546,6 +549,23 @@ main > .hero { position: relative; z-index: 1; }
   justify-content: flex-start;
 }
 .mobile-menu__links .link-row .arrow { display: none; }
+/* Undersidor: en tyst rad direkt under huvudraden, alltid synlig, så att
+   hela strukturen syns med en blick. Aktuell sida markeras på båda nivåer. */
+.menu-sub {
+  display: flex; flex-wrap: wrap; align-items: center; column-gap: 0.55em;
+  margin: -0.35em 0 0.35em;
+  font-family: var(--sans); font-size: var(--step-0); color: var(--muted);
+}
+.menu-sub a {
+  display: inline-flex; align-items: center; min-height: 44px;
+  color: var(--muted); transition: color 0.3s var(--ease);
+}
+.menu-sub a:hover { color: var(--accent); }
+.menu-sub a.is-current,
+.mobile-menu__links .link-row.is-current .link-row__label {
+  color: var(--ink);
+  text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.25em;
+}
 .mobile-menu__links .link-row__label {
   border-bottom: 0;
   padding-bottom: 0;
@@ -1476,7 +1496,7 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 .section--dark .statement-line { color: var(--on-ink); }
 .statement-caps {
   font-family: var(--sans);
-  font-size: clamp(0.82rem, 0.7rem + 0.7vw, 1.15rem);
+  font-size: var(--step-0); /* T5 — signaturen följer brödtextens storlek */
   letter-spacing: 0.18em;
   line-height: 2.1;
   text-transform: uppercase;
@@ -2281,26 +2301,6 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 }
 
 /* ==========================================================================
-   KLUBB — Processen (tjanster-klubb.html)
-   Ett tvåkolumnsgrid (grid--2-40) genom hela sektionen. Stegen står
-   vertikalt i högerkolumnen mellan hårlinjer. Under 900px: en kolumn.
-   ========================================================================== */
-.process .grid--2-40 > * { min-width: 0; }
-.process-steps {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border-bottom: var(--hairline-w) solid var(--hairline);
-}
-.process-steps .flow__step {
-  padding-block: var(--space-sm);
-  border-top: var(--hairline-w) solid var(--hairline);
-}
-@media (max-width: 899px) {
-  .process .grid--2-40 { grid-template-columns: minmax(0, 1fr); }
-}
-
-/* ==========================================================================
    RICKSON — origin story (rickson.html)
    .rk-pause: sidan nästan stannar — ett typografiskt break med mycket tomrum.
    .rk-brick: BRICKBYBORINGBRICK som större typografiskt moment.
@@ -2399,7 +2399,6 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
 }
 /* Korta rader i underrubrikstorlek, en per rad (tänds med reveal-seq). */
 .dz-lines span { display: block; }
-.stack-sm > .dz-lines { margin-top: var(--space-md); }
 .stack-sm > .dz-link { margin-top: var(--space-lg); }
 
 /* Meny med text i stället för bild (Differencismen). Raderna fungerar som
@@ -2494,3 +2493,19 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
 .section--dark .dz-law__end { color: var(--on-ink); }
 /* Två länkar vidare bredvid varandra under texten. */
 .dz-links { display: flex; flex-wrap: wrap; gap: var(--space-sm) var(--space-lg); margin-top: var(--space-lg); }
+
+/* Förklaringen direkt under en kedja: liten luft, så att den läses ihop med den. */
+.dz-caption { margin-top: var(--space-md); }
+
+/* Vägen in: numret står ovanför stegnamnet, och meningen till höger
+   linjerar med namnet (inte med numret). */
+.arbete--steps .arbete__step { display: block; margin-bottom: var(--stack-1); }
+@media (min-width: 860px) {
+  .arbete--steps .arbete__item {
+    grid-template-areas: "no ." "title body";
+    row-gap: 0;
+  }
+  .arbete--steps .arbete__step  { grid-area: no; }
+  .arbete--steps .arbete__title { grid-area: title; }
+  .arbete--steps .arbete__body  { grid-area: body; }
+}
