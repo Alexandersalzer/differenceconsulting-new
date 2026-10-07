@@ -81,12 +81,27 @@
       <button class="mobile-menu__close" aria-label="Stäng meny">&times;</button>
     </div>
     <div class="container mobile-menu__links">
-      <a class="link-row" href="tjanster.html"><span class="link-row__label">Tjänster</span> <span class="arrow">&rarr;</span></a>
-      <p class="menu-sub"><a href="tjanster-individ.html">Individuell process</a><span aria-hidden="true">·</span><a href="tjanster-klubb.html">Klubb</a><span aria-hidden="true">·</span><a href="tjanster-representant.html">Representant / agentur</a></p>
-      <a class="link-row" href="differencismen.html"><span class="link-row__label">Differencismen</span> <span class="arrow">&rarr;</span></a>
-      <p class="menu-sub"><a href="differencismen.html">Översikt</a><span aria-hidden="true">·</span><a href="differencismen-systemet.html">Systemet</a><span aria-hidden="true">·</span><a href="differencismen-grundlagarna.html">Grundlagarna</a></p>
-      <a class="link-row" href="om-oss.html"><span class="link-row__label">Om oss</span> <span class="arrow">&rarr;</span></a>
-      <p class="menu-sub"><a href="rickson.html">Rickson Mansiamina</a><span aria-hidden="true">·</span><a href="difference-consulting.html">Difference Consulting</a></p>
+      <div class="menu-group">
+        <div class="menu-group__head">
+          <a class="link-row" href="tjanster.html"><span class="link-row__label">Tjänster</span> <span class="arrow">&rarr;</span></a>
+          <button class="menu-group__toggle" type="button" aria-expanded="false" aria-controls="menu-sub-tjanster" aria-label="Visa undersidor till Tjänster"></button>
+        </div>
+        <div class="menu-sub-wrap" id="menu-sub-tjanster"><p class="menu-sub"><a href="tjanster-individ.html">Individuell process</a><span aria-hidden="true">·</span><a href="tjanster-klubb.html">Klubb</a><span aria-hidden="true">·</span><a href="tjanster-representant.html">Representant / agentur</a></p></div>
+      </div>
+      <div class="menu-group">
+        <div class="menu-group__head">
+          <a class="link-row" href="differencismen.html"><span class="link-row__label">Differencismen</span> <span class="arrow">&rarr;</span></a>
+          <button class="menu-group__toggle" type="button" aria-expanded="false" aria-controls="menu-sub-differencismen" aria-label="Visa undersidor till Differencismen"></button>
+        </div>
+        <div class="menu-sub-wrap" id="menu-sub-differencismen"><p class="menu-sub"><a href="differencismen.html">Översikt</a><span aria-hidden="true">·</span><a href="differencismen-systemet.html">Systemet</a><span aria-hidden="true">·</span><a href="differencismen-grundlagarna.html">Grundlagarna</a></p></div>
+      </div>
+      <div class="menu-group">
+        <div class="menu-group__head">
+          <a class="link-row" href="om-oss.html"><span class="link-row__label">Om oss</span> <span class="arrow">&rarr;</span></a>
+          <button class="menu-group__toggle" type="button" aria-expanded="false" aria-controls="menu-sub-om-oss" aria-label="Visa undersidor till Om oss"></button>
+        </div>
+        <div class="menu-sub-wrap" id="menu-sub-om-oss"><p class="menu-sub"><a href="rickson.html">Rickson Mansiamina</a><span aria-hidden="true">·</span><a href="difference-consulting.html">Difference Consulting</a></p></div>
+      </div>
       <a class="link-row" href="kvitton.html"><span class="link-row__label">Kvitton</span> <span class="arrow">&rarr;</span></a>
       <a class="mobile-menu__cta btn" href="kontakt.html">Kontakt</a>
     </div>

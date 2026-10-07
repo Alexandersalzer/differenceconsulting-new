@@ -156,16 +156,19 @@
       if (!width) return;
       var lines = block.querySelectorAll('.rk-brick__line');
       var flow = block.classList.contains('rk-brick--flow');
+      var halves = block.querySelectorAll('.rk-brick__half');
+      halves.forEach(function (h) { h.style.fontSize = ''; });
       lines.forEach(function (line) { line.style.fontSize = '100px'; });
-      if (brickStack.matches && !flow) {
-        // Samma storlek för alla ord: det bredaste ordet fyller bredden.
-        var widest = 0;
-        block.querySelectorAll('.rk-brick__line > span').forEach(function (w) {
-          var r = document.createRange(); r.selectNodeContents(w);
-          widest = Math.max(widest, r.getBoundingClientRect().width);
-        });
-        var size = widest ? 100 * width / widest : 100;
-        lines.forEach(function (line) { line.style.fontSize = size + 'px'; });
+      if (brickStack.matches && !flow && halves.length) {
+        // Mobil: varje halva (BRICKBY, BORINGBRICK. …) fyller bredden.
+        for (var hp = 0; hp < 2; hp++) {
+          halves.forEach(function (h) {
+            var r = document.createRange(); r.selectNodeContents(h);
+            var natural = r.getBoundingClientRect().width;
+            var current = parseFloat(h.style.fontSize) || 100;
+            if (natural) h.style.fontSize = (current * width / natural) + 'px';
+          });
+        }
       } else {
         // Två varv: textbredd skalar inte helt linjärt med storleken
         // (kerning, avrundning), så andra varvet rättar de sista pixlarna.
@@ -258,4 +261,53 @@
       row.addEventListener('focus', show);
     });
   });
+
+  // Sidomenyn: undersidor som dropdown. Den aktiva gruppen är öppen från
+  // start. Pilen öppnar/stänger (klick), en grupp i taget utöver den
+  // aktiva. På enheter med mus öppnas gruppen också vid hover.
+  var menuGroups = document.querySelectorAll('.menu-group');
+  if (menuGroups.length) {
+    var canHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+    var setOpen = function (group, open) {
+      group.classList.toggle('is-open', open);
+      if (!open) group.dataset.pinned = '';
+      var btn = group.querySelector('.menu-group__toggle');
+      if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+    var isActive = function (group) { return !!group.querySelector('.link-row.is-current, .link-row.is-parent'); };
+    var closeOthers = function (keep) {
+      menuGroups.forEach(function (g) { if (g !== keep && !isActive(g)) setOpen(g, false); });
+    };
+    menuGroups.forEach(function (group) {
+      var btn = group.querySelector('.menu-group__toggle');
+      // Klick på pilen: öppen via hover/fokus → lås öppen; låst öppen → stäng;
+      // stängd → öppna och lås.
+      if (btn) btn.addEventListener('click', function () {
+        var open = group.classList.contains('is-open');
+        if (open && !group.dataset.pinned && !isActive(group)) { group.dataset.pinned = '1'; return; }
+        if (open) { setOpen(group, false); return; }
+        closeOthers(group);
+        setOpen(group, true);
+        group.dataset.pinned = '1';
+      });
+      // Hover med liten fördröjning (intent), så att grupper inte blinkar
+      // upp och stängs när musen bara passerar över raderna.
+      var hoverTimer;
+      group.addEventListener('mouseenter', function () {
+        if (!canHover.matches) return;
+        clearTimeout(hoverTimer);
+        hoverTimer = setTimeout(function () { closeOthers(group); setOpen(group, true); }, 140);
+      });
+      group.addEventListener('mouseleave', function () {
+        clearTimeout(hoverTimer);
+        if (!canHover.matches || isActive(group) || group.dataset.pinned) return;
+        hoverTimer = setTimeout(function () { setOpen(group, false); }, 220);
+      });
+      // Tangentbord: fokus (inte klick/tryck) öppnar gruppen.
+      group.addEventListener('focusin', function (e) {
+        if (!e.target.matches(':focus-visible')) return;
+        closeOthers(group); setOpen(group, true);
+      });
+    });
+  }
 })();

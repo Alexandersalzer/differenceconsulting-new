@@ -537,7 +537,10 @@ main > .hero { position: relative; z-index: 1; }
   display: flex;
   flex-direction: column;
   flex: 1;
-  justify-content: safe center;
+  /* Toppställd: när en grupp öppnas flyttas bara det som ligger under,
+     i stället för att hela listan centreras om (det kändes hackigt). */
+  justify-content: flex-start;
+  padding-top: var(--space-lg);
   padding-bottom: var(--space-xl);
 }
 /* Menu rows use the shared .link-row component, so they look and behave
@@ -549,11 +552,35 @@ main > .hero { position: relative; z-index: 1; }
   justify-content: flex-start;
 }
 .mobile-menu__links .link-row .arrow { display: none; }
-/* Undersidor: en tyst rad direkt under huvudraden, alltid synlig, så att
-   hela strukturen syns med en blick. Aktuell sida markeras på båda nivåer. */
+/* Undersidor som dropdown: dolda från start utom i den aktiva gruppen.
+   Namnet leder till rotsidan; pilen bredvid öppnar undersidorna (klick),
+   och på dator med mus öppnas de även vid hover (main.js). */
+.menu-group__head { display: flex; align-items: center; gap: 0.25em; }
+.menu-group__toggle {
+  flex: none; display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; padding: 0; border: 0; background: none;
+  color: var(--muted); cursor: pointer;
+}
+.menu-group__toggle::before {
+  content: ""; width: 0.55rem; height: 0.55rem;
+  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+  transform: translateY(-25%) rotate(45deg);
+  transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.menu-group.is-open .menu-group__toggle::before { transform: translateY(25%) rotate(-135deg); }
+.menu-group__toggle:hover { color: var(--accent); }
+.menu-sub-wrap {
+  display: grid; grid-template-rows: 0fr; opacity: 0; visibility: hidden; padding-bottom: 0;
+  transition: grid-template-rows 0.42s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease, visibility 0s 0.42s;
+}
+.menu-group.is-open .menu-sub-wrap {
+  grid-template-rows: 1fr; opacity: 1; visibility: visible; padding-bottom: 0.35em;
+  transition: grid-template-rows 0.42s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease 0.08s, padding 0.42s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s;
+}
+.menu-sub-wrap > .menu-sub { min-height: 0; overflow: hidden; }
 .menu-sub {
   display: flex; flex-wrap: wrap; align-items: center; column-gap: 0.55em;
-  margin: -0.35em 0 0.35em;
+  margin: 0;
   font-family: var(--sans); font-size: var(--step-0); color: var(--muted);
 }
 .menu-sub a {
@@ -565,6 +592,9 @@ main > .hero { position: relative; z-index: 1; }
 .mobile-menu__links .link-row.is-current .link-row__label {
   color: var(--ink);
   text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.25em;
+}
+@media (prefers-reduced-motion: reduce) {
+  .menu-sub-wrap, .menu-group__toggle::before { transition: none; }
 }
 .mobile-menu__links .link-row__label {
   border-bottom: 0;
@@ -2313,7 +2343,7 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 .rk-pause .container { width: 100%; }
 /* Muren: varje rad skalas av main.js så att den fyller exakt containerbredden,
    kanterna i linje som en tegelsten. Under 600px staplas orden vertikalt i en
-   gemensam storlek (BORING fyller bredden). Rad 1 glider åt vänster, rad 2 åt
+   fyra rader som var och en fyller bredden. Rad 1 glider åt vänster, rad 2 åt
    höger, högst 3 %, kopplat till scroll — exakt i linje mitt i skärmen.
    Animationen ska ALLTID vara kvar (Alex beslut 2026-10-05). */
 .rk-wall { overflow-x: clip; }
@@ -2328,11 +2358,13 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 }
 .rk-brick__line { display: block; will-change: transform; }
 .rk-brick__line > span { display: inline; }
+.rk-brick__half > span { display: inline; }
 /* Block som bara ska ligga i högerkolumnen av grid--2-40. */
 @media (min-width: 760px) { .rk-col2 { grid-column: 2; } }
+/* Mobil: varje rad delas i två (BRICKBY / BORINGBRICK.), och varje halva
+   skalas av main.js till exakt containerbredd — fyra raka rader, en mur. */
 @media (max-width: 599px) {
-  .rk-brick__line > span { display: block; }
-  .rk-brick__line + .rk-brick__line { margin-top: 0.15em; }
+  .rk-brick__line > .rk-brick__half { display: block; }
 }
 
 
@@ -2509,3 +2541,7 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
   .arbete--steps .arbete__title { grid-area: title; }
   .arbete--steps .arbete__body  { grid-area: body; }
 }
+
+/* Rickson: Differencismen-loggan lite större — där berättelsen landar. */
+.home-feature__mark--lg { max-width: 280px; }
+@media (min-width: 760px) { .home-feature__mark--lg { max-width: 340px; } }
