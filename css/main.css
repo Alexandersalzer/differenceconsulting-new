@@ -2545,3 +2545,28 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
 /* Rickson: Differencismen-loggan lite större — där berättelsen landar. */
 .home-feature__mark--lg { max-width: 280px; }
 @media (min-width: 760px) { .home-feature__mark--lg { max-width: 340px; } }
+
+/* ==========================================================================
+   RICKSON — berättelsen (rickson.html, body.page-rickson)
+   Hierarki: namn (T1) > två bärande moment (statement, T2) > kapitelrubrik
+   (T3) > underrubrik (T4) > brödtext (T5). Brödtexten i en läskolumn på
+   ca 55–65 tecken. Tre bilder i olika storlek efter funktion.
+   ========================================================================== */
+.rk-read { max-width: 60ch; }
+.rk-moment { max-width: 20ch; margin: 0; }
+.rk-gap { margin-top: var(--space-lg); }
+.rk-sign { text-align: left; margin-top: var(--space-md); }
+/* Arkivbilden: liggande, halva bredden bredvid texten. */
+.rk-archive { aspect-ratio: 4 / 3; }
+/* Arbetsbilden: mellanstor, stående — inte full bredd. */
+.rk-work { aspect-ratio: 5 / 6; }
+@media (max-width: 599px) {
+  /* Mobil: kompakt intro, lagom bildhöjder, mindre mellanrum. */
+  .page-rickson .section { padding-block: var(--space-lg); }
+  .page-rickson .pagehero { padding-bottom: var(--space-md); }
+  .rk-portrait { aspect-ratio: 1 / 1; }
+  .rk-portrait img { object-position: 50% 22% !important; }
+  .page-rickson .pagehero .grid { gap: var(--space-md); }
+  .rk-work { aspect-ratio: 4 / 5; }
+  .rk-gap { margin-top: var(--space-md); }
+}
