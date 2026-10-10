@@ -1,8 +1,6 @@
 {
   "cleanUrls": true,
   "redirects": [
-    { "source": "/om-oss", "destination": "/rickson", "permanent": true },
-    { "source": "/om-oss.html", "destination": "/rickson.html", "permanent": true },
     { "source": "/filosofi", "destination": "/differencismen", "permanent": true },
     { "source": "/filosofi.html", "destination": "/differencismen.html", "permanent": true },
     { "source": "/differencismen/:path+", "destination": "/differencismen", "permanent": true },

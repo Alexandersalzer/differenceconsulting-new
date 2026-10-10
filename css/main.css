@@ -2084,40 +2084,6 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 }
 .hub--band .hub-group { margin-top: var(--space-2xl); }
 
-/* Schackillustrationen i Ombyggnaden är redan vit tusch på mörk botten och
-   behöver varken filter eller egen bakgrund — bara att .media inte lägger
-   sin ljusa platshållarfärg bakom den. */
-.rk-chess { background: transparent; }
-
-/* Frågorna i Ombyggnaden: en tankegång, inte en FAQ. Bara en mycket svag
-   linje mellan raderna — ingen ram runt varje post, ingen rubriknivå. */
-.rk-questions p {
-  font-family: var(--serif);
-  font-size: var(--step-1);
-  line-height: 1.5;
-  padding-block: var(--space-sm);
-  border-bottom: 1px solid rgba(244, 241, 234, 0.08);
-  margin: 0;
-}
-.rk-questions p:last-child { border-bottom: 0; }
-.rk-questions { max-width: 46ch; }
-
-
-
-/* Divider mellan de två mörka sektionerna: full skärmbredd, ingen padding,
-   ligger exakt i skarven. Eget element mellan sektionerna, med samma mörka
-   botten runt sig så den läser som en linje och inte som ett glapp. */
-/* Bandet bär den mörka bottnen hela vägen ut; linjen inuti följer
-   containern, så den slutar där sidans innehåll slutar. */
-.rk-divider-band { background: var(--ink-block); position: relative; z-index: 1; }
-/* Schackbilden centrerad i bandet, måttlig storlek — den är en övergång
-   mellan två textsektioner, inte ett eget bildögonblick. */
-.rk-divider-band .rk-chess {
-  max-width: 620px;
-  margin-inline: auto;
-  padding-block: 0;
-}
-
 /* ==========================================================================
    KVITTON — kvitton.html
    Huvudkvitto (editorialt), tre kortare kvitton, typografiskt bevisarkiv.
@@ -2299,48 +2265,9 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 }
 
 /* ==========================================================================
-   RICKSON — Vändpunkten + Ombyggnaden (rickson.html)
-   Mörk sektion. Text vänster, schackbilden sticky till höger.
-   Text använder sajtens klasser (eyebrow, h3, body, stack-sm, lead).
-   ========================================================================== */
-.turn__grid {
-  display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  grid-template-areas: "head media" "body media";
-  column-gap: var(--space-xl);
-}
-.turn__head  { grid-area: head; }
-.turn__body  { grid-area: body; margin-top: var(--space-lg); }
-.turn__media { grid-area: media; margin: 0; align-self: stretch; position: relative; }
-/* Fästs 2rem från viewportens topp, clampad inom .turn__media. JS (main.js)
-   växlar bara klass: position: sticky fungerar inte här eftersom html/body
-   har overflow-x: hidden, och fixed/absolute ger ingen scroll-lagg. */
-.turn__sticky.is-fixed  { position: fixed; top: 2rem; }
-.turn__sticky.is-bottom { position: absolute; left: 0; right: 0; bottom: 0; }
-.turn__sticky img { display: block; width: 100%; height: auto; }
-
-.turn__questions { list-style: none; margin: var(--space-sm) 0 var(--space-lg); padding: 0; }
-.turn__questions li { padding-block: var(--space-sm); border-top: 1px solid rgba(255, 255, 255, 0.14); }
-.turn__questions li:last-child { border-bottom: 1px solid rgba(255, 255, 255, 0.14); }
-
-@media (max-width: 899px) {
-  .turn__grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "media" "body"; }
-  .turn__media { margin-top: var(--space-lg); }
-  .turn__sticky.is-fixed,
-  .turn__sticky.is-bottom { position: static; }
-}
-
-/* ==========================================================================
    RICKSON — origin story (rickson.html)
-   .rk-pause: sidan nästan stannar — ett typografiskt break med mycket tomrum.
    .rk-brick: BRICKBYBORINGBRICK som större typografiskt moment.
    ========================================================================== */
-.rk-pause {
-  min-height: 80svh;
-  display: flex;
-  align-items: center;
-}
-.rk-pause .container { width: 100%; }
 /* Muren: varje rad skalas av main.js så att den fyller exakt containerbredden,
    kanterna i linje som en tegelsten. Under 600px staplas orden vertikalt i en
    fyra rader som var och en fyller bredden. Rad 1 glider åt vänster, rad 2 åt
@@ -2376,8 +2303,6 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
 @media (prefers-reduced-motion: reduce) {
   html.js .reveal-seq > * { opacity: 1; transition: none; }
-}
-}
 }
 
 /* ==========================================================================
@@ -2542,9 +2467,6 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
   .arbete--steps .arbete__body  { grid-area: body; }
 }
 
-/* Rickson: Differencismen-loggan lite större — där berättelsen landar. */
-.home-feature__mark--lg { max-width: 280px; }
-@media (min-width: 760px) { .home-feature__mark--lg { max-width: 340px; } }
 
 /* ==========================================================================
    RICKSON — berättelsen (rickson.html, body.page-rickson)
@@ -2556,8 +2478,6 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
 .rk-moment { max-width: 20ch; margin: 0; }
 .rk-gap { margin-top: var(--space-lg); }
 .rk-sign { text-align: left; margin-top: var(--space-md); }
-/* Arkivbilden: liggande, halva bredden bredvid texten. */
-.rk-archive { aspect-ratio: 4 / 3; }
 /* Arbetsbilden: mellanstor, stående — inte full bredd. */
 .rk-work { aspect-ratio: 5 / 6; }
 @media (max-width: 599px) {
