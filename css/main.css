@@ -2475,7 +2475,8 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
    ca 55–65 tecken. Tre bilder i olika storlek efter funktion.
    ========================================================================== */
 .rk-read { max-width: 60ch; }
-.rk-moment { max-width: 20ch; margin: 0; }
+/* De två bärande momenten: rubrikstorlek (T3), samma för båda. */
+.rk-moment { font-size: var(--step-2); line-height: 1.15; max-width: 24ch; margin: 0; }
 .rk-gap { margin-top: var(--space-lg); }
 .rk-sign { text-align: left; margin-top: var(--space-md); }
 /* Arbetsbilden: mellanstor, stående - inte full bredd. */
