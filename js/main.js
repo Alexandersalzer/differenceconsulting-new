@@ -1,11 +1,11 @@
-/* Difference Consulting — shared interactions
+/* Difference Consulting - shared interactions
    Quiet, slow, deliberate. Respects reduced-motion. */
 (function () {
   // Mark that JS is running, so the CSS fade-in only applies when we can
   // actually add .is-loaded. Set first thing to avoid a flash.
   document.documentElement.classList.add('js');
 
-  // Fade each image in once it has decoded — no half-drawn pop-in.
+  // Fade each image in once it has decoded - no half-drawn pop-in.
   var markLoaded = function (img) { img.classList.add('is-loaded'); };
   var initImages = function () {
     document.querySelectorAll('.media img, .home-feature__media img, .home-feature__frame img, .vb__figure-media img, .vc__bleed-media img, .vc__offset-media img').forEach(function (img) {
@@ -43,7 +43,7 @@
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
-  // Menu — one dropdown at every breakpoint. The hamburger is the only
+  // Menu - one dropdown at every breakpoint. The hamburger is the only
   // navigation control on the page, so aria-expanded has to track its real
   // state and focus has to return to it on close.
   var toggle = document.querySelector('.nav__toggle');
@@ -92,7 +92,7 @@
     reveals.forEach(function (el) { io.observe(el); });
   }
 
-  // Tjänster: the image field follows whichever path is hovered. Desktop only —
+  // Tjänster: the image field follows whichever path is hovered. Desktop only -
   // the field is display:none below 980px, so this is a no-op on mobile.
   var pathList = document.querySelector('.paths__list');
   var pathImgs = document.querySelectorAll('.paths__img');
@@ -111,7 +111,7 @@
   }
 
   // Rickson / Ombyggnaden: muren och byggstenarna.
-  // Muren — varje rad skalas så att den fyller exakt containerbredden
+  // Muren - varje rad skalas så att den fyller exakt containerbredden
   // (desktop), eller staplas med BORING i full bredd (mobil). Byggstenarna
   // tänds en i taget.
   var brick = document.querySelector('.rk-brick:not(.rk-brick--flow)');
@@ -184,7 +184,7 @@
   if (seqs.length) {
     var lightSeqs = function () {
       var vh = window.innerHeight;
-      // Längst ner på sidan kan blocket inte scrolla högre — då tänds allt.
+      // Längst ner på sidan kan blocket inte scrolla högre - då tänds allt.
       var atEnd = window.scrollY + vh >= document.documentElement.scrollHeight - 2;
       seqs.forEach(function (seq) {
         var parts = seq.children, n = parts.length;
