@@ -2533,10 +2533,10 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
    bild/text-uppslag. Porten glider fram ur en smal ram en gång.
    ========================================================================== */
 /* Öppningen: centrerad, porten stående och obeskuren i ca 560px bredd
-   (fotot är 1248px brett, så det är skarpt även på retina). */
+   (fotot är 1394px brett, så det är skarpt även på retina). */
 .dc-hero__title { margin: var(--stack-2) auto 0; max-width: 16ch; }
 .dc-hero__intro { max-width: 52ch; margin: var(--stack-3) auto 0; text-align: center; }
-.dc-hero__img { width: min(560px, 100%); aspect-ratio: 1248 / 1600; margin: var(--space-xl) auto 0; }
+.dc-hero__img { width: min(560px, 100%); aspect-ratio: 1394 / 1600; margin: var(--space-xl) auto 0; }
 .dc-hero__img img { animation: rkHeroIn 1.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
 @media (prefers-reduced-motion: reduce) { .dc-hero__img img { animation: none; } }
 .dc-card__title { color: var(--on-ink); max-width: 20ch; }
