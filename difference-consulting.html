@@ -76,60 +76,58 @@
 
   <main>
 
-    <!-- Öppning -->
-    <section class="pagehero">
-      <div class="container">
-        <h1 class="pagehero__title reveal">Difference Consulting</h1>
-        <p class="lead pagehero__lead reveal">Människan bär prestationen.</p>
-        <div class="body stack-sm reveal" style="margin-top:var(--stack-3);">
+    <!-- 1 · Öppning: centrerad som startsidan, porten stående och obeskuren -->
+    <section class="pagehero dc-hero">
+      <div class="container center">
+        <h1 class="eyebrow reveal">Difference Consulting</h1>
+        <p class="home-feature__display home-feature__display--center dc-hero__title reveal">Människan bär prestationen.</p>
+        <div class="body stack-sm dc-hero__intro reveal">
           <p>Vi vägleder människor i självledarskap genom personliga samtal och uppföljning över tid. Arbetet handlar om att förstå sig själv och göra medvetna val i vardagen.</p>
           <p>Vi arbetar med fotbollsspelare, ledare och människor utanför idrotten.</p>
         </div>
+        <div class="media dc-hero__img reveal">
+          <img fetchpriority="high" decoding="async" width="1248" height="1600" src="assets/dc-porten.jpeg" alt="Rickson Mansiamina står framför en välvd glasport" />
+        </div>
       </div>
     </section>
 
-    <!-- Bilden följer öppningen direkt, som på tjänstesidorna. -->
-    <section class="pagefigure reveal">
+    <!-- 3 · Varför vi finns: porträttkort med texten lagd i bilden -->
+    <section class="home-feature home-feature--portrait dc-card">
       <div class="container">
-        <div class="media media--wide">
-          <img decoding="async" width="1600" height="1126" src="assets/datorbild.jpeg" alt="Rickson vid datorn med Differencismen och Led dig själv. Först. på skärmen" />
+        <div class="home-feature__frame reveal">
+          <div class="home-feature__media home-feature__media--card">
+            <img decoding="async" width="1394" height="1600" src="assets/dc-trappan.jpeg" alt="Rickson Mansiamina i kostym, lutad mot ett trappräcke" loading="lazy" style="object-position: 50% 30%;" />
+          </div>
+          <div class="home-feature__copy">
+            <h2 class="eyebrow eyebrow--on-image">Varför vi finns</h2>
+            <p class="home-feature__title dc-card__title">Människans utveckling förtjänar samma uppmärksamhet som prestationen.</p>
+            <p class="dc-card__body">Vi arbetar nära nog för att förstå och tydligt nog för att utmana. Människan äger sin riktning.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Varför vi finns (Split) -->
-    <section class="section">
-      <div class="container grid grid--2-40">
-        <div class="reveal">
-          <h2 class="h3">Varför vi finns</h2>
-        </div>
-        <div class="body stack-sm reveal">
-          <p>Människans utveckling förtjänar samma uppmärksamhet som prestationen.</p>
-          <p>Vi arbetar nära nog för att förstå och tydligt nog för att utmana. Människan äger sin riktning.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Vår vision (Masthead) -->
-    <section class="section section--alt">
+    <!-- 4 · Vår vision: ett citat på mörk yta -->
+    <section class="home-feature home-feature--quote section--dark">
       <div class="container reveal">
-        <h2 class="h3">Vår vision</h2>
-        <div class="body stack-sm" style="margin-top:var(--stack-3);">
-          <p>Vi vill göra självledarskap till en självklar del av människors utveckling.</p>
+        <h2 class="eyebrow eyebrow--on-dark">Vår vision</h2>
+        <p class="home-feature__quote">Vi vill göra självledarskap till en självklar del av människors utveckling.</p>
+        <div class="body stack-sm dc-quote__body">
           <p>Det inre arbetet ska följa människan genom hela livet, också när ambitionerna växer, möjligheterna blir större och ansvaret ökar.</p>
           <p>Genom Differencismen vill vi göra självledarskap tillgängligt och användbart för fler människor, inom och utanför idrotten.</p>
         </div>
       </div>
     </section>
 
-    <!-- Det vi bygger (Split) -->
+    <!-- 5 · Det vi bygger: arbetet i fåtöljen till vänster, text till höger -->
     <section class="section">
-      <div class="container grid grid--2-40">
-        <div class="reveal">
-          <h2 class="h3">Det vi bygger</h2>
+      <div class="container grid grid--media">
+        <div class="media media--tall reveal">
+          <img decoding="async" width="1261" height="1600" src="assets/dc-fatoljen-arbete.jpeg" alt="Rickson Mansiamina arbetar vid datorn i en rosa fåtölj" loading="lazy" />
         </div>
         <div class="reveal">
-          <div class="body stack-sm">
+          <h2 class="h3">Det vi bygger</h2>
+          <div class="body stack-sm" style="margin-top:var(--stack-3);">
             <p>Difference Consulting är bolaget bakom Differencismen, filosofin och systemet för självledarskap.</p>
             <p>Vi utvecklar vägledning och material som människor kan använda både tillsammans med oss och på egen hand. Vi utvecklar innehållet utifrån det vi lär oss i arbetet med människor.</p>
             <p>Vi bygger för att Differencismen ska kunna nå fler, med samma omsorg om människan och samma krav på att innehållet ska fungera i verkligheten.</p>
@@ -157,11 +155,11 @@
       </div>
     </section>
 
-    <!-- Avslut -->
-    <section class="section section--dark pageclose">
-      <div class="container reveal">
-        <p class="statement-caps" style="text-align:left;">LED DIG SJÄLV. FÖRST.</p>
-        <div style="margin-top:var(--stack-3);"><a class="btn" href="tjanster.html">Så kan vi arbeta tillsammans <span class="arrow">&rarr;</span></a></div>
+    <!-- 7 · Avslut: rent och centrerat, som på startsidan -->
+    <section class="home-feature home-feature--close">
+      <div class="container center reveal">
+        <p class="statement-caps">LED DIG SJÄLV. FÖRST.</p>
+        <div style="margin-top:var(--space-md);"><a class="btn" href="tjanster.html">Så kan vi arbeta tillsammans <span class="arrow">&rarr;</span></a></div>
       </div>
     </section>
 

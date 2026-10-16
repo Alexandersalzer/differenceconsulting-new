@@ -2491,3 +2491,57 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
   .rk-work { aspect-ratio: 4 / 5; }
   .rk-gap { margin-top: var(--space-md); }
 }
+
+/* Rickson, introduktion som omslag: porträttet fyller sektionens höjd och
+   namnet står nere vid bildens fot - hela introduktionen ryms på första
+   skärmen. Porträttet glider fram ur en smal ram en gång när sidan laddas.
+   Under 900px: porträttet först, sedan namn och text. */
+.rk-hero { padding-top: var(--space-lg); }
+.rk-hero .grid { align-items: stretch; }
+@media (min-width: 900px) {
+  .rk-hero .grid--2-60 { grid-template-columns: 6fr 4fr; }
+  .rk-hero .grid {
+    height: clamp(520px, calc(100svh - var(--nav-h) - var(--space-lg) * 2), 860px);
+  }
+  .rk-hero__text {
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding-bottom: var(--space-sm);
+  }
+  .rk-hero .rk-portrait { aspect-ratio: auto; height: 100%; }
+  .rk-hero .rk-portrait img { position: absolute; inset: 0; }
+}
+.rk-hero .rk-portrait img { animation: rkHeroIn 1.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes rkHeroIn {
+  from { clip-path: inset(7% 7% 7% 7%); transform: scale(1.06); }
+  to   { clip-path: inset(0 0 0 0);     transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rk-hero .rk-portrait img { animation: none; }
+}
+@media (max-width: 899px) {
+  .rk-hero .grid--2-60 { grid-template-columns: minmax(0, 1fr); }
+  .rk-hero .rk-portrait { order: -1; aspect-ratio: 4 / 3; }
+  .rk-hero .rk-portrait img { object-position: 50% 22% !important; }
+}
+@media (max-width: 599px) {
+  .rk-hero .rk-portrait { aspect-ratio: 6 / 5; }
+}
+
+/* ==========================================================================
+   DIFFERENCE CONSULTING - bolagssidan i startsidans formspråk
+   Porten i full bredd, porträttkort med text i bilden, citat på mörk yta,
+   bild/text-uppslag. Porten glider fram ur en smal ram en gång.
+   ========================================================================== */
+/* Öppningen: centrerad, porten stående och obeskuren i ca 560px bredd
+   (fotot är 1248px brett, så det är skarpt även på retina). */
+.dc-hero__title { margin: var(--stack-2) auto 0; max-width: 16ch; }
+.dc-hero__intro { max-width: 52ch; margin: var(--stack-3) auto 0; text-align: center; }
+.dc-hero__img { width: min(560px, 100%); aspect-ratio: 1248 / 1600; margin: var(--space-xl) auto 0; }
+.dc-hero__img img { animation: rkHeroIn 1.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@media (prefers-reduced-motion: reduce) { .dc-hero__img img { animation: none; } }
+.dc-card__title { color: var(--on-ink); max-width: 20ch; }
+.dc-card__body { margin-top: var(--space-sm); max-width: 44ch; color: rgba(244, 241, 234, 0.85); }
+.dc-quote__body { margin-top: var(--space-lg); max-width: 56ch; }
+@media (max-width: 599px) {
+  .home-feature__media--card { height: 72svh; min-height: 440px; }
+}
