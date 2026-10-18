@@ -1258,6 +1258,37 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 @media (min-width: 760px) {
   .pagefigure .media { aspect-ratio: 3 / 2; }
 }
+/* Differencismen: kortet visas i sina egna proportioner, så att texten på det inte beskärs. */
+.pagefigure--card .media { aspect-ratio: 1600 / 914; }
+/* Filosofin: avsändaren under definitionen - tydligt mindre, fortfarande läsbar. */
+.dz-byline { margin-top: var(--stack-1); font-size: var(--step-0); color: var(--muted); }
+/* Filosofin: brödtextspalt omkring 60 tecken per rad på desktop. */
+.page-filosofin .body { max-width: 48ch; }
+/* Filosofin: varje pelare är en enhet - tätt mellan namn, kärnmening och
+   förklaring, tydligt större luft till nästa pelare. Linjerna finns kvar. */
+.arbete--pillars .arbete__item { padding-block: var(--space-lg); }
+.arbete--pillars .arbete__body.stack-sm > * + * { margin-top: 0.35rem; }
+/* Filosofin: Grundlagarna i tre öppna spalter på bred desktop, varje lag med
+   sin förklaring under. Smalare skärmar behåller raderna / staplingen. */
+@media (min-width: 1200px) {
+  .arbete--laws {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    column-gap: var(--space-lg); border-top: 0;
+  }
+  .arbete--laws .arbete__item {
+    display: block;
+    border-top: var(--hairline-w) solid var(--hairline); border-bottom: 0;
+    padding-block: var(--space-lg) 0;
+  }
+  .arbete--laws .arbete__body { margin-top: var(--stack-2); max-width: none; }
+}
+/* Filosofin: brödtext omkring 18px på mobil (Ricksons läsbarhetsbrief). */
+@media (max-width: 599px) {
+  .page-filosofin .body,
+  .page-filosofin .arbete__body { font-size: 1.125rem; line-height: 1.6; }
+  /* Huvudbudskapet ska vara störst även på mobil - större än kapitelrubrikerna. */
+  .page-filosofin .pagehero .dz-statement { font-size: 12vw; }
+}
 /* Slow, quiet zoom on reveal - the photograph settles rather than performs. */
 .pagefigure .media img { transition: transform 1.4s var(--ease), opacity 0.5s var(--ease); }
 @media (prefers-reduced-motion: reduce) {
@@ -1952,7 +1983,13 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 .chapter-rail a.is-current {
   color: var(--ink);
   border-color: var(--ink);
+  font-weight: 500;
 }
+/* Differencismen: ett ensamt långt ord i en rubrik ("Grundlagarna.",
+   "Systemet") får brytas hellre än att klippas vid förstorad text på
+   smal mobil. Slår bara till när ordet inte ryms på en egen rad. */
+.chapter-rail ~ main h1,
+.chapter-rail ~ main h2 { overflow-wrap: break-word; }
 
 /* Namnet tonar fram ovanför siffran vid hover eller tangentbordsfokus.
    Det ligger utanför flödet, så raden behåller exakt sin bredd - inga
