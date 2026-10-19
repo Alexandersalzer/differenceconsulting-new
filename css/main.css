@@ -444,10 +444,38 @@ main > .hero { position: relative; z-index: 1; }
 .logo { display: inline-flex; align-items: center; gap: 0.7rem; }
 .logo__mark { width: 32px; height: 32px; display: block; overflow: visible; flex: none; }
 .logo__mark path { fill: var(--ink); stroke: none; }
-/* Animated logo lockup (D + wordmark) played as a muted video. Height-driven so
-   it scales cleanly; ~4.29:1 source. Shrinks a little on scroll. */
-.logo__video {
-  display: block; height: 60px; width: auto; flex: none;
+/* Logotypen: D-märket + ordmärket som SVG och text, transparent mot vilken
+   bakgrund som helst. Måtten följer den tidigare videon (1920x448): allt
+   räknas i andelar av höjden --logo-h, så hela lockupen skalar som en enhet.
+   Bokstäverna tonar fram en i taget från vänster (0,58-1,65 s), som i videon. */
+.logo__lockup {
+  --logo-h: 60px;
+  position: relative; display: block; flex: none;
+  width: calc(var(--logo-h) * 1920 / 448); height: var(--logo-h);
+  color: var(--ink);
+}
+.logo__d {
+  position: absolute; left: 0;
+  top: calc(var(--logo-h) * 119 / 448);
+  height: calc(var(--logo-h) * 209 / 448); width: auto;
+  fill: currentColor; overflow: visible;
+}
+.logo__name {
+  /* Placerad så att baslinjen hamnar på 265/448 av höjden, som i videon. */
+  position: absolute; left: calc(var(--logo-h) * 342 / 448); top: calc(var(--logo-h) * 173 / 448);
+  font-family: var(--serif); font-weight: 500;
+  font-size: calc(var(--logo-h) * 106 / 448); line-height: 1;
+  letter-spacing: 0.04em; white-space: nowrap;
+}
+.logo__name > span { display: inline-block; }
+.logo__lockup.is-playing .logo__name > span {
+  opacity: 0;
+  animation: logoLetter 0.22s ease-out forwards;
+  animation-delay: calc(0.58s + var(--i) * 0.0425s);
+}
+@keyframes logoLetter { to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .logo__lockup.is-playing .logo__name > span { animation: none; opacity: 1; }
 }
 .logo__word {
   font-family: var(--serif); font-size: 1.15rem; letter-spacing: 0.08em;
@@ -515,7 +543,7 @@ main > .hero { position: relative; z-index: 1; }
 }
 /* Same animated video logo as the header. */
 .mobile-menu__logo { display: inline-flex; align-items: center; }
-.mobile-menu__logo .logo__video { height: 60px; width: auto; display: block; flex: none; }
+
 /* Close button: icon only, no circle - matches the hamburger toggle. */
 .mobile-menu__close {
   width: 44px; height: 44px; border: 0;
@@ -1166,27 +1194,44 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
   #lg-d1, #lg-d2, #lg-spike { animation: none !important; opacity: 1; transform: none; }
 }
 
-/* ---- Hero logo video ----------------------------------------------------- */
-/* The animated Difference Consulting lockup, played as a looping muted video. */
-.hero-logo-video {
-  display: block;
+/* ---- Hero logo ------------------------------------------------------------ */
+/* Den animerade lockupen (Claude Design: logo-scene.jsx) ritad live som SVG +
+   text - transparent mot sidans bakgrund. Scenen är 1920x560 som originalet
+   och skalas av main.js (--hl-s) till boxens bredd. */
+.hero-logo {
+  position: relative; display: block; overflow: hidden;
   /* Mobile-first: break out of the container's --edge padding so the logo
      runs nearly edge-to-edge and reads as large as possible on small screens.
      100vw + negative inline margins cancel the container inset. */
   width: 100vw;
   margin-inline: calc(-1 * var(--edge));
-  /* Matches the clip's own ~3.43:1 so the wide logo isn't cropped. */
+  /* Samma 1920:560 som scenen, så inget beskärs. */
   aspect-ratio: 24 / 7;
-  height: auto;
-  object-fit: cover;
+  color: var(--ink);
 }
 /* Once there's real room, cap the width and re-centre inside the container. */
 @media (min-width: 700px) {
-  .hero-logo-video {
+  .hero-logo {
     width: min(100%, 1030px);
     margin-inline: auto;
   }
 }
+.hero-logo__stage {
+  position: absolute; left: 0; top: 0; width: 1920px; height: 560px;
+  transform-origin: 0 0; transform: scale(var(--hl-s, 0.5));
+}
+.hero-logo__mark {
+  position: absolute; left: 50%; top: 50%;
+  width: 420px; height: 355.38px; margin: -177.69px 0 0 -210px;
+}
+.hero-logo__mark svg { display: block; overflow: visible; fill: currentColor; }
+.hero-logo__text {
+  position: absolute; left: 50%; top: 50%; margin-left: 250px;
+  font-family: var(--serif); font-weight: 500; font-size: 92px; line-height: normal;
+  letter-spacing: 0.04em; white-space: nowrap; text-align: left;
+  transform: translateY(-50%);
+}
+.hero-logo__text > span { display: inline-block; opacity: 0; }
 
 /* ---- Application form ---------------------------------------------------- */
 .form { display: grid; gap: var(--space-md); max-width: 640px; }
