@@ -220,6 +220,11 @@ main > .hero { position: relative; z-index: 1; }
   .grid--2-40 { grid-template-columns: 4fr 6fr; }
   .grid--2-60 { grid-template-columns: 6fr 4fr; }
 }
+/* Split staplad (mobil): rubriken står då över texten precis som i en
+   Masthead, så den får Masthead-storleken i stället för att se för liten ut. */
+@media (max-width: 759px) {
+  .grid--2-40 .h3 { font-size: var(--step-3); }
+}
 .grid--cards { grid-template-columns: 1fr; gap: var(--space-md); }
 @media (min-width: 640px) { .grid--cards { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 980px) { .grid--cards.cols-3 { grid-template-columns: repeat(3, 1fr); } }
@@ -2197,7 +2202,8 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 .receipt-main { padding-block: var(--space-2xl); }
 .receipt-main__core {
   font-family: var(--serif);
-  font-size: var(--step-4);
+  /* Samma storlek som arkivkvittona (53px) - sidtiteln är ensam om 77px. */
+  font-size: var(--step-3);
   line-height: 1.08;
   letter-spacing: -0.02em;
   text-align: center;
@@ -2569,6 +2575,12 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
 .rk-read { max-width: 60ch; }
 /* De två bärande momenten: rubrikstorlek (T3), samma för båda. */
 .rk-moment { font-size: var(--step-2); line-height: 1.15; max-width: 24ch; margin: 0; }
+/* Mobil: alla fyra rubriker på Rickson-sidan står ensamma ovanför sin text,
+   så de får samma storlek som den staplade Split-rubriken (35px). */
+@media (max-width: 759px) {
+  .page-rickson .rk-moment,
+  .page-rickson .grid--2-60 .h3 { font-size: var(--step-3); }
+}
 .rk-gap { margin-top: var(--space-lg); }
 .rk-sign { text-align: left; margin-top: var(--space-md); }
 /* Arbetsbilden: mellanstor, stående - inte full bredd. */
