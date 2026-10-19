@@ -1318,15 +1318,17 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
     display: grid; grid-template-columns: repeat(3, 1fr);
     column-gap: var(--space-lg); border-top: 0;
   }
-  /* Rubrikraden delas mellan spalterna (subgrid), så att alla tre
-     förklaringar börjar på samma nivå även när en lag tar två rader. */
-  .arbete--laws { grid-template-rows: auto auto; }
+  /* Alla tre rubrikytor är två rader höga, så att förklaringarna börjar på
+     samma nivå även när en lag tar två rader. (Ingen subgrid - Safari
+     baslinjejusterade raderna och sprängde isär spalterna.) */
+  .arbete--laws { align-items: start; }
   .arbete--laws.arbete--split .arbete__item {
-    display: grid; grid-row: span 2; grid-template-rows: subgrid;
-    grid-template-columns: 1fr; gap: 0;
+    display: block;
     border-top: var(--hairline-w) solid var(--hairline); border-bottom: 0;
     padding-block: var(--space-lg) 0;
   }
+  /* Rubrikerna står mot rubrikytans nederkant, så att alla tre slutar på samma linje. */
+  .arbete--laws .arbete__title { min-height: calc(2em * 1.15); display: flex; align-items: flex-end; }
   .arbete--laws .arbete__body { margin-top: var(--stack-2); max-width: none; }
 }
 /* Filosofin: brödtext omkring 18px på mobil (Ricksons läsbarhetsbrief). */
