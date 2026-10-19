@@ -1273,8 +1273,12 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
     display: grid; grid-template-columns: repeat(3, 1fr);
     column-gap: var(--space-lg); border-top: 0;
   }
-  .arbete--laws .arbete__item {
-    display: block;
+  /* Rubrikraden delas mellan spalterna (subgrid), så att alla tre
+     förklaringar börjar på samma nivå även när en lag tar två rader. */
+  .arbete--laws { grid-template-rows: auto auto; }
+  .arbete--laws.arbete--split .arbete__item {
+    display: grid; grid-row: span 2; grid-template-rows: subgrid;
+    grid-template-columns: 1fr; gap: 0;
     border-top: var(--hairline-w) solid var(--hairline); border-bottom: 0;
     padding-block: var(--space-lg) 0;
   }
