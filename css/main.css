@@ -888,6 +888,12 @@ main > .hero { position: relative; z-index: 1; }
    Even vertical rhythm between video -> title -> quote -> signature. */
 .hero__title { font-size: clamp(2.4rem, 1.7rem + 2.4vw, 3.6rem); line-height: 1.06; max-width: 20ch; margin-inline: auto; margin-top: var(--space-sm); }
 .hero__title .em { font-style: italic; color: var(--accent); }
+/* Startsidan: tre rubriknivåer. Heron bär sidans enda stora rubrik (77px),
+   alla fem blockrubriker delar 53px - samma som .home-feature__title. */
+.page-home .hero__title { font-size: var(--step-4); }
+.page-home .home-feature__display {
+  font-size: var(--step-3); line-height: 1.05; letter-spacing: -0.02em;
+}
 /* Short body under the headline (~3 lines). Sans, calm, plenty of air. */
 .hero__body {
   margin-top: var(--space-md);
