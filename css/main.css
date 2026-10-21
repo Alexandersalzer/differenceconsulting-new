@@ -1317,7 +1317,27 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 /* Filosofin: avsändaren under definitionen - tydligt mindre, fortfarande läsbar. */
 .dz-byline { margin-top: var(--stack-1); font-size: var(--step-0); color: var(--muted); }
 /* Filosofin: brödtextspalt omkring 60 tecken per rad på desktop. */
-.page-filosofin .body { max-width: 48ch; }
+.page-filosofin .body,
+.page-individ .body { max-width: 48ch; }
+/* Individuell vägledning: rubrikerna bryts balanserat i stället för med tvingade radbrott. */
+.page-individ h2 { text-wrap: balance; }
+/* En mening per enhet: radbrottet hamnar mellan meningarna, inte mitt i dem. */
+.ind-phrase { display: inline-block; }
+/* Centrerat moment: rubrik och text mitt på sidan, texten i en smal spalt. */
+.ind-moment { text-align: center; }
+.ind-moment .body { margin-inline: auto; }
+/* Träningsfältet: bilden under båda spalterna, i full containerbredd. */
+.ind-wide { grid-column: 1 / -1; margin-top: var(--space-md); aspect-ratio: 16 / 9; }
+/* Avslutet: rubrik och text till vänster; till höger signaturen över
+   knapparna, i botten av spalten så att knapparna slutar i höjd med texten. */
+.ind-close { align-items: end; }
+.ind-close .ind-sign { line-height: 1.4; margin: 0 0 var(--stack-2); max-width: none; text-align: left; }
+.ind-close__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-sm) var(--space-lg); }
+@media (min-width: 760px) {
+  .ind-close .ind-sign { text-align: right; }
+  .ind-close__actions { justify-content: flex-end; }
+}}
+
 /* Filosofin: varje pelare är en enhet - tätt mellan namn, kärnmening och
    förklaring, tydligt större luft till nästa pelare. Linjerna finns kvar. */
 .arbete--pillars .arbete__item { padding-block: var(--space-lg); }
@@ -1345,7 +1365,8 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 /* Filosofin: brödtext omkring 18px på mobil (Ricksons läsbarhetsbrief). */
 @media (max-width: 599px) {
   .page-filosofin .body,
-  .page-filosofin .arbete__body { font-size: 1.125rem; line-height: 1.6; }
+  .page-filosofin .arbete__body,
+  .page-individ .body { font-size: 1.125rem; line-height: 1.6; }
   /* Huvudbudskapet ska vara störst även på mobil - större än kapitelrubrikerna. */
   .page-filosofin .pagehero .dz-statement { font-size: 12vw; }
 }
