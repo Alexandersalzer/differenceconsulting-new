@@ -1326,6 +1326,9 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 /* Centrerat moment: rubrik och text mitt på sidan, texten i en smal spalt. */
 .ind-moment { text-align: center; }
 .ind-moment .body { margin-inline: auto; }
+/* Underrubrik inne i en Split-spalt (t.ex. Träningsfältet på Klubb): 34/25px,
+   tydligt under kapitelrubriken även när Split staplas på mobil. */
+.grid--2-40 .ind-sub { font-size: var(--step-2); margin-top: var(--space-xl); }
 /* Träningsfältet: bilden under båda spalterna, i full containerbredd. */
 .ind-wide { grid-column: 1 / -1; margin-top: var(--space-md); aspect-ratio: 16 / 9; }
 /* Avslutet: rubrik och text till vänster; till höger signaturen över
@@ -1366,7 +1369,8 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 @media (max-width: 599px) {
   .page-filosofin .body,
   .page-filosofin .arbete__body,
-  .page-individ .body { font-size: 1.125rem; line-height: 1.6; }
+  .page-individ .body,
+  .page-individ .arbete__body { font-size: 1.125rem; line-height: 1.6; }
   /* Huvudbudskapet ska vara störst även på mobil - större än kapitelrubrikerna. */
   .page-filosofin .pagehero .dz-statement { font-size: 12vw; }
 }
