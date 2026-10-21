@@ -1328,7 +1328,7 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 .ind-moment .body { margin-inline: auto; }
 /* Underrubrik inne i en Split-spalt (t.ex. Träningsfältet på Klubb): 34/25px,
    tydligt under kapitelrubriken även när Split staplas på mobil. */
-.grid--2-40 .ind-sub { font-size: var(--step-2); margin-top: var(--space-xl); }
+.grid--2-40 .ind-sub { font-size: var(--step-2); margin-top: var(--space-xl); }}
 /* Träningsfältet: bilden under båda spalterna, i full containerbredd. */
 .ind-wide { grid-column: 1 / -1; margin-top: var(--space-md); aspect-ratio: 16 / 9; }
 /* Avslutet: rubrik och text till vänster; till höger signaturen över
@@ -1337,6 +1337,9 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 .ind-close .ind-sign { line-height: 1.4; margin: 0 0 var(--stack-2); max-width: none; text-align: left; }
 .ind-close__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-sm) var(--space-lg); }
 @media (min-width: 760px) {
+  /* Samma avslut på alla tjänstesidor: två lika breda spalter, så att även
+     en längre knapp ("Diskutera ett samarbete") står på samma rad som "Se Kvitton". */
+  .ind-close { grid-template-columns: 1fr 1fr; }
   .ind-close .ind-sign { text-align: right; }
   .ind-close__actions { justify-content: flex-end; }
 }}
