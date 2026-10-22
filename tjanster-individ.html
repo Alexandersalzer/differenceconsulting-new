@@ -77,41 +77,38 @@
   </div>
 
   <main>
-    <section class="pagehero">
-      <div class="container">
-        <p class="eyebrow reveal"><a class="link" href="tjanster.html">Tjänster</a></p>
-        <h1 class="pagehero__title reveal" style="margin-top:var(--stack-1);">Individuell vägledning.</h1>
-        <p class="lead pagehero__lead reveal">Personlig vägledning i självledarskap med Rickson Mansiamina. För fotbollsspelare, ledare och människor utanför idrotten.</p>
-        <div class="body stack-sm reveal" style="margin-top:var(--stack-2);">
-          <p>Vi arbetar med hur du möter krav, fattar beslut och agerar i din vardag. Vi utgår från det du vill förbättra och det du vill befästa.</p>
+    <!-- Hero - samma omslag som Klubb: texten vid bildens fot till vänster,
+         bilden fyller första skärmen till höger. Mobil: bilden först. -->
+    <section class="pagehero rk-hero ind-hero">
+      <div class="container grid grid--2-60">
+        <div class="rk-hero__text">
+          <p class="eyebrow reveal"><a class="link" href="tjanster.html">Tjänster</a></p>
+          <h1 class="pagehero__title reveal" style="margin-top:var(--stack-1);">Individuell vägledning.</h1>
+          <p class="lead reveal" style="margin-top:var(--stack-2);">Personlig vägledning i självledarskap med Rickson Mansiamina. För fotbollsspelare, ledare och människor utanför idrotten.</p>
+          <div class="body stack-sm reveal" style="margin-top:var(--stack-2);">
+            <p>Vi arbetar med hur du möter krav, fattar beslut och agerar i din vardag. Vi utgår från det du vill förbättra och det du vill befästa.</p>
+          </div>
         </div>
-      </div>
-    </section>
-
-    <!-- The image follows straight after the lead - no rule, no empty band
-         between them, so the picture reads as part of the opening. -->
-    <section class="pagefigure reveal">
-      <div class="container">
-        <div class="media media--wide">
+        <div class="media media--portrait rk-portrait reveal">
           <img fetchpriority="high" decoding="async" width="2400" height="1816" src="assets/joakimhallfoto_260822_168.jpg" alt="Rickson i fokuserat arbete" />
         </div>
       </div>
     </section>
 
-    <!-- Det börjar med dig - ljus, Masthead -->
+    <!-- Det börjar med dig - ljus, rubrik över två spalter med tunn linje överst (som Klubbs samarbete) -->
     <section class="section">
       <div class="container reveal">
         <h2 class="h2">Det börjar med dig.</h2>
-        <div class="body stack-sm" style="margin-top:var(--stack-2);">
-          <p>Jag lär känna dig och sammanhanget du står i. Dina styrkor, dina erfarenheter och det som har betydelse för dig.</p>
-          <p>Du får tänka högt. Jag lyssnar, ställer frågor och prövar perspektiv tillsammans med dig. Vi undersöker vad som händer, hur du tolkar det och vad du kan påverka.</p>
+        <div class="kl-pair">
+          <p class="body">Jag lär känna dig och sammanhanget du står i. Dina styrkor, dina erfarenheter och det som har betydelse för dig.</p>
+          <p class="body">Du får tänka högt. Jag lyssnar, ställer frågor och prövar perspektiv tillsammans med dig. Vi undersöker vad som händer, hur du tolkar det och vad du kan påverka.</p>
         </div>
       </div>
     </section>
 
-    <!-- Samtalet / Verkligheten - beige, centrerat moment, en sammanhållen rubrik -->
+    <!-- Samtalet / Verkligheten - beige, vänsterställd Masthead, en sammanhållen rubrik -->
     <section class="section section--alt">
-      <div class="container reveal ind-moment">
+      <div class="container reveal">
         <h2 class="h2"><span class="ind-phrase">Samtalet är en del.</span> <span class="ind-phrase">Verkligheten är träningsfältet.</span></h2>
         <div class="body stack-sm" style="margin-top:var(--stack-2);">
           <p>Vi tydliggör vad som är viktigast nu. Det kan vara ett nytt perspektiv, ett beslut eller något konkret att pröva. Ibland är nästa steg att fortsätta med det som redan fungerar.</p>
@@ -120,13 +117,12 @@
       </div>
     </section>
 
-    <!-- Ditt digitala Träningsfält - ljus, Split: rubrik vänster, text höger, bilden under i full bredd -->
+    <!-- Ditt digitala Träningsfält - ljus, samma form som Klubb: rubrik överst,
+         texten i två spalter på desktop, datorbilden under i full bredd -->
     <section class="section">
-      <div class="container grid grid--2-40">
-        <div class="reveal">
-          <h2 class="h2">Ditt digitala Träningsfält.</h2>
-        </div>
-        <div class="body stack-sm reveal">
+      <div class="container reveal">
+        <h2 class="h2">Ditt digitala Träningsfält.</h2>
+        <div class="body kl-cols" style="margin-top:var(--stack-2);">
           <p>Du får en egen digital arbetsyta. Här samlas ditt aktuella fokus, sammanfattningar från våra samtal och frågor och verktyg som utgår från dina situationer.</p>
           <p>Du använder Träningsfältet utifrån det vi arbetar med: för att förbereda dig inför en situation, reflektera över hur du agerade eller skriva ner det du upptäcker.</p>
           <p>Det tar vi vidare i nästa samtal. Vi undersöker vad som fungerade, vad som behöver justeras och vad du ska fortsätta med. Över tid följer vi vad som återkommer och vad du kan använda i fler situationer.</p>
@@ -134,7 +130,7 @@
           <p>Vi håller också kontakt mellan samtalen inom det upplägg vi kommer överens om.</p>
           <p>Vägledningen bygger på Differencismen. Arbetet ska stärka din förmåga att fatta egna beslut och leda dig själv över tid.</p>
         </div>
-        <div class="media ind-wide reveal">
+        <div class="media kl-wide">
           <img decoding="async" width="1600" height="1126" src="assets/datorbild.jpeg" alt="Händer på en dator som visar D-märket och Led dig själv. Först." loading="lazy" />
         </div>
       </div>

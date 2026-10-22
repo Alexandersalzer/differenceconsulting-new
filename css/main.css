@@ -1323,14 +1323,6 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 .page-individ h2 { text-wrap: balance; }
 /* En mening per enhet: radbrottet hamnar mellan meningarna, inte mitt i dem. */
 .ind-phrase { display: inline-block; }
-/* Centrerat moment: rubrik och text mitt på sidan, texten i en smal spalt. */
-.ind-moment { text-align: center; }
-.ind-moment .body { margin-inline: auto; }
-/* Underrubrik inne i en Split-spalt (t.ex. Träningsfältet på Klubb): 34/25px,
-   tydligt under kapitelrubriken även när Split staplas på mobil. */
-.grid--2-40 .ind-sub { font-size: var(--step-2); margin-top: var(--space-xl); }}
-/* Träningsfältet: bilden under båda spalterna, i full containerbredd. */
-.ind-wide { grid-column: 1 / -1; margin-top: var(--space-md); aspect-ratio: 16 / 9; }
 /* Avslutet: rubrik och text till vänster; till höger signaturen över
    knapparna, i botten av spalten så att knapparna slutar i höjd med texten. */
 .ind-close { align-items: end; }
@@ -1342,7 +1334,7 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
   .ind-close { grid-template-columns: 1fr 1fr; }
   .ind-close .ind-sign { text-align: right; }
   .ind-close__actions { justify-content: flex-end; }
-}}
+}
 
 /* Filosofin: varje pelare är en enhet - tätt mellan namn, kärnmening och
    förklaring, tydligt större luft till nästa pelare. Linjerna finns kvar. */
@@ -2658,6 +2650,27 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
 @media (max-width: 599px) {
   .rk-hero .rk-portrait { aspect-ratio: 6 / 5; }
 }
+/* Klubb använder samma omslag; Rickson står till höger i bilden. */
+.kl-hero .rk-portrait img { object-position: 72% 30% !important; }
+.ind-hero .rk-portrait img { object-position: 62% 40% !important; }
+/* Klubb: två stycken sida vid sida under rubriken, var och en med en tunn
+   linje överst - samma formspråk som Grundlagarnas spalter. */
+.kl-pair { display: grid; gap: var(--space-lg); margin-top: var(--stack-3); }
+.kl-pair > p { border-top: var(--hairline-w) solid var(--hairline); padding-top: var(--space-md); margin: 0; }
+.section--alt .kl-pair > p { border-color: var(--hairline-alt); }
+@media (min-width: 860px) {
+  .kl-pair { grid-template-columns: 1fr 1fr; column-gap: var(--space-xl); }
+}
+/* Klubb: Träningsfältet som underrubrik, texten i två spalter på desktop så att
+   sektionen inte blir en lång textvägg; datorbilden under i full bredd. */
+.kl-sub { margin-top: var(--space-xl); }
+.kl-cols > p { margin: 0 0 var(--space-sm); break-inside: avoid; }
+/* Två spalter à cirka 48ch, samma radlängd som övrig brödtext. */
+.page-individ .kl-cols { max-width: calc(96ch + var(--space-xl)); }
+@media (min-width: 860px) {
+  .kl-cols { columns: 2; column-gap: var(--space-xl); }
+}
+.kl-wide { margin-top: var(--space-xl); aspect-ratio: 16 / 9; }
 
 /* ==========================================================================
    DIFFERENCE CONSULTING - bolagssidan i startsidans formspråk
