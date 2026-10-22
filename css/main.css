@@ -2652,7 +2652,6 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
 }
 /* Klubb använder samma omslag; Rickson står till höger i bilden. */
 .kl-hero .rk-portrait img { object-position: 72% 30% !important; }
-.ind-hero .rk-portrait img { object-position: 62% 40% !important; }
 /* Klubb: två stycken sida vid sida under rubriken, var och en med en tunn
    linje överst - samma formspråk som Grundlagarnas spalter. */
 .kl-pair { display: grid; gap: var(--space-lg); margin-top: var(--stack-3); }
@@ -2684,6 +2683,12 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
 .dc-hero__img { width: min(560px, 100%); aspect-ratio: 1394 / 1600; margin: var(--space-xl) auto 0; }
 .dc-hero__img img { animation: rkHeroIn 1.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
 @media (prefers-reduced-motion: reduce) { .dc-hero__img img { animation: none; } }
+/* Centrerad sidhero (Individuell vägledning): samma som Difference Consulting,
+   men med sidtitel (h1) och bilden i sitt liggande originalformat. */
+.c-hero__title { margin: var(--stack-1) auto 0; max-width: none; }
+.c-hero__lead { margin: var(--stack-2) auto 0; max-width: 46ch; }
+.page-individ .c-hero .dc-hero__intro { margin-inline: auto; }
+.c-hero__img { width: min(880px, 100%); aspect-ratio: 2400 / 1816; }
 .dc-card__title { color: var(--on-ink); max-width: 20ch; }
 .dc-card__body { margin-top: var(--space-sm); max-width: 44ch; color: rgba(244, 241, 234, 0.85); }
 .dc-quote__body { margin-top: var(--space-lg); max-width: 56ch; }
