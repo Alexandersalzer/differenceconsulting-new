@@ -2655,20 +2655,13 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
 /* Klubb: två stycken sida vid sida under rubriken, var och en med en tunn
    linje överst - samma formspråk som Grundlagarnas spalter. */
 .kl-pair { display: grid; gap: var(--space-lg); margin-top: var(--stack-3); }
-.kl-pair > p { border-top: var(--hairline-w) solid var(--hairline); padding-top: var(--space-md); margin: 0; }
-.section--alt .kl-pair > p { border-color: var(--hairline-alt); }
+.kl-pair > * { border-top: var(--hairline-w) solid var(--hairline); padding-top: var(--space-md); margin: 0; }
+.section--alt .kl-pair > * { border-color: var(--hairline-alt); }
 @media (min-width: 860px) {
   .kl-pair { grid-template-columns: 1fr 1fr; column-gap: var(--space-xl); }
 }
-/* Klubb: Träningsfältet som underrubrik, texten i två spalter på desktop så att
-   sektionen inte blir en lång textvägg; datorbilden under i full bredd. */
+/* Klubb: Träningsfältet som underrubrik (två delar via .kl-pair); datorbilden under i full bredd. */
 .kl-sub { margin-top: var(--space-xl); }
-.kl-cols > p { margin: 0 0 var(--space-sm); break-inside: avoid; }
-/* Två spalter à cirka 48ch, samma radlängd som övrig brödtext. */
-.page-individ .kl-cols { max-width: calc(96ch + var(--space-xl)); }
-@media (min-width: 860px) {
-  .kl-cols { columns: 2; column-gap: var(--space-xl); }
-}
 .kl-wide { margin-top: var(--space-xl); aspect-ratio: 16 / 9; }
 
 /* ==========================================================================
@@ -2689,6 +2682,15 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
 .c-hero__lead { margin: var(--stack-2) auto 0; max-width: 46ch; }
 .page-individ .c-hero .dc-hero__intro { margin-inline: auto; }
 .c-hero__img { width: min(880px, 100%); aspect-ratio: 2400 / 1816; }
+/* Centrerad Split: rubrik och text behåller sin form (vänsterställd text,
+   rubriken på två rader), men paret står mitt på sidan. */
+@media (min-width: 760px) {
+  .grid--2-40.c-split { grid-template-columns: auto minmax(0, 48ch); justify-content: center; column-gap: var(--space-lg); }
+  .c-split h2 { max-width: 5em; }
+  /* Rubrik med två meningar: en mening per rad, kolumnen lika bred som den längsta. */
+  .c-split--phrases h2 { max-width: none; }
+  .c-split--phrases .ind-phrase { display: block; }
+}
 .dc-card__title { color: var(--on-ink); max-width: 20ch; }
 .dc-card__body { margin-top: var(--space-sm); max-width: 44ch; color: rgba(244, 241, 234, 0.85); }
 .dc-quote__body { margin-top: var(--space-lg); max-width: 56ch; }
