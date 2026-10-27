@@ -2556,7 +2556,7 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
   .rk-hero .rk-portrait { aspect-ratio: 6 / 5; }
 }
 /* Klubb använder samma omslag; Rickson står till höger i bilden. */
-.kl-hero .rk-portrait img { object-position: 72% 30% !important; }
+.kl-hero .rk-portrait img { object-position: 50% 45% !important; } /* stadion: lagen på planen i fokus */
 /* Kontakt: samma omslag, men på mobil kommer texten (kontaktvägarna) före bilden. */
 .kt-hero .rk-portrait img { object-position: 45% 35% !important; }
 @media (max-width: 899px) {
