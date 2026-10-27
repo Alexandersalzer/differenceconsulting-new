@@ -85,15 +85,21 @@
 
   <main>
 
-    <!-- FILOSOFIN · 1 · Hero: LED DIG SJÄLV. FÖRST. är sidans stora typografiska moment -->
+    <!-- FILOSOFIN · 1 · Hero: text till vänster, schackhanden (inverterad, transparent) till höger.
+         Mobil: texten först, bilden under. -->
     <section class="pagehero">
-      <div class="container">
-        <p class="eyebrow reveal">Differencismen</p>
-        <h1 class="dz-statement reveal" style="margin-top:var(--stack-1);">LED DIG SJÄLV. FÖRST.</h1>
-        <p class="lead pagehero__lead reveal">En filosofi och ett system för självledarskap.</p>
-        <p class="dz-byline reveal">Av <a class="link" href="rickson.html">Rickson Mansiamina</a>.</p>
-        <div class="body stack-sm reveal" style="margin-top:var(--stack-3);">
-          <p>Att leda dig själv är att upptäcka vad som sker inom dig och ta ansvar för hur du agerar. I vardagen, i relationerna och i prestationen.</p>
+      <div class="container grid grid--2-60 dz-hero">
+        <div>
+          <h1 class="pagehero__title dz-hero__title reveal">DIFFERENCISMEN.</h1>
+          <p class="statement-caps dz-hero-sign reveal">LED DIG SJÄLV. FÖRST.</p>
+          <p class="lead pagehero__lead reveal">En filosofi och ett system för självledarskap.</p>
+          <div class="body stack-sm reveal" style="margin-top:var(--stack-2);">
+            <p class="dz-byline">Av <a class="link" href="rickson.html">Rickson Mansiamina</a>.</p>
+            <p>Att leda dig själv är att upptäcka vad som sker inom dig och ta ansvar för hur du agerar. I vardagen, i relationerna och i prestationen.</p>
+          </div>
+        </div>
+        <div class="dz-hero__art reveal" aria-hidden="true">
+          <img src="assets/schack-hand-ljus.png" width="826" height="688" alt="" fetchpriority="high" decoding="async">
         </div>
       </div>
     </section>
@@ -160,55 +166,46 @@
       </div>
     </section>
 
-    <!-- FILOSOFIN · 4 · Rader: Grundlagarna (varje lag med sin förklaring) -->
+    <!-- FILOSOFIN · 4 · Grundlagarna: Split för rubrik och inledning, sedan en lag i taget
+         - lagen stor i Lora, förklaringen under, tunn linje mellan lagarna -->
     <section class="section" id="grundlagarna">
-      <div class="container reveal">
-        <h2 class="h2">Grundlagarna.</h2>
-        <div class="body stack-sm" style="margin-top:var(--stack-2);">
-          <p>När det du känner, det du vill uppnå och det du står för drar åt olika håll behöver du veta vad du låter väga tyngst.</p>
-          <p>Här är tre av Differencismens Grundlagar.</p>
+      <div class="container">
+        <div class="grid grid--2-40 reveal">
+          <h2 class="h2">Grundlagarna.</h2>
+          <div class="body stack-sm">
+            <p>När det du känner, det du vill uppnå och det du står för drar åt olika håll behöver du veta vad du låter väga tyngst.</p>
+            <p>Här är tre av Differencismens Grundlagar.</p>
+          </div>
         </div>
-        <div class="arbete arbete--rows arbete--split arbete--laws" style="margin-top:var(--stack-3);">
-          <div class="arbete__item">
-            <h3 class="arbete__title">Standard före känsla.</h3>
-            <div class="arbete__body stack-sm">
-              <p>Din standard är hur du har valt att agera och ta ansvar. Känslan ger information. Låt det du står för och vad situationen kräver vägleda din nästa handling.</p>
-            </div>
+        <div class="dz-gl">
+          <div class="dz-gl__item reveal">
+            <h3 class="dz-gl__title">Standard före känsla.</h3>
+            <p class="body dz-gl__body">Din standard är hur du har valt att agera och ta ansvar. Känslan ger information. Låt det du står för och vad situationen kräver vägleda din nästa handling.</p>
           </div>
-          <div class="arbete__item">
-            <h3 class="arbete__title">Process före resultat.</h3>
-            <div class="arbete__body stack-sm">
-              <p>Lägg kraft på det du kan påverka och återkomma till. Använd resultatet som återkoppling: vad ska du fortsätta med, vad behöver du justera och vad behöver få mer tid?</p>
-            </div>
+          <div class="dz-gl__item reveal">
+            <h3 class="dz-gl__title">Process före resultat.</h3>
+            <p class="body dz-gl__body">Lägg kraft på det du kan påverka och återkomma till. Använd resultatet som återkoppling: vad ska du fortsätta med, vad behöver du justera och vad behöver få mer tid?</p>
           </div>
-          <div class="arbete__item">
-            <h3 class="arbete__title">Sanning före bekvämlighet.</h3>
-            <div class="arbete__body stack-sm">
-              <p>Var beredd att se din egen del och ompröva det du tidigare försvarat. Låt det du upptäcker påverka hur du går vidare.</p>
-            </div>
+          <div class="dz-gl__item reveal">
+            <h3 class="dz-gl__title">Sanning före bekvämlighet.</h3>
+            <p class="body dz-gl__body">Var beredd att se din egen del och ompröva det du tidigare försvarat. Låt det du upptäcker påverka hur du går vidare.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FILOSOFIN · 5 · Övergång till Systemet: en samlad mörk yta -->
+    <!-- FILOSOFIN · 5 · Mörkt avslut i en spalt: rubrik, de två styckena, alla tre länkar på en rad -->
     <section class="section section--dark pageclose">
-      <div class="container grid grid--2-40">
-        <div class="stack-sm reveal">
-          <h2 class="h2">Systemet gör filosofin användbar.</h2>
+      <div class="container reveal">
+        <h2 class="h2">Systemet gör filosofin användbar.</h2>
+        <div class="body stack-sm" style="margin-top:var(--stack-2);">
+          <p>Systemet ger struktur åt arbetet med dina styrkor, dina mönster och dina val. Det du förstår får prövas i vardagen. Över tid följer du vad som förändras och vad du kan börja lita på hos dig själv.</p>
+          <p>Differencismen är grunden i vägledningen genom Difference Consulting.</p>
         </div>
-        <div class="reveal">
-          <div class="body stack-sm">
-            <p>Systemet ger struktur åt arbetet med dina styrkor, dina mönster och dina val. Det du förstår får prövas i vardagen. Över tid följer du vad som förändras och vad du kan börja lita på hos dig själv.</p>
-          </div>
-          <div class="dz-links"><a class="cta" href="differencismen-systemet.html">Utforska Systemet <span class="arrow">&rarr;</span></a></div>
-          <div class="body stack-sm" style="margin-top:var(--space-xl);">
-            <p>Differencismen är grunden i vägledningen genom Difference Consulting.</p>
-          </div>
-          <div class="dz-links">
-            <a class="cta" href="tjanster.html">Utforska vägledningen <span class="arrow">&rarr;</span></a>
-            <a class="cta" href="kvitton.html">Se Kvitton <span class="arrow">&rarr;</span></a>
-          </div>
+        <div class="dz-links">
+          <a class="cta" href="differencismen-systemet.html">Utforska Systemet <span class="arrow">&rarr;</span></a>
+          <a class="cta" href="tjanster.html">Utforska vägledningen <span class="arrow">&rarr;</span></a>
+          <a class="cta" href="kvitton.html">Se Kvitton <span class="arrow">&rarr;</span></a>
         </div>
       </div>
     </section>

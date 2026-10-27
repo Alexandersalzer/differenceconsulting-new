@@ -761,6 +761,26 @@ main > .hero { position: relative; z-index: 1; }
 @media (min-width: 860px) {
   .home-feature__mark { max-width: 240px; }
 }
+/* Differencismen som split: stacken vänsterställd, schackhanden till höger.
+   Mobil: texten först, bilden under. */
+.home-feature__split { align-items: center; }
+.home-feature__stack--left { align-items: flex-start; text-align: left; }
+/* Differencismens logotyp liggande, som headerlogotypen: D:et (samma vektor
+   som i headern) till vänster, ordmärket till höger, mittlinjerade. */
+.home-feature__lockup { display: flex; align-items: center; gap: 12px; }
+.home-feature__d { display: block; height: 34px; width: auto; flex: none; fill: var(--ink); }
+.home-feature__word { display: block; width: 200px; height: auto; }
+@media (min-width: 860px) {
+  .home-feature__lockup { gap: 16px; }
+  .home-feature__d { height: 42px; }
+  .home-feature__word { width: 260px; }
+}
+.home-feature--type .home-feature__stack--left .home-feature__display { margin-inline: 0; }
+.home-feature__art img { display: block; width: 100%; height: auto; max-width: 520px; margin-left: auto; }
+@media (max-width: 759px) {
+  .home-feature__art { margin-top: var(--space-md); }
+  .home-feature__art img { max-width: 360px; margin-inline: auto; }
+}
 
 /* Rickson - portrait beside the name. */
 .home-feature--portrait { padding-block: var(--space-2xl); }
@@ -1303,18 +1323,27 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
    No bottom padding: the following .section brings its own --space-xl, and
    stacking both put two full bands after the picture where one is meant. */
 .pagefigure { padding-block: 0; margin-top: calc(var(--stack-fig) - var(--space-lg)); }
-/* The close keeps the page's left edge instead of centring, so label,
-   headline, intro, image, ARBETET and CTA all sit on one line down the page. */
-.pagehero + .receipt-main {
-  padding-top: calc(var(--stack-3) - var(--space-lg));
-}
-
 .pageclose .statement { max-width: 20ch; }
 .pagefigure .media { aspect-ratio: 4 / 5; }
 @media (min-width: 760px) {
   .pagefigure .media { aspect-ratio: 3 / 2; }
 }
 /* Filosofin: avsändaren under definitionen - tydligt mindre, fortfarande läsbar. */
+.pagehero .dz-hero-sign { text-align: left; margin-top: var(--stack-1); }
+/* Filosofins hero: schackhanden till höger, transparent PNG direkt på sidans bakgrund. */
+.dz-hero { align-items: center; }
+.dz-hero > * { min-width: 0; }
+/* DIFFERENCISMEN. i versaler (Ricksons önskan) är ~8,7 em brett: storleken
+   begränsas så att ordet alltid ryms på en rad i sin spalt. */
+.dz-hero__title { font-size: min(var(--step-4), 10vw); }
+@media (min-width: 760px) {
+  .dz-hero__title { font-size: min(var(--step-4), calc((100vw - 160px) * 0.068), 76px); }
+}
+.dz-hero__art img { display: block; width: 100%; height: auto; max-width: 520px; margin-left: auto; }
+@media (max-width: 759px) {
+  .dz-hero__art { margin-top: var(--space-lg); }
+  .dz-hero__art img { max-width: 360px; margin-inline: auto; }
+}
 .dz-byline { margin-top: var(--stack-1); font-size: var(--step-0); color: var(--muted); }
 /* Filosofin: brödtextspalt omkring 60 tecken per rad på desktop. */
 .page-filosofin .body,
@@ -1340,26 +1369,16 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
    förklaring, tydligt större luft till nästa pelare. Linjerna finns kvar. */
 .arbete--pillars .arbete__item { padding-block: var(--space-lg); }
 .arbete--pillars .arbete__body.stack-sm > * + * { margin-top: 0.35rem; }
-/* Filosofin: Grundlagarna i tre öppna spalter på bred desktop, varje lag med
-   sin förklaring under. Smalare skärmar behåller raderna / staplingen. */
-@media (min-width: 1200px) {
-  .arbete--laws {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    column-gap: var(--space-lg); border-top: 0;
-  }
-  /* Alla tre rubrikytor är två rader höga, så att förklaringarna börjar på
-     samma nivå även när en lag tar två rader. (Ingen subgrid - Safari
-     baslinjejusterade raderna och sprängde isär spalterna.) */
-  .arbete--laws { align-items: start; }
-  .arbete--laws.arbete--split .arbete__item {
-    display: block;
-    border-top: var(--hairline-w) solid var(--hairline); border-bottom: 0;
-    padding-block: var(--space-lg) 0;
-  }
-  /* Rubrikerna står mot rubrikytans nederkant, så att alla tre slutar på samma linje. */
-  .arbete--laws .arbete__title { min-height: calc(2em * 1.15); display: flex; align-items: flex-end; }
-  .arbete--laws .arbete__body { margin-top: var(--stack-2); max-width: none; }
+/* Filosofin: Grundlagarna en i taget - lagen i Lora (T3, under sektionsrubriken), förklaringen
+   under i brödtext, tunn linje mellan lagarna. */
+.dz-gl { margin-top: var(--space-xl); }
+.dz-gl__item { border-top: var(--hairline-w) solid var(--hairline); padding-block: var(--space-lg); }
+.dz-gl__item:last-child { padding-bottom: 0; }
+.dz-gl__title {
+  font-family: var(--serif); font-size: var(--step-2); font-weight: 400;
+  line-height: 1.1; letter-spacing: -0.015em;
 }
+.dz-gl__body { margin-top: var(--stack-2); max-width: 52ch; }
 /* Filosofin: brödtext omkring 18px på mobil (Ricksons läsbarhetsbrief). */
 @media (max-width: 599px) {
   .page-filosofin .body,
@@ -2203,144 +2222,30 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 
 /* ==========================================================================
    KVITTON - kvitton.html
-   Huvudkvitto (editorialt), tre kortare kvitton, typografiskt bevisarkiv.
-   Allt centrerat utom arkivet, som växlar sida på desktop.
+   Omdömen i kort, integritetsupplysning, mörkt avslut (ind-close).
    ========================================================================== */
-.receipt__env,
-.archive__env {
-  font-family: var(--sans);
-  font-size: var(--step--1);
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink);
-}
-.receipt__head { text-align: center; }
-.receipt__head > * + * { margin-top: var(--stack-1); }
-
-/* Huvudkvittot - sidans största kvitto, långsamt och luftigt. */
-.receipt-main { padding-block: var(--space-2xl); }
-.receipt-main__core {
-  font-family: var(--serif);
-  /* Samma storlek som arkivkvittona (53px) - sidtiteln är ensam om 77px. */
-  font-size: var(--step-3);
-  line-height: 1.08;
-  letter-spacing: -0.02em;
-  text-align: center;
-  max-width: 20ch;
-  margin: var(--band-tight) auto 0;
-  text-wrap: balance;
-}
-.receipt-main__core span { display: block; margin-top: 0.35em; color: var(--ink-2); font-style: italic; }
-.receipt__turn {
-  font-family: var(--serif);
-  font-size: var(--step-3);
-  line-height: 1.12;
-  letter-spacing: -0.015em;
-  text-align: center;
-  max-width: 20ch;
-  margin: var(--band-tight) auto 0;
-  text-wrap: balance;
-}
-.receipt__close {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: var(--step-1);
-  line-height: 1.45;
-  color: var(--ink);
-  text-align: center;
-  max-width: 36ch;
-  margin: var(--stack-3) auto 0;
-  text-wrap: balance;
-}
-
-/* Olika verkligheter - tre distinkta block, ingen kortram. */
-.receipts {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xl);
-  margin-top: var(--band-tight);
-}
-.receipt {
-  padding-top: var(--space-xl);
-  border-top: var(--hairline-w) solid var(--hairline-alt);
-}
-.receipt__lead,
-.prose .receipt__lead {
-  font-family: var(--serif);
-  font-size: var(--step-2);
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-  text-align: center;
-  max-width: 24ch;
-  margin: var(--stack-2) auto var(--stack-2);
-  text-wrap: balance;
-}
-.prose .receipt__lead { margin-top: 0; }
-.section--dark .prose .receipt__lead { color: var(--on-ink); }
-.prose .receipts__intro {
-  font-family: var(--serif);
-  font-size: var(--step-1);
-  color: var(--ink);
-}
-
-/* Det som började bära - typografiskt bevisarkiv. Miljön liten, kärnan
-   stor. Raderna växlar sida på desktop så man rör sig genom spår. */
-.archive__intro {
-  font-family: var(--serif);
-  font-size: var(--step-1);
-  color: var(--ink-2);
-  margin-top: var(--stack-2);
-}
-.archive {
-  list-style: none;
-  padding: 0;
-  margin: var(--band-tight) 0 0;
-}
-.archive__item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding-block: var(--space-lg);
-  border-top: var(--hairline-w) solid var(--hairline);
-}
-.archive__item:last-child { border-bottom: var(--hairline-w) solid var(--hairline); }
-.archive__env { color: var(--muted); }
-.archive__core {
-  font-family: var(--serif);
-  font-size: var(--step-3);
-  line-height: 1.08;
-  letter-spacing: 0.005em;
-  color: var(--ink);
-  max-width: 18ch;
-  margin-top: var(--stack-2);
-  text-wrap: balance;
-}
-.archive__note {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: var(--step-0);
-  line-height: 1.6;
-  color: var(--ink-2);
-  max-width: 40ch;
-  margin-top: var(--space-sm);
-}
+/* Kvitton: omdömen i kort - tunn linje överst, ingen ram eller skugga, ingen
+   fast höjd. Omdömet i Lora (rösten), rollen under i Zilla, mindre men tydlig. */
+.kv-grid { display: grid; gap: var(--space-xl); margin-top: var(--space-lg); }
 @media (min-width: 860px) {
-  .archive__item { padding-block: var(--space-xl); }
-  .archive__item:nth-child(odd)  { align-items: flex-start; text-align: left;  padding-right: 22%; }
-  .archive__item:nth-child(even) { align-items: flex-end;   text-align: right; padding-left: 22%; }
+  .kv-grid { grid-template-columns: 1fr 1fr; column-gap: var(--space-xl); }
 }
-
-/* Avslut - minimalistiskt. */
-.closing { padding-block: var(--space-2xl); }
-.closing__links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-md) var(--space-lg);
-  margin-top: var(--stack-3);
+.kv-card { margin: 0; border-top: var(--hairline-w) solid var(--hairline); padding-top: var(--space-md); }
+.kv-quote { margin: 0; max-width: 52ch; }
+.kv-quote p {
+  font-family: var(--serif); font-size: clamp(1.125rem, 1.05rem + 0.3vw, 1.25rem);
+  line-height: 1.5; color: var(--ink); margin: 0;
+}
+.kv-quote p + p { margin-top: 0.75em; }
+.kv-role {
+  margin-top: var(--space-sm);
+  font-family: var(--sans); font-size: 0.95rem; font-weight: 500; color: var(--ink-2);
+}
+.kv-more { margin-top: var(--space-xl); }
+.kv-more + .kv-note { margin-top: var(--space-md); }
+.kv-note {
+  margin-top: var(--space-xl);
+  font-size: 0.9rem; max-width: 60ch;
 }
 
 /* --------------------------------------------------------------------------
@@ -2652,6 +2557,11 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
 }
 /* Klubb använder samma omslag; Rickson står till höger i bilden. */
 .kl-hero .rk-portrait img { object-position: 72% 30% !important; }
+/* Kontakt: samma omslag, men på mobil kommer texten (kontaktvägarna) före bilden. */
+.kt-hero .rk-portrait img { object-position: 45% 35% !important; }
+@media (max-width: 899px) {
+  .kt-hero .rk-portrait { order: 0; margin-top: var(--space-lg); }
+}
 /* Klubb: två stycken sida vid sida under rubriken, var och en med en tunn
    linje överst - samma formspråk som Grundlagarnas spalter. */
 .kl-pair { display: grid; gap: var(--space-lg); margin-top: var(--stack-3); }
