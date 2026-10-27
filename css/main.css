@@ -1368,6 +1368,14 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 /* Filosofin: varje pelare är en enhet - tätt mellan namn, kärnmening och
    förklaring, tydligt större luft till nästa pelare. Linjerna finns kvar. */
 .arbete--pillars .arbete__item { padding-block: var(--space-lg); }
+/* Pelarnas föremål: ikonen till vänster om namnet i en fast ruta så att alla
+   namn börjar på samma linje; raden mittlinjeras mot förklaringen. */
+.dz-pillar { display: flex; align-items: center; gap: var(--space-md); }
+.dz-pillar__icon { flex: none; width: 56px; height: 64px; object-fit: contain; }
+@media (min-width: 860px) {
+  .arbete--pillars .arbete__item { align-items: center; }
+  .dz-pillar__icon { width: 76px; height: 88px; }
+}
 .arbete--pillars .arbete__body.stack-sm > * + * { margin-top: 0.35rem; }
 /* Filosofin: Grundlagarna en i taget - lagen i Lora (T3, under sektionsrubriken), förklaringen
    under i brödtext, tunn linje mellan lagarna. */
