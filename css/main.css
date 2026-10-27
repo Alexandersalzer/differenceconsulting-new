@@ -767,13 +767,13 @@ main > .hero { position: relative; z-index: 1; }
 .home-feature__stack--left { align-items: flex-start; text-align: left; }
 /* Differencismens logotyp liggande, som headerlogotypen: D:et (samma vektor
    som i headern) till vänster, ordmärket till höger, mittlinjerade. */
-.home-feature__lockup { display: flex; align-items: center; gap: 12px; }
-.home-feature__d { display: block; height: 34px; width: auto; flex: none; fill: var(--ink); }
-.home-feature__word { display: block; width: 200px; height: auto; }
+.home-feature__lockup { display: flex; align-items: center; gap: 8px; }
+.home-feature__d { display: block; height: 20px; width: auto; flex: none; fill: var(--ink); }
+.home-feature__word { display: block; width: 120px; height: auto; }
 @media (min-width: 860px) {
-  .home-feature__lockup { gap: 16px; }
-  .home-feature__d { height: 42px; }
-  .home-feature__word { width: 260px; }
+  .home-feature__lockup { gap: 10px; }
+  .home-feature__d { height: 26px; }
+  .home-feature__word { width: 164px; }
 }
 .home-feature--type .home-feature__stack--left .home-feature__display { margin-inline: 0; }
 .home-feature__art img { display: block; width: 100%; height: auto; max-width: 520px; margin-left: auto; }
