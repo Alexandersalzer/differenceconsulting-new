@@ -934,6 +934,22 @@ main > .hero { position: relative; z-index: 1; }
   font-size: var(--step--1); font-weight: 500; letter-spacing: 0.04em; color: var(--muted);
 }
 .hero__scroll { margin-top: var(--space-md); }
+/* Startsidans huvudbudskap: rubriken på en rad på alla bredder - storleken
+   följer skärmbredden. Två stycken, en avslutande rad och signaturen under. */
+/* Ingen höjd som centrerar innehållet - logotypen och budskapet börjar en
+   jämn luft under sidhuvudet, så att budskapet kommer fram tidigt på mobil. */
+.page-home .hero { min-height: 0; padding-block: var(--space-lg) var(--space-xl); }
+.page-home .hero__title--line {
+  max-width: none; white-space: nowrap;
+  font-size: min(5.2rem, calc((100vw - 2 * var(--edge) - 12px) * 0.09));
+  line-height: 1.05;
+}
+.page-home .hero__body p + p { margin-top: var(--space-sm); }
+.hero__close {
+  margin-top: var(--space-md); font-family: var(--serif); font-size: var(--step-1);
+  line-height: 1.35; color: var(--ink);
+}
+.page-home .hero__close + .hero__sign { margin-top: var(--space-sm); }
 
 /* ---- Cards / lists ------------------------------------------------------- */
 .card {
@@ -2240,16 +2256,24 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 }
 .kv-card { margin: 0; border-top: var(--hairline-w) solid var(--hairline); padding-top: var(--space-md); }
 .kv-quote { margin: 0; max-width: 52ch; }
+/* Det framhävda i varje omdöme står större; resten mindre och lättläst. */
 .kv-quote p {
-  font-family: var(--serif); font-size: clamp(1.125rem, 1.05rem + 0.3vw, 1.25rem);
-  line-height: 1.5; color: var(--ink); margin: 0;
+  font-family: var(--serif); font-size: var(--step-0);
+  line-height: 1.6; color: var(--ink-2); margin: 0;
 }
+.kv-quote .kv-lead { font-size: var(--step-1); line-height: 1.4; color: var(--ink); }
 .kv-quote p + p { margin-top: 0.75em; }
 .kv-role {
   margin-top: var(--space-sm);
   font-family: var(--sans); font-size: 0.95rem; font-weight: 500; color: var(--ink-2);
 }
 .kv-more { margin-top: var(--space-xl); }
+/* De fyra sista omdömena döljs bara när JS finns - utan JS syns alla tio
+   och knappen behövs inte. */
+html.js .kv-grid:not(.is-open) .kv-card--extra { display: none; }
+html:not(.js) .kv-more { display: none; }
+.kv-toggle { background: none; border: 0; border-bottom: var(--hairline-w) solid var(--hairline); border-radius: 0; padding-inline: 0; cursor: pointer; }
+.kv-toggle:hover .arrow { transform: translateY(3px); }
 .kv-more + .kv-note { margin-top: var(--space-md); }
 .kv-note {
   margin-top: var(--space-xl);
@@ -2565,10 +2589,24 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
 }
 /* Klubb använder samma omslag; Rickson står till höger i bilden. */
 .kl-hero .rk-portrait img { object-position: 50% 45% !important; } /* stadion: lagen på planen i fokus */
-/* Kontakt: samma omslag, men på mobil kommer texten (kontaktvägarna) före bilden. */
+/* Kontakt: samma omslag. Rubrik, WhatsApp och kontaktuppgifter samlade överst
+   till vänster, adressen nere i spalten, bilden med namn och titel till höger.
+   Under 900px i källordning: rubrik, WhatsApp, kontaktuppgifter, bild, adress. */
 .kt-hero .rk-portrait img { object-position: 45% 35% !important; }
-@media (max-width: 899px) {
-  .kt-hero .rk-portrait { order: 0; margin-top: var(--space-lg); }
+.kt-actions { margin-top: var(--stack-2); }
+.kt-lines { list-style: none; margin: var(--space-md) 0 0; padding: 0; font-family: var(--sans); font-size: var(--step-0); }
+.kt-lines li + li { margin-top: var(--space-xs); }
+.kt-figure { margin: 0; }
+.kt-caption { margin-top: var(--space-sm); font-family: var(--sans); }
+.kt-caption__name { display: block; font-size: var(--step-0); font-weight: 500; color: var(--ink); }
+.kt-caption__role { display: block; margin-top: 0.15rem; font-size: var(--step--1); color: var(--muted); }
+.kt-place { margin: 0; }
+@media (min-width: 900px) {
+  .kt-hero .grid { grid-template-rows: 1fr auto; grid-template-areas: "contact figure" "place figure"; }
+  .kt-contact { grid-area: contact; }
+  .kt-place { grid-area: place; align-self: end; }
+  .kt-figure { grid-area: figure; display: flex; flex-direction: column; min-height: 0; }
+  .kt-hero .kt-figure .rk-portrait { flex: 1; height: auto; min-height: 0; }
 }
 /* Klubb: två stycken sida vid sida under rubriken, var och en med en tunn
    linje överst - samma formspråk som Grundlagarnas spalter. */

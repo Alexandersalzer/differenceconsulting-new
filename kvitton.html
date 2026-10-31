@@ -77,57 +77,91 @@
   </div>
 
   <main>
-    <!-- Inledning och de sex utvalda omdömena i samma sektion, så att inledningen
-         ligger tätt mot första kortet. Två kolumner på desktop, en på mobil. -->
+    <!-- Inledning och omdömena i samma sektion, så att inledningen ligger tätt mot
+         första kortet. Två kolumner på desktop, en på mobil. Sex syns direkt; de fyra
+         sista (kv-card--extra) visas på samma sida när man trycker "Visa fler kvitton". -->
     <section class="pagehero kv-intro">
       <div class="container">
         <h1 class="pagehero__title reveal">Kvitton.</h1>
         <p class="lead pagehero__lead reveal">Människors egna ord om vägledningen och vad den har betytt i deras vardag.</p>
-        <div class="kv-grid reveal">
+        <div class="kv-grid reveal" id="kv-grid">
           <figure class="kv-card">
             <blockquote class="kv-quote">
-              <p>Man känner att man pratar med en person på samma nivå som en själv. Det gör det lättare att känna sig bekväm med att dela med sig.</p>
-              <p>Du har mycket kunskap och är bra på att anpassa den till fotbollen, eftersom du själv har upplevt den.</p>
-            </blockquote>
-            <figcaption class="kv-role">Fotbollsspelare</figcaption>
-          </figure>
-          <figure class="kv-card">
-            <blockquote class="kv-quote">
-              <p>Du är rak, ställer rätt frågor, lyssnar, vägleder och ställer också krav på utveckling.</p>
-              <p>Jag är min egen lagkapten. Jag vet att jag behöver må bra innan jag kan hjälpa alla andra.</p>
-            </blockquote>
-            <figcaption class="kv-role">Rektor</figcaption>
-          </figure>
-          <figure class="kv-card">
-            <blockquote class="kv-quote">
-              <p>Jag hade svårt att säga vad jag faktiskt känner. Nu är jag tydlig med vad jag tycker.</p>
+              <p class="kv-lead">Jag hade svårt att säga vad jag faktiskt känner. Nu är jag tydlig med vad jag tycker.</p>
               <p>Du dömer inte. Du ger inte svar, utan nycklar för att kunna svara på frågorna själv.</p>
             </blockquote>
             <figcaption class="kv-role">Entreprenör</figcaption>
           </figure>
           <figure class="kv-card">
             <blockquote class="kv-quote">
-              <p>Jag har blivit modigare i mitt spel och kan ta bättre beslut. Om något irriterar mig lägger jag ingen större vikt vid det och fokuserar på det som ligger inom min kontroll.</p>
+              <p class="kv-lead">Jag har blivit modigare i mitt spel och kan ta bättre beslut.</p>
+              <p>Om något irriterar mig lägger jag ingen större vikt vid det och fokuserar på det som ligger inom min kontroll.</p>
               <p>Vi kan alltid ha en ärlig och öppen dialog.</p>
             </blockquote>
             <figcaption class="kv-role">Fotbollsspelare</figcaption>
           </figure>
           <figure class="kv-card">
             <blockquote class="kv-quote">
-              <p>Innan vi började jobba ihop hade jag mycket insikter om vad jag borde göra, men svårt att omsätta dem i praktiken.</p>
-              <p>Våra samtal har inte bara handlat om att förstå mina problem, utan också om konkreta strategier för att hantera dem. Framför allt har jag börjat lita på att små steg också är framsteg.</p>
+              <p class="kv-lead">Jag är min egen lagkapten. Jag vet att jag behöver må bra innan jag kan hjälpa alla andra.</p>
+              <p>Du är rak, ställer rätt frågor, lyssnar, vägleder och ställer också krav på utveckling.</p>
+            </blockquote>
+            <figcaption class="kv-role">Rektor</figcaption>
+          </figure>
+          <figure class="kv-card">
+            <blockquote class="kv-quote">
+              <p class="kv-lead">Innan vi började jobba ihop hade jag mycket insikter om vad jag borde göra, men svårt att omsätta dem i praktiken.</p>
+              <p>Våra samtal har inte bara handlat om att förstå mina problem, utan också om konkreta strategier för att hantera dem.</p>
+              <p>Framför allt har jag börjat lita på att små steg också är framsteg.</p>
             </blockquote>
             <figcaption class="kv-role">Jurist</figcaption>
           </figure>
           <figure class="kv-card">
             <blockquote class="kv-quote">
+              <p class="kv-lead">Man känner att man pratar med en person på samma nivå som en själv.</p>
+              <p>Det gör det lättare att känna sig bekväm med att dela med sig.</p>
+              <p>Du har mycket kunskap och är bra på att anpassa den till fotbollen, eftersom du själv har upplevt den.</p>
+            </blockquote>
+            <figcaption class="kv-role">Fotbollsspelare</figcaption>
+          </figure>
+          <figure class="kv-card">
+            <blockquote class="kv-quote">
+              <p class="kv-lead">Jag har börjat se saker ur perspektiv jag inte tänkt på tidigare och lärt känna mig själv bättre.</p>
               <p>Det känns enkelt att prata med dig. Att prata om lösningar med någon som förstår och står utanför min klubb har hjälpt mig på många sätt.</p>
-              <p>Jag har börjat se saker ur perspektiv jag inte tänkt på tidigare och lärt känna mig själv bättre.</p>
+            </blockquote>
+            <figcaption class="kv-role">Fotbollsspelare</figcaption>
+          </figure>
+          <figure class="kv-card kv-card--extra">
+            <blockquote class="kv-quote">
+              <p class="kv-lead">Jag känner mig trygg i mig själv och har fått verktyg som ger mig ett lugn i vardagen.</p>
+              <p>Det mest värdefulla är att ha någon som verkligen lyssnar, inte dömer och ger olika perspektiv på livet.</p>
+            </blockquote>
+            <figcaption class="kv-role">Individuell vägledning</figcaption>
+          </figure>
+          <figure class="kv-card kv-card--extra">
+            <blockquote class="kv-quote">
+              <p class="kv-lead">Jag har fått bättre självkännedom, vilket gör att jag tar för mig och vågar mer.</p>
+              <p>Jag har blivit en lugnare människa som kan kontrollera mina känslor mycket bättre.</p>
+              <p>Du är kunnig, bra på att förklara och lätt att förstå. Och du är alltid ärlig, vilket jag uppskattar väldigt mycket.</p>
+            </blockquote>
+            <figcaption class="kv-role">Fotbollsspelare</figcaption>
+          </figure>
+          <figure class="kv-card kv-card--extra">
+            <blockquote class="kv-quote">
+              <p class="kv-lead">Jag har fått ett helt annat perspektiv på fotbollen, kärleken och livet.</p>
+              <p>Du har hjälpt mig med hur jag kan tänka i både positiva och negativa tider.</p>
+              <p>Difference har betytt otroligt fucking mycket.</p>
+            </blockquote>
+            <figcaption class="kv-role">Individuell vägledning</figcaption>
+          </figure>
+          <figure class="kv-card kv-card--extra">
+            <blockquote class="kv-quote">
+              <p class="kv-lead">Jag känner mig mer som mig själv. Jag har fått tillbaka mitt driv och kan hantera de negativa tankarna bättre.</p>
+              <p>Du kan relatera till det jag har gått igenom som spelare. Du lyssnar bra och ställer krav som är rimliga.</p>
             </blockquote>
             <figcaption class="kv-role">Fotbollsspelare</figcaption>
           </figure>
         </div>
-        <div class="kv-more reveal"><a class="cta" href="alla-kvitton.html">Läs fler kvitton <span class="arrow">→</span></a></div>
+        <div class="kv-more reveal"><button class="cta kv-toggle" type="button" aria-controls="kv-grid" aria-expanded="false">Visa fler kvitton <span class="arrow">↓</span></button></div>
         <p class="small kv-note reveal">Namn utelämnas av hänsyn till individernas integritet. Omdömena är kortade och varsamt språkredigerade.</p>
       </div>
     </section>

@@ -281,6 +281,17 @@
       });
     });
   }
+  // Kvitton: "Visa fler kvitton" visar de fyra sista omdömena på samma sida
+  // och försvinner sedan.
+  var kvToggle = document.querySelector('.kv-toggle');
+  if (kvToggle) kvToggle.addEventListener('click', function () {
+    var grid = document.getElementById(kvToggle.getAttribute('aria-controls'));
+    grid.classList.add('is-open');
+    kvToggle.parentNode.remove();
+    var first = grid.querySelector('.kv-card--extra');
+    if (first) { first.setAttribute('tabindex', '-1'); first.focus({ preventScroll: true }); }
+  });
+
   // Hero-logotypen: en översättning av Claude Design-filen logo-scene.jsx
   // (animations-v3). Allt ritas som en ren funktion av den författade tiden T,
   // precis som i originalet: romb → kvadrat → D → bruten D + spik → ordmärket
