@@ -17,6 +17,8 @@
     { "source": "/boken", "destination": "/rickson#boken", "permanent": true },
     { "source": "/boken.html", "destination": "/rickson.html#boken", "permanent": true },
     { "source": "/ansok", "destination": "/kontakt", "permanent": true },
-    { "source": "/ansok.html", "destination": "/kontakt.html", "permanent": true }
+    { "source": "/ansok.html", "destination": "/kontakt.html", "permanent": true },
+    { "source": "/alla-kvitton", "destination": "/kvitton", "permanent": true },
+    { "source": "/alla-kvitton.html", "destination": "/kvitton.html", "permanent": true }
   ]
 }

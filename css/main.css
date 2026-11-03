@@ -728,6 +728,17 @@ main > .hero { position: relative; z-index: 1; }
 }
 
 .eyebrow--on-image, .eyebrow--on-dark { color: rgba(244,241,234,0.72); }
+/* Tjänstebilden bär nu även en beskrivning: mörkningen nertill är kraftigare
+   så att texten håller kontrasten även över ljusa partier i bilden. */
+.home-feature--image .home-feature__media::after {
+  background: linear-gradient(to top, rgba(28,27,25,0.85) 0%, rgba(28,27,25,0.6) 30%, rgba(28,27,25,0.15) 60%, transparent 80%);
+}
+/* Kort beskrivning under rubriken på tjänstebilden - mindre än rubriken. */
+.home-feature__lede {
+  margin-top: var(--space-sm); max-width: 46ch;
+  font-family: var(--sans); font-size: var(--step-0); line-height: 1.5;
+  color: rgba(244,241,234,0.9);
+}
 
 /* Differencismen - type only, no image. */
 .home-feature--type { padding-block: var(--space-2xl); }
@@ -934,16 +945,10 @@ main > .hero { position: relative; z-index: 1; }
   font-size: var(--step--1); font-weight: 500; letter-spacing: 0.04em; color: var(--muted);
 }
 .hero__scroll { margin-top: var(--space-md); }
-/* Startsidans huvudbudskap: rubriken på en rad på alla bredder - storleken
-   följer skärmbredden. Två stycken, en avslutande rad och signaturen under. */
-/* Ingen höjd som centrerar innehållet - logotypen och budskapet börjar en
-   jämn luft under sidhuvudet, så att budskapet kommer fram tidigt på mobil. */
+/* Startsidans första del: logotypen, två stycken, avslutande rad, signatur
+   och sist LED DIG SJÄLV. FÖRST. Ingen höjd som centrerar innehållet, så att
+   delen hålls ihop och budskapet kommer fram tidigt på mobil. */
 .page-home .hero { min-height: 0; padding-block: var(--space-lg) var(--space-xl); }
-.page-home .hero__title--line {
-  max-width: none; white-space: nowrap;
-  font-size: min(5.2rem, calc((100vw - 2 * var(--edge) - 12px) * 0.09));
-  line-height: 1.05;
-}
 .page-home .hero__body p + p { margin-top: var(--space-sm); }
 /* Avslutande raden: brödtextens storlek, tyngden kommer från Lora i vikt 500. */
 .hero__close {
@@ -951,6 +956,14 @@ main > .hero { position: relative; z-index: 1; }
   font-weight: 500; line-height: 1.5; color: var(--ink);
 }
 .page-home .hero__close + .hero__sign { margin-top: var(--space-sm); }
+/* Avslutningsraden: större än brödtexten, tydligt mindre än en sidrubrik.
+   Alltid en rad - storleken följer skärmbredden på mobil. */
+.hero__motto {
+  margin-top: var(--space-lg);
+  font-family: var(--serif); font-weight: 500; letter-spacing: 0.06em; line-height: 1.2;
+  font-size: min(2.25rem, calc((100vw - 2 * var(--edge) - 12px) * 0.082));
+  white-space: nowrap; color: var(--ink);
+}
 
 /* ---- Cards / lists ------------------------------------------------------- */
 .card {
