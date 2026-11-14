@@ -950,11 +950,13 @@ main > .hero { position: relative; z-index: 1; }
    delen hålls ihop och budskapet kommer fram tidigt på mobil. */
 .page-home .hero { min-height: 0; padding-block: var(--space-lg) var(--space-xl); }
 .page-home .hero__body p + p { margin-top: var(--space-sm); }
-/* LED DIG SJÄLV. FÖRST. i en egen sektion direkt efter heron: ren sans serif
+/* Sidans h1 är introduktionens första mening: samma utseende som styckena,
+   och nästa mening står tätt under som en radbrytning. */
+.page-home .hero__body h1 { font: inherit; letter-spacing: inherit; color: inherit; }
+/* LED DIG SJÄLV. FÖRST. i Differencismen-blocket: ren sans serif
    i semibold (Instrument Sans, laddas bara på startsidan), normalt
    bokstavsavstånd. Större än brödtexten, mindre än logotypen, alltid en rad -
    storleken följer skärmbredden på mobil. */
-.motto { padding-block: var(--space-xl); text-align: center; border-top: var(--hairline-w) solid var(--hairline); }
 .motto__line {
   font-family: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   font-weight: 600; letter-spacing: 0; line-height: 1.2;
