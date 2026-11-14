@@ -2400,7 +2400,6 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
   text-transform: uppercase;
 }
 .dz-statement span { display: block; }
-.dz-sign { margin-top: var(--space-xl); text-align: left; }
 /* Rader: samma kolumnlinje som Split (grid--2-40), så att all text i
    högerkolumnen delar vänsterkant genom hela Differencismen. */
 @media (min-width: 860px) {
