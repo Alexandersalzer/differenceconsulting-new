@@ -1402,16 +1402,6 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
   .dz-pillar__icon { width: 76px; height: 88px; }
 }
 .arbete--pillars .arbete__body.stack-sm > * + * { margin-top: 0.35rem; }
-/* Filosofin: Grundlagarna en i taget - lagen i Lora (T3, under sektionsrubriken), förklaringen
-   under i brödtext, tunn linje mellan lagarna. */
-.dz-gl { margin-top: var(--space-xl); }
-.dz-gl__item { border-top: var(--hairline-w) solid var(--hairline); padding-block: var(--space-lg); }
-.dz-gl__item:last-child { padding-bottom: 0; }
-.dz-gl__title {
-  font-family: var(--serif); font-size: var(--step-2); font-weight: 400;
-  line-height: 1.1; letter-spacing: -0.015em;
-}
-.dz-gl__body { margin-top: var(--stack-2); max-width: 52ch; }
 /* Filosofin: brödtext omkring 18px på mobil (Ricksons läsbarhetsbrief). */
 @media (max-width: 599px) {
   .page-filosofin .body,
