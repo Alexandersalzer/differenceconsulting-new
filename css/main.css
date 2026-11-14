@@ -950,12 +950,6 @@ main > .hero { position: relative; z-index: 1; }
    delen hålls ihop och budskapet kommer fram tidigt på mobil. */
 .page-home .hero { min-height: 0; padding-block: var(--space-lg) var(--space-xl); }
 .page-home .hero__body p + p { margin-top: var(--space-sm); }
-/* Avslutande raden: brödtextens storlek, tyngden kommer från Lora i vikt 500. */
-.hero__close {
-  margin-top: var(--space-md); font-family: var(--serif); font-size: var(--step-0);
-  font-weight: 500; line-height: 1.5; color: var(--ink);
-}
-.page-home .hero__close + .hero__sign { margin-top: var(--space-sm); }
 /* LED DIG SJÄLV. FÖRST. i en egen sektion direkt efter heron: ren sans serif
    i semibold (Instrument Sans, laddas bara på startsidan), normalt
    bokstavsavstånd. Större än brödtexten, mindre än logotypen, alltid en rad -
