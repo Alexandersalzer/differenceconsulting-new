@@ -1,5 +1,61 @@
 # Audit: Rickson's final copy vs. the site
 
+## STATUS AFTER IMPLEMENTATION (2026-11-14)
+
+All items are implemented and committed locally. Alex pushes.
+
+### Done, matches docs/copy-final.md
+
+| Page | Items | Commit |
+|---|---|---|
+| Meta, OG, Twitter, JSON-LD | S11, T5, I9, K13, R10, F8, Y11, O2, RM10, D9, KT5 | d92d848 |
+| Startsidan | S2, S6, S8, S9, S10 | 0264f62 |
+| Startsidan | S3, S4 (hero line and button) | 69dce69 |
+| Startsidan | S1, S5, S7 (h1 = first sentence; motto in the Differencismen block; `section.motto` removed) | 233b3f3 |
+| Tjänster | T2, T3, T4 | 222dd16 |
+| Individuell vägledning | I1, I2, I3, I6, I7, I8 | 9e072eb |
+| Individuell vägledning | I4, I5 (datorbild moved; `.ind-phrase` removed) | 2bf8728 |
+| Klubb | K1–K7, K9–K12 | 5f72dac |
+| Klubb | K8 | d521e46 |
+| Representant | R1–R4, R7–R9 | 1b85e9a |
+| Representant | R5, R6 (closing keeps only the three links) | a407364 |
+| Filosofin | F1–F4, F6, F7 | 61a66c7 |
+| Filosofin | F5, plus the redirect now goes to `/differencismen` | 87d0ecb |
+| Systemet | Y1–Y6, Y8–Y10 | 9ba4441 |
+| Systemet | Y7 | c284497 |
+| Om oss | O1 | 41aafad |
+| Rickson | RM1–RM3, RM5–RM9 | f1471b0 |
+| Difference Consulting | D1, D2, D5, D6, D7, D8 | d223da5 |
+| Difference Consulting | D3, D4 | 868c6c3 |
+| Kvitton | KV1–KV11 (9 cards, 6 visible and 3 behind "Visa fler", ”…” added, Individ) | c692f72 |
+| Kontakt | KT1, KT3 (lowercase `rickson@` everywhere, including JSON-LD and integritetspolicy) | 3e4bf71 |
+
+### Deliberate deviations from the document (decided by Alex)
+
+- **T1:** the eyebrow stays "Tjänster", without a full stop (U3).
+- **RM4:** "fram – filosofin" uses a spaced en dash, not the document's em dash (U8).
+- **D4 and D5:** the labels stay "Varför vi finns" and "Vår vision", without full stops (U9). "Det vi bygger." did get its full stop.
+- **KT2:** the WhatsApp button keeps ↗︎.
+- **KT4:** the footer wordmark counts as the "Difference Consulting" line (U13).
+
+### Final check (text only)
+
+- **Banned terms.** Searched for "Klient", "beteende" (excluding kognitiv beteendeterapi), "From understanding", "individuell process", "agerande", "Grundlagarna", "Rickson@" and "—". Visible text, meta, JSON-LD and alt text on all 13 pages gave 0 hits.
+- **Links.** Every link was checked against the table in section 14 and goes to the right place. Missing links before: 0.
+- **Horizontal scroll.** None at 320, 390 or 1440 px on any of the 13 pages.
+- **Copy lines.** Each line of the document was searched for on its page. Every line is present except the deliberate deviations above.
+
+### Open suggestions, not implemented (waiting for Alex)
+
+- **Klubb backgrounds.** The hero and the rows section are both light, and the rows have no heading since K2. Suggestion: rows beige, "Ett eget utrymme" light.
+- **Systemet backgrounds.** "Följ det du gör." and "Riktningen väljs…" are both light. Suggestion: "Riktningen väljs…" beige.
+- **Difference Consulting card.** At 320 px the text starts 16 % from the top of the image, above the dark gradient. Suggestion: the stronger gradient used on the start-page services photo.
+
+### Leftovers, untouched by rule
+
+- **Outdated comments:** "de fyra sista" in kvitton.html and in the CSS, and section comments on Individ and Klubb.
+- **Dead CSS:** `.dz-law` was already unused before this work.
+
 - **Date:** 2026-11-14
 - **Code state:** commit `d8ad3bb`, clean working tree.
 - **Source:** Rickson's final copy handoff, pasted in chat. There is no `docs/copy-final.md` file; this report quotes the pasted text.
