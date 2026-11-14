@@ -1377,8 +1377,6 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 .page-individ .body { max-width: 48ch; }
 /* Individuell vägledning: rubrikerna bryts balanserat i stället för med tvingade radbrott. */
 .page-individ h2 { text-wrap: balance; }
-/* En mening per enhet: radbrottet hamnar mellan meningarna, inte mitt i dem. */
-.ind-phrase { display: inline-block; }
 /* Avslutet: rubrik och text till vänster; till höger signaturen över
    knapparna, i botten av spalten så att knapparna slutar i höjd med texten. */
 .ind-close { align-items: end; }
@@ -2640,9 +2638,6 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
 @media (min-width: 760px) {
   .grid--2-40.c-split { grid-template-columns: auto minmax(0, 48ch); justify-content: center; column-gap: var(--space-lg); }
   .c-split h2 { max-width: 5em; }
-  /* Rubrik med två meningar: en mening per rad, kolumnen lika bred som den längsta. */
-  .c-split--phrases h2 { max-width: none; }
-  .c-split--phrases .ind-phrase { display: block; }
 }
 .dc-card__title { color: var(--on-ink); max-width: 20ch; }
 .dc-card__body { margin-top: var(--space-sm); max-width: 44ch; color: rgba(244, 241, 234, 0.85); }
