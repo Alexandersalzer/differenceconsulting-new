@@ -2615,7 +2615,6 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
   .kl-pair { grid-template-columns: 1fr 1fr; column-gap: var(--space-xl); }
 }
 /* Klubb: Träningsfältet som underrubrik (två delar via .kl-pair); datorbilden under i full bredd. */
-.kl-sub { margin-top: var(--space-xl); }
 .kl-wide { margin-top: var(--space-xl); aspect-ratio: 16 / 9; }
 
 /* ==========================================================================
