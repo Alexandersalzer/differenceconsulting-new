@@ -1382,13 +1382,11 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 /* Avslutet: rubrik och text till vänster; till höger signaturen över
    knapparna, i botten av spalten så att knapparna slutar i höjd med texten. */
 .ind-close { align-items: end; }
-.ind-close .ind-sign { line-height: 1.4; margin: 0 0 var(--stack-2); max-width: none; text-align: left; }
 .ind-close__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-sm) var(--space-lg); }
 @media (min-width: 760px) {
   /* Samma avslut på alla tjänstesidor: två lika breda spalter, så att även
      en längre knapp ("Diskutera ett samarbete") står på samma rad som "Se Kvitton". */
   .ind-close { grid-template-columns: 1fr 1fr; }
-  .ind-close .ind-sign { text-align: right; }
   .ind-close__actions { justify-content: flex-end; }
 }
 
