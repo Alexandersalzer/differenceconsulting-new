@@ -953,7 +953,7 @@ main > .hero { position: relative; z-index: 1; }
 /* Startsidans budskap: huvudraden tydligt större än brödtexten, med "större" i
    kursiv; följdraden tätt under i mellanstorlek; förklaringen med eget avstånd. */
 .page-home .hero__claim {
-  font-size: var(--step-2); font-weight: 500; line-height: 1.2; letter-spacing: -0.01em;
+  font-family: inherit; font-size: var(--step-2); font-weight: 500; line-height: 1.2; letter-spacing: -0.01em;
   text-wrap: balance;
 }
 .page-home .hero__claim em { font-style: italic; }
