@@ -2677,6 +2677,8 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
 }
 .dc-card__title { color: var(--on-ink); max-width: 20ch; }
 .dc-card__body { margin-top: var(--space-sm); max-width: 44ch; color: rgba(244, 241, 234, 0.85); }
+/* Varför vi finns: stycke 2–3 under kortet, så att bilden inte täcks. */
+.dc-card__after { margin-top: var(--space-lg); }
 .dc-quote__body { margin-top: var(--space-lg); max-width: 56ch; }
 @media (max-width: 599px) {
   .home-feature__media--card { height: 72svh; min-height: 440px; }
