@@ -950,6 +950,15 @@ main > .hero { position: relative; z-index: 1; }
    delen hålls ihop och budskapet kommer fram tidigt på mobil. */
 .page-home .hero { min-height: 0; padding-block: var(--space-lg) var(--space-xl); }
 .page-home .hero__body p + p { margin-top: var(--space-sm); }
+/* Startsidans budskap: huvudraden tydligt större än brödtexten, med "större" i
+   kursiv; följdraden tätt under i mellanstorlek; förklaringen med eget avstånd. */
+.page-home .hero__claim {
+  font-size: var(--step-2); font-weight: 500; line-height: 1.2; letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.page-home .hero__claim em { font-style: italic; }
+.page-home .hero__body .hero__claim-sub { margin-top: 0.4em; font-size: var(--step-1); line-height: 1.4; text-wrap: balance; }
+.page-home .hero__body .hero__explain { margin-top: var(--space-md); }
 /* Avslutande raden: brödtextens storlek, tyngden kommer från Lora i vikt 500. */
 .hero__close {
   margin-top: var(--space-md); font-family: var(--serif); font-size: var(--step-0);
