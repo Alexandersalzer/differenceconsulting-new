@@ -1382,6 +1382,9 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 /* Filosofin: brödtextspalt omkring 60 tecken per rad på desktop. */
 .page-filosofin .body,
 .page-individ .body { max-width: 48ch; }
+/* Individuell vägledning och Filosofin, delad sektion: texten (48ch) står mot högerkanten så att den läses som högerspalt. */
+.page-individ .grid--2-40 > .body,
+.page-filosofin .grid--2-40 > .body { margin-left: auto; }
 /* Individuell vägledning: rubrikerna bryts balanserat i stället för med tvingade radbrott. */
 .page-individ h2 { text-wrap: balance; }
 /* En mening per enhet: radbrottet hamnar mellan meningarna, inte mitt i dem. */
