@@ -954,6 +954,7 @@ main > .hero { position: relative; z-index: 1; }
 .hero__close {
   margin-top: var(--space-md); font-family: var(--serif); font-size: var(--step-0);
   font-weight: 500; line-height: 1.5; color: var(--ink);
+  max-width: 50ch; margin-inline: auto; text-wrap: balance;
 }
 .page-home .hero__close + .hero__sign { margin-top: var(--space-sm); }
 /* LED DIG SJÄLV. FÖRST. i en egen sektion direkt efter heron: ren sans serif
