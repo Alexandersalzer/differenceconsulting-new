@@ -2656,6 +2656,10 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
 }
 /* Klubb: två stycken sida vid sida under rubriken, var och en med en tunn
    linje överst - samma formspråk som Grundlagarnas spalter. */
+/* Tjänster, Ditt träningsfält: Signatur som delad rad med tunn linje överst, störst av uppläggen. */
+.up-sig { margin-top: var(--stack-3); padding-top: var(--space-md); border-top: var(--hairline-w) solid var(--hairline-alt); }
+/* Ankarmål under den klistrade headern (Upplägg, Samtal och intervjuer, Playbook). */
+#upplagg, #samtal, #playbook { scroll-margin-top: 96px; }
 .kl-pair { display: grid; gap: var(--space-lg); margin-top: var(--stack-3); }
 .kl-pair > * { border-top: var(--hairline-w) solid var(--hairline); padding-top: var(--space-md); margin: 0; }
 .section--alt .kl-pair > * { border-color: var(--hairline-alt); }
