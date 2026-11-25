@@ -2685,7 +2685,9 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
 /* Centrerad sidhero (Individuell vägledning): samma som Difference Consulting,
    men med sidtitel (h1) och bilden i sitt liggande originalformat. */
 .c-hero__title { margin: var(--stack-1) auto 0; max-width: none; }
-.c-hero__lead { margin: var(--stack-2) auto 0; max-width: 46ch; }
+/* Individuell vägledning: ingressen på en rad på dator, balanserad på mobil. */
+.c-hero__lead { margin: var(--stack-2) auto 0; max-width: 64ch; text-wrap: balance; }
+.page-individ .c-hero .dc-hero__intro p { text-wrap: pretty; }
 .page-individ .c-hero .dc-hero__intro { margin-inline: auto; }
 .c-hero__img { width: min(880px, 100%); aspect-ratio: 2400 / 1816; }
 /* Centrerad Split: rubrik och text behåller sin form (vänsterställd text,
