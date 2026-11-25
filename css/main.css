@@ -2586,9 +2586,6 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
 .rk-media a:hover { color: var(--ink); }
 .section--dark .rk-media { color: rgba(244,241,234,0.55); }
 .section--dark .rk-media a:hover { color: var(--on-ink); }
-/* Rickson, inledningen enligt systemet: namnet T1, rollen T4 (raden direkt under rubriken),
-   öppningsraden T5 med betoning genom vikt 500 och full färg. */
-.rk-open { font-weight: 500; color: var(--ink); }
 /* Rickson, Samtal och intervjuer: två kort med tunn ljus ram på mörk yta. */
 .rk-talks { display: grid; gap: var(--space-md); margin-top: var(--stack-3); }
 @media (min-width: 760px) { .rk-talks { grid-template-columns: 1fr 1fr; gap: var(--space-lg); } }
@@ -2648,6 +2645,10 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
 }
 @media (max-width: 599px) {
   .rk-hero .rk-portrait { aspect-ratio: 6 / 5; }
+}
+/* Rickson: porträttet är stående på alla bredder (Klubb och Kontakt behåller sina format). */
+@media (max-width: 899px) {
+  .page-rickson .rk-hero .rk-portrait { aspect-ratio: 4 / 5; }
 }
 /* Klubb använder samma omslag; Rickson står till höger i bilden. */
 .kl-hero .rk-portrait img { object-position: 50% 45% !important; } /* stadion: lagen på planen i fokus */
