@@ -2586,8 +2586,9 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
 .rk-media a:hover { color: var(--ink); }
 .section--dark .rk-media { color: rgba(244,241,234,0.55); }
 .section--dark .rk-media a:hover { color: var(--on-ink); }
-/* Rickson, inledningen: öppningsraden i ingressens storlek (T4) men i full färg. */
-.rk-open { color: var(--ink); max-width: 34ch; }
+/* Rickson, inledningen enligt systemet: namnet T1, rollen T4 (raden direkt under rubriken),
+   öppningsraden T5 med betoning genom vikt 500 och full färg. */
+.rk-open { font-weight: 500; color: var(--ink); }
 /* Rickson, Samtal och intervjuer: två kort med tunn ljus ram på mörk yta. */
 .rk-talks { display: grid; gap: var(--space-md); margin-top: var(--stack-3); }
 @media (min-width: 760px) { .rk-talks { grid-template-columns: 1fr 1fr; gap: var(--space-lg); } }
