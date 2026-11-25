@@ -2586,6 +2586,21 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
 .rk-media a:hover { color: var(--ink); }
 .section--dark .rk-media { color: rgba(244,241,234,0.55); }
 .section--dark .rk-media a:hover { color: var(--on-ink); }
+/* Rickson, inledningen: öppningsraden i ingressens storlek (T4) men i full färg. */
+.rk-open { color: var(--ink); max-width: 34ch; }
+/* Rickson, Samtal och intervjuer: två kort med tunn ljus ram på mörk yta. */
+.rk-talks { display: grid; gap: var(--space-md); margin-top: var(--stack-3); }
+@media (min-width: 760px) { .rk-talks { grid-template-columns: 1fr 1fr; gap: var(--space-lg); } }
+.rk-talk {
+  display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-sm);
+  padding: var(--space-lg) var(--space-md); border: 1px solid rgba(244,241,234,0.22);
+  background: rgba(244,241,234,0.04); color: var(--on-ink);
+  transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+}
+.rk-talk:hover { border-color: rgba(244,241,234,0.6); background: rgba(244,241,234,0.08); }
+.rk-talk__title { color: var(--on-ink); }
+.rk-talk .cta { margin-top: var(--space-sm); color: rgba(244,241,234,0.85); border-color: rgba(244,241,234,0.35); }
+.rk-talk:hover .cta { color: var(--on-ink); border-color: var(--on-ink); }
 /* Arbetsbilden: mellanstor, stående - inte full bredd. */
 .rk-work { aspect-ratio: 5 / 6; }
 @media (max-width: 599px) {
