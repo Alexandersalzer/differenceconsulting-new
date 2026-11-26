@@ -2586,19 +2586,20 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
 .rk-media a:hover { color: var(--ink); }
 .section--dark .rk-media { color: rgba(244,241,234,0.55); }
 .section--dark .rk-media a:hover { color: var(--on-ink); }
-/* Rickson, Samtal och intervjuer: två kort med tunn ljus ram på mörk yta. */
+/* Rickson, inledningen: personlig ingress i Lora, normal vikt, T3 (25 px på mobil). */
+.page-rickson p.rk-open.h3 { font-size: var(--step-2); line-height: 1.2; color: var(--ink); max-width: 26ch; }
+/* Rickson, Samtal och intervjuer: två ljusa kort med tunn ram på beige yta. */
 .rk-talks { display: grid; gap: var(--space-md); margin-top: var(--stack-3); }
 @media (min-width: 760px) { .rk-talks { grid-template-columns: 1fr 1fr; gap: var(--space-lg); } }
 .rk-talk {
   display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-sm);
-  padding: var(--space-lg) var(--space-md); border: 1px solid rgba(244,241,234,0.22);
-  background: rgba(244,241,234,0.04); color: var(--on-ink);
-  transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+  padding: var(--space-lg) var(--space-md); border: 1px solid var(--hairline-alt);
+  background: var(--surface); color: var(--ink);
+  transition: border-color 0.3s var(--ease);
 }
-.rk-talk:hover { border-color: rgba(244,241,234,0.6); background: rgba(244,241,234,0.08); }
-.rk-talk__title { color: var(--on-ink); }
-.rk-talk .cta { margin-top: var(--space-sm); color: rgba(244,241,234,0.85); border-color: rgba(244,241,234,0.35); }
-.rk-talk:hover .cta { color: var(--on-ink); border-color: var(--on-ink); }
+.rk-talk:hover { border-color: var(--ink); }
+.rk-talk .cta { margin-top: var(--space-sm); }
+.rk-talk:hover .cta { color: var(--ink); border-color: var(--ink); }
 /* Arbetsbilden: mellanstor, stående - inte full bredd. */
 .rk-work { aspect-ratio: 5 / 6; }
 @media (max-width: 599px) {
