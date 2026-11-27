@@ -3,16 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Zilla+Slab:wght@400;500;600&display=swap" />
   <title>Tjänster · Difference Consulting</title>
   <meta name="description" content="Personlig vägledning i självledarskap. Utforska upplägg för individer, klubbar, representanter och agenturer." />
   <link rel="canonical" href="https://differenceconsulting.se/tjanster" />
   <meta name="robots" content="index, follow" />
+  <link rel="stylesheet" href="css/fonts.css" />
   <link rel="stylesheet" href="css/main.css" />
   <!-- The three path images swap on hover; preloading them keeps that instant. -->
-  <link rel="preload" as="image" href="assets/joakimhallfoto_260822_213.jpg" />
+  <link rel="preload" as="image" href="assets/joakimhallfoto_260822_213.jpg" imagesrcset="assets/joakimhallfoto_260822_213-800.jpg 800w, assets/joakimhallfoto_260822_213-1200.jpg 1200w, assets/joakimhallfoto_260822_213-1600.jpg 1600w, assets/joakimhallfoto_260822_213.jpg 1933w" imagesizes="(min-width: 900px) 40vw, 100vw" />
   <link rel="preload" as="image" href="assets/joakimhallfoto_260822_238.jpg" />
   <link rel="preload" as="image" href="assets/rickson-representant.jpeg" />
   <link rel="icon" type="image/png" href="assets/Tree.png" />
@@ -85,6 +83,7 @@
       <div class="container">
         <p class="eyebrow reveal">Tjänster</p>
         <h1 class="pagehero__title reveal" style="margin-top:var(--stack-1);">Samma arbete. Olika sammanhang.</h1>
+        <p class="reveal" style="margin-top:var(--stack-2);"><a class="link" href="#upplagg">Se uppläggen <span class="arrow">&darr;</span></a></p>
       </div>
     </section>
 
@@ -110,7 +109,7 @@
 
         <!-- Desktop only: the image field answers whichever path is hovered. -->
         <div class="paths__field reveal" aria-hidden="true">
-          <img fetchpriority="high" decoding="async" width="1933" height="2400" class="paths__img is-active" data-for="individ" src="assets/joakimhallfoto_260822_213.jpg" alt="" />
+          <img fetchpriority="high" decoding="async" width="1933" height="2400" class="paths__img is-active" data-for="individ" src="assets/joakimhallfoto_260822_213.jpg" srcset="assets/joakimhallfoto_260822_213-800.jpg 800w, assets/joakimhallfoto_260822_213-1200.jpg 1200w, assets/joakimhallfoto_260822_213-1600.jpg 1600w, assets/joakimhallfoto_260822_213.jpg 1933w" sizes="(min-width: 900px) 40vw, 100vw" alt="" />
           <img decoding="async" width="1200" height="1600" class="paths__img" data-for="klubb" src="assets/tjanster-klubb-stadion.jpeg" alt="" loading="lazy" />
           <img decoding="async" width="1600" height="1126" class="paths__img" data-for="representant" src="assets/rickson-representant.jpeg" alt="" loading="lazy" />
         </div>
@@ -130,6 +129,7 @@
           <div>
             <p class="eyebrow">En hel säsong</p>
             <h3 class="h3" style="margin-top:var(--stack-1);">Signatur</h3>
+            <p class="body" style="margin-top:var(--space-sm);">I första samtalet sätter vi start och slut utifrån din vardag eller din tävlingssäsong.</p>
           </div>
           <div class="body stack-sm">
             <p>Vissa ögonblick lever du två gånger. Först när de händer. Sedan när du kommer på vad du ville säga, ser något du missade eller förstår varför du skulle göra precis likadant igen.</p>
@@ -146,7 +146,7 @@
             <p class="body">Vi börjar med en situation du vill kunna möta annorlunda. Du prövar det vi kommer fram till. När perioden är slut ser vi vad som har hjälpt och vad du vill ta med dig vidare.</p>
           </div>
         </div>
-        <div class="dz-links"><a class="cta" href="kontakt.html">Prata om ditt upplägg <span class="arrow">&rarr;</span></a></div>
+        <div class="dz-links"><a class="cta" href="kontakt.html">Prata om upplägg och pris <span class="arrow">&rarr;</span></a></div>
       </div>
     </section>
   </main>
@@ -162,6 +162,7 @@
           </svg>
           <span class="logo__word"><b>Difference</b> <span>Consulting</span></span>
         </span>
+        <a class="footer__link" href="integritetspolicy.html">Integritet</a>
       </div>
     </div>
   </footer>

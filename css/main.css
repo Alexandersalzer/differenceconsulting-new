@@ -958,6 +958,8 @@ main > .hero { position: relative; z-index: 1; }
    femtedel (uppmätt över en hel loop), så den dras upp med -5 % av bredden.
    Nederkanten rörs inte, där når animationen ända ner. */
 .page-home .hero-logo { margin-top: -5%; }
+/* Större skärmar: loggan högst 672 px bred, så att rubriken får mer plats i första vyn. */
+@media (min-width: 700px) { .page-home .hero-logo { width: min(100%, 672px); } }
 .page-home .hero__body { max-width: none; }
 .page-home .hero__claim {
   margin-top: var(--space-sm);
@@ -1239,6 +1241,7 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
 .footer__logo .logo__mark path { fill: var(--ink); }
 .footer__logo .logo__word { color: var(--ink); font-family: var(--serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; }
 .footer__logo .logo__word span { color: var(--muted); }
+.footer__link { font-family: var(--sans); font-size: var(--step--1); letter-spacing: 0.04em; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.25em; }
 
 
 /* ---- Reveal-on-scroll ---------------------------------------------------- */
@@ -1411,13 +1414,17 @@ html.js .vc__offset-media img.is-loaded { opacity: 1; }
    knapparna, i botten av spalten så att knapparna slutar i höjd med texten. */
 .ind-close { align-items: end; }
 .ind-close .ind-sign { line-height: 1.4; margin: 0 0 var(--stack-2); max-width: none; text-align: left; }
-.ind-close__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-sm) var(--space-lg); }
+/* Knappen överst, sedan de sekundära länkarna en per rad - samma ordning på alla tjänstesidor. */
+.ind-close__actions { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-sm); }
+.ind-close__actions .btn { margin-top: var(--space-sm); }
+/* Tjänstesidorna: LED DIG SJÄLV. FÖRST. under texten i vänsterspalten. */
+.ind-close .ind-sign--left { margin: var(--stack-3) 0 0; text-align: left; }
 @media (min-width: 760px) {
-  /* Samma avslut på alla tjänstesidor: två lika breda spalter, så att även
-     en längre knapp ("Diskutera ett samarbete") står på samma rad som "Se Kvitton". */
+  /* Två lika breda spalter; signatur, knapp och länkar står mot högerkanten. */
   .ind-close { grid-template-columns: 1fr 1fr; }
   .ind-close .ind-sign { text-align: right; }
-  .ind-close__actions { justify-content: flex-end; }
+  .ind-close .ind-sign--left { text-align: left; }
+  .ind-close__actions { align-items: flex-end; }
 }
 
 /* Filosofin: varje pelare är en enhet - tätt mellan namn, kärnmening och
@@ -2718,10 +2725,6 @@ html.js .reveal-seq > * { opacity: calc(0.16 + 0.84 * var(--lit, 0)); }
   .c-split--phrases .ind-phrase { display: block; }
 }
 .dc-card__title { color: var(--on-ink); max-width: 20ch; }
-.dc-card__body { margin-top: var(--space-sm); max-width: 44ch; color: rgba(244, 241, 234, 0.85); }
-/* Varför vi finns: stycke 2–3 under kortet, så att bilden inte täcks. */
-.dc-card__after { margin-top: var(--space-lg); }
-.dc-quote__body { margin-top: var(--space-lg); max-width: 56ch; }
 @media (max-width: 599px) {
   .home-feature__media--card { height: 72svh; min-height: 440px; }
 }

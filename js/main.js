@@ -71,8 +71,27 @@
     menu.querySelectorAll('a').forEach(function (a) {
       a.addEventListener('click', function () { close(false); });
     });
+    // Fokusfälla: medan menyn är öppen stannar Tab och Skift+Tab inom den.
+    var focusables = function () {
+      return Array.prototype.filter.call(
+        menu.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'),
+        function (el) { return el.getClientRects().length && getComputedStyle(el).visibility !== 'hidden'; }
+      );
+    };
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && !menu.hidden) close(true);
+      if (menu.hidden) return;
+      if (e.key === 'Escape') { close(true); return; }
+      if (e.key !== 'Tab') return;
+      var items = focusables();
+      if (!items.length) return;
+      var first = items[0], last = items[items.length - 1];
+      var inside = menu.contains(document.activeElement);
+      if (e.shiftKey && (document.activeElement === first || !inside)) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && (document.activeElement === last || !inside)) { e.preventDefault(); first.focus(); }
+    });
+    // Om fokus ändå hamnar bakom menyn (t.ex. via klick) förs det tillbaka in.
+    document.addEventListener('focusin', function (e) {
+      if (!menu.hidden && !menu.contains(e.target) && closeBtn) closeBtn.focus();
     });
   }
 
